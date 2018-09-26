@@ -1,20 +1,26 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
-
+import Moment from 'react-moment'
+import { Card, Button,CardHeader, CardFooter,CardImg, CardTitle, CardText, CardDeck, CardSubtitle, CardBody } from 'reactstrap';
+import '../style.css'
+import {Col} from "react-bootstrap";
 export default class CourseCard extends React.Component{
     constructor(props){
         super(props);
     }
     render(){
+        let date = new Date();
         return(
-            <Card>
-                <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=256&h=180" alt="Card image cap" />
+            <Card className={'m-5'}>
+                <CardHeader id={'background_blue'}>Course Info</CardHeader>
                 <CardBody>
-                    <CardTitle>Card title</CardTitle>
-                    <CardSubtitle>Card subtitle</CardSubtitle>
+                    <CardTitle>{this.props.course.title}</CardTitle>
+                    <CardSubtitle className={'my-4'}>Instructor:<em>{this.props.course.OwnedBy}</em></CardSubtitle>
                     <CardText>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</CardText>
-                    <Button>Button</Button>
+                    <Button className={'btn btn-danger'}>Delete</Button>
                 </CardBody>
+                <CardFooter id={'background_blue'}>Last modified:
+                    <Moment format={"MM/DD/YYYY"}>{date}</Moment>
+                </CardFooter>
             </Card>
         )
     }

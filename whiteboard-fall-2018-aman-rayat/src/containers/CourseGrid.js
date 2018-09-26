@@ -1,6 +1,6 @@
 import React from 'react';
 import CourseCard from "../components/CourseCard";
-import {CardDeck} from 'reactstrap'
+import {CardDeck , CardColumns} from 'reactstrap'
 
 export default class CourseGrid extends React.Component{
     constructor(){
@@ -18,9 +18,14 @@ export default class CourseGrid extends React.Component{
     };
     render(){
         return(
-            <CardDeck>
-                {this.renderCourses()}
-            </CardDeck>
+            <div className={'container'}>
+                <CardDeck>
+                    <CardColumns>
+                    {this.renderCourses()}
+                    </CardColumns>
+                </CardDeck>
+            </div>
+
 
         )
     }
