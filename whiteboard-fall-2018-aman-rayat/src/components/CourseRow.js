@@ -1,12 +1,12 @@
 import React from 'react'
 import Moment from 'react-moment';
-import {ListGroupItem , ListGroup ,Grid ,Row , Col} from 'react-bootstrap'
+import { ListGroup ,Grid ,Row , Col} from 'react-bootstrap'
 
 const CourseRow =  (props)=> {
     let date = new Date();
     console.log("the props are " , props)
   return(
-      <ListGroup>
+      <ListGroup className={'m-5'}>
           <Grid>
               <Row>
                   <Col xs={3} sm={3} lg={3} md={3}>

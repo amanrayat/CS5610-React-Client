@@ -7,6 +7,13 @@ export default class CourseTableHeading extends React.Component{
         super();
 
     }
+    changeView = ()=>{
+        this.props.changeView();
+    };
+    addCourse = ()=>{
+        console.log("the input value is " , this.input.value)
+        this.props.addCourse(this.input.value);
+    };
 
     render(){
         return(
@@ -18,10 +25,14 @@ export default class CourseTableHeading extends React.Component{
                                 <i className="fa fa-bars"/> Course Manager
                             </Col>
                             <Col xs={7} sm={7} lg={7} md={7}>
-                                <FormControl type="text" placeholder="New Course Title" />
+                                <FormControl
+                                    componentClass="input"
+                                    type="text"
+                                    inputRef={(ref) => {this.input = ref}}
+                                    placeholder="New Course Title" />
                             </Col>
                             <Col xs={2} sm={2} lg={2} md={2}>
-                                <button className={'btn'} id={'plus_button'}><i className="fa fa-plus-circle"/></button>
+                                <button onClick={this.addCourse} className={'btn'} id={'plus_button'}><i className="fa fa-plus-circle"/></button>
                             </Col>
                         </Row>
                     </Grid>
@@ -39,7 +50,7 @@ export default class CourseTableHeading extends React.Component{
                                 Last Modified
                             </Col>
                             <Col xs={3} sm={3} lg={3} md={3}>
-                                <button className={'btn'}><i className="fa fa-th"/></button>
+                                <button onClick={this.changeView} className={'btn'}><i className="fa fa-th"/></button>
                             </Col>
                         </Row>
                     </Grid>

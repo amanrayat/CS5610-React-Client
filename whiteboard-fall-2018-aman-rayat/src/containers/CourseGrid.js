@@ -7,12 +7,17 @@ export default class CourseGrid extends React.Component{
         super();
     }
 
+    delete = (event)=>{
+       this.props.delete(event)
+    };
+
     renderCourses = ()=>{
         return(
             this.props.courses.map((course)=>{
                 return(
                         <CourseCard key={course.id}
-                                   course={course}/>
+                                   course={course}
+                                    delete={this.delete}/>
                 )
             }))
     };
