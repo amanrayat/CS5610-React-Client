@@ -97,11 +97,13 @@ let courses =  [
 class CourseService {
 
     findCourseById = (courseId)=>{
+        let result = [];
         courses.forEach((course)=>{
-            if(course.id === courseId){
-                return course;
+            if(course.id == courseId){
+                result =  course;
             }
         });
+        return result
     }
     findAllCourses = ()=>{
         return courses;
@@ -123,6 +125,80 @@ class CourseService {
                 courses.splice(index,1);
             }
         });
+    };
+
+    findModuleById = (moduleId)=>{
+
     }
+
+    findModuleByModuleIdCourseId = (moduleId , courseId)=>{
+        let result =[];
+        this.findCourseById(courseId).modules.forEach((module)=>{
+            if(module.id == moduleId){
+                result =  module
+            }
+        })
+        return result;
+    };
+    findAllModulesForCourseId = (courseId) => {
+        let result =[];
+        courses.forEach((course)=>{
+            if(course.id==courseId){
+                result = course.modules;
+            }
+        });
+        return result;
+    };
+
+    createModuleForCourseId = (moduleName , courseId) => {
+        let id = Math.round((new Date()).getTime() / 1000);
+        let obj = {
+            "id":id,
+            "title":moduleName,
+            "lessons":[]
+        };
+        courses.forEach((course)=>{
+            if(course.id == courseId){
+                course.modules  = [...course.modules , obj];
+            }
+        });
+    };
+    deleteModuleForCourseId = (moduleId , courseId) => {
+        courses.forEach((course) =>{
+            if(course.id == courseId){
+                course.modules.forEach((module , index)=>{
+                    if(module.id == moduleId){
+                        course.modules.splice(index , 1)
+                    }
+                })
+            }
+        })
+    };
+
+    findAllLessonsForModule = (courseId , moduleId)=>{
+        console.log("th ecourse id and the module id is" , courseId , " dd" , moduleId)
+        return this.findModuleByModuleIdCourseId (moduleId , courseId).lessons
+    };
+    createLessonForModuleId = ( courseId, moduleId,lessonName)=>{
+        let id = Math.round((new Date()).getTime() / 1000);
+        let obj = {
+            "id":id,
+            "title":lessonName,
+            "topics":[]
+        };
+        this.findModuleByModuleIdCourseId(courseId , moduleId).lessons
+            = [...this.findModuleByModuleIdCourseId(courseId , moduleId).lessons ,obj]
+    };
+    deleteLessonForModuleId = ( courseId, moduleId,lessonId)=>{
+        let lessonsList =  this.findModuleByModuleIdCourseId(courseId , moduleId).lessons
+        console.log("lessonlist i s" , lessonsList)
+        lessonsList.forEach((lesson,index)=>{
+            if(lesson.id == lessonId){
+                lessonsList.splice(index,1)
+            }
+        })
+
+    };
 }
 export default CourseService;
+export {courses};

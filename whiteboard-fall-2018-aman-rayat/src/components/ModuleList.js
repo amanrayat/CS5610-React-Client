@@ -1,7 +1,8 @@
 import React from 'react';
 import {FormControl} from "react-bootstrap";
-import ModuleService from "../service/ModuleService";
+import CourseService from "../service/CourseService";
 import ModuleListItem from '../components/ModuleListItem'
+import LessonTab from "./LessonTab";
 
 export default class ModuleList extends React.Component{
     constructor(props) {
@@ -14,36 +15,57 @@ export default class ModuleList extends React.Component{
             modules: []
         };
 
-        this.moduleService = new ModuleService();
+        this.courseService = new CourseService();
 
     }
     componentDidMount(){
+        this.rerender();
+    }
+    rerender = () =>{
+        this.setState({modules:this.courseService.findAllModulesForCourseId(this.state.courseId),
+            moduleId:this.courseService.findAllModulesForCourseId(this.state.courseId)[0].id})
+    };
+    deleteModule = (moduleId)=>{
+        this.courseService.deleteModuleForCourseId(moduleId , this.state.courseId);
+        this.rerender();
+
+    };
+    onloadLesson = (newmoduleId)=>{
+        console.log("the module is " , newmoduleId)
         this.setState({
-            modules :  this.moduleService.findAllModulesForCourseId(this.state.courseId)
-        });
+            moduleId: newmoduleId
+        })
     }
     renderModuleListItem = ()=>{
+        console.log("i am in rendermodule list item ")
         return(
             this.state.modules.map((moduleItem)=>{
                 return (
                     <ModuleListItem
+                        onloadLesson={this.onloadLesson}
+                        deleteModule={this.deleteModule}
                         key={moduleItem.id}
-                        title={moduleItem.title}/>
+                        moduleItem={moduleItem}/>
                 )
             })
         )
     };
     createModule = ()=>{
-        this.moduleService.createModuleForCourseId(this.input.value , this.state.courseId);
-        this.setState({modules:this.moduleService.findAllModulesForCourseId(this.state.courseId)})
+        this.courseService.createModuleForCourseId(this.input.value , this.state.courseId);
+        this.rerender();
+
     };
     render(){
-        return(
-            <div className={'row'}>
-                <div className={'col-2 mx-5'}>
-                    <ul className="list-group background_black height_full">
-                        {this.renderModuleListItem()}
-                        <span>
+        console.log("the module state is" , this.state)
+        if(this.state.moduleId){
+            return(
+                <div>
+                    <LessonTab moduleId={this.state.moduleId} courseId={this.state.courseId}/>
+                    <div className={'row'}>
+                        <div className={'col-2 mx-5'}>
+                            <ul className="list-group background_black height_full">
+                                {this.renderModuleListItem()}
+                                <span>
                        <FormControl
                            componentClass="input"
                            type="text"
@@ -56,10 +78,15 @@ export default class ModuleList extends React.Component{
                             <i className="fa fa-plus align-center center_it"/>
                         </button>
                     </span>
-                    </ul>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
-            </div>
-        )
+            )
+        }
+        else{
+            return (<div>Hello</div>)
+        }
     }
 }
