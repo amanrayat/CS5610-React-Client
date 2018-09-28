@@ -31,13 +31,11 @@ export default class ModuleList extends React.Component{
 
     };
     onloadLesson = (newmoduleId)=>{
-        console.log("the module is " , newmoduleId)
         this.setState({
             moduleId: newmoduleId
         })
     }
     renderModuleListItem = ()=>{
-        console.log("i am in rendermodule list item ")
         return(
             this.state.modules.map((moduleItem)=>{
                 return (
@@ -59,10 +57,10 @@ export default class ModuleList extends React.Component{
         console.log("the module state is" , this.state)
         if(this.state.moduleId){
             return(
-                <div>
+                <div >
                     <LessonTab moduleId={this.state.moduleId} courseId={this.state.courseId}/>
                     <div className={'row'}>
-                        <div className={'col-2 mx-5'}>
+                        <div className={'col-10 mx-5'}>
                             <ul className="list-group background_black height_full">
                                 {this.renderModuleListItem()}
                                 <span>

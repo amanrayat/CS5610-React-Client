@@ -12,14 +12,14 @@ let courses =  [
                         "id": "123",
                         "title": "Lesson 1 1 1",
                         "topics": [
-                            {"title": "Topic 1 1 1 1"}
+                            {"id" : "3456" , "title": "Topic 1 1 1 1"}
                         ]
                     },
                     {
                         "id": "234",
                         "title": "Lesson 1 1 2",
                         "topics": [
-                            {"title": "Topic 1 1 2 1"}
+                            {"id":"123" , "title": "Topic 1 1 2 1"}
                         ]
                     }
                 ]
@@ -32,14 +32,14 @@ let courses =  [
                         "id": "345",
                         "title": "Lesson 1 2 1",
                         "topics": [
-                            {"title": "Topic 1 2 1 1"}
+                            {"id" : "2345" , "title": "Topic 1 2 1 1"}
                         ]
                     },
                     {
                         "id": "456",
                         "title": "Lesson 1 2 2",
                         "topics": [
-                            {"title": "Topic 1 2 2 1"}
+                            {"id" : "234" ,"title": "Topic 1 2 2 1"}
                         ]
                     }
                 ]
@@ -126,27 +126,18 @@ class CourseService {
             }
         });
     };
-
-    findModuleById = (moduleId)=>{
-
-    }
-
+    
     findModuleByModuleIdCourseId = (moduleId , courseId)=>{
         let result =[];
         this.findCourseById(courseId).modules.forEach((module)=>{
-            if(module.id == moduleId){
-                result =  module
-            }
-        })
+            if(module.id == moduleId) result =  module
+        });
+
         return result;
     };
     findAllModulesForCourseId = (courseId) => {
         let result =[];
-        courses.forEach((course)=>{
-            if(course.id==courseId){
-                result = course.modules;
-            }
-        });
+        courses.forEach((course)=>{if(course.id==courseId)result = course.modules;});
         return result;
     };
 
@@ -176,22 +167,21 @@ class CourseService {
     };
 
     findAllLessonsForModule = (courseId , moduleId)=>{
-        console.log("th ecourse id and the module id is" , courseId , " dd" , moduleId)
         return this.findModuleByModuleIdCourseId (moduleId , courseId).lessons
     };
     createLessonForModuleId = ( courseId, moduleId,lessonName)=>{
-        let id = Math.round((new Date()).getTime() / 1000);
+        let id = Math.round((new Date()).getTime() / 100000);
         let obj = {
             "id":id,
             "title":lessonName,
             "topics":[]
         };
-        this.findModuleByModuleIdCourseId(courseId , moduleId).lessons
-            = [...this.findModuleByModuleIdCourseId(courseId , moduleId).lessons ,obj]
+        this.findModuleByModuleIdCourseId(moduleId,courseId).lessons
+            = [...this.findModuleByModuleIdCourseId(moduleId,courseId).lessons ,obj]
     };
+
     deleteLessonForModuleId = ( courseId, moduleId,lessonId)=>{
-        let lessonsList =  this.findModuleByModuleIdCourseId(courseId , moduleId).lessons
-        console.log("lessonlist i s" , lessonsList)
+        let lessonsList =  this.findModuleByModuleIdCourseId(moduleId,courseId).lessons;
         lessonsList.forEach((lesson,index)=>{
             if(lesson.id == lessonId){
                 lessonsList.splice(index,1)
@@ -199,6 +189,34 @@ class CourseService {
         })
 
     };
+
+    findAllTopicForModule = (courseId,ModuleId,LessonId)=>{
+        let result =[];
+        this.findAllLessonsForModule(courseId,ModuleId).forEach((lesson)=>{
+            if(lesson.id == LessonId){
+                result = lesson;
+            }
+        })
+        return result;
+    }
+    deleteTopicForLessonId =(courseId,moduleId,lessonId,topicId)=>{
+        let topics = this.findAllTopicForModule(courseId,moduleId ,lessonId).topics;
+        topics.forEach((topic,index)=>{
+            if(topic.id = topicId){
+                topics.splice(index,1)
+            }
+        });
+
+    };
+    addNewTopicforLesson =(courseId,moduleId,lessonId,topicName)=>{
+        let id = Math.round((new Date()).getTime() / 100000);
+        let obj = {
+            "id":id,
+            "title":topicName,
+        };
+        this.findAllTopicForModule(courseId,moduleId,lessonId).topics =
+            [...this.findAllTopicForModule(courseId,moduleId,lessonId).topics,obj]
+    }
 }
 export default CourseService;
 export {courses};
