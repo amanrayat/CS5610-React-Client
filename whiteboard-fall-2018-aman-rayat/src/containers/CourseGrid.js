@@ -2,36 +2,28 @@ import React from 'react';
 import CourseCard from "../components/CourseCard";
 import {CardDeck , CardColumns} from 'reactstrap'
 
-export default class CourseGrid extends React.Component{
-    constructor(){
-        super();
-    }
+const CourseGrid = (props)=>{
 
-    delete = (event)=>{
-       this.props.delete(event)
-    };
-
-    renderCourses = ()=>{
+    this.renderCourses = ()=>{
         return(
-            this.props.courses.map((course)=>{
+            props.courses.map((course)=>{
                 return(
-                        <CourseCard key={course.id}
-                                   course={course}
-                                    delete={this.delete}/>
+                    <CourseCard key={course.id}
+                                course={course}
+                                delete={props.delete}/>
                 )
             }))
     };
-    render(){
+
         return(
             <div className={'container'}>
                 <CardDeck>
                     <CardColumns>
-                    {this.renderCourses()}
+                        {this.renderCourses()}
                     </CardColumns>
                 </CardDeck>
             </div>
-
-
         )
-    }
-}
+};
+
+export default CourseGrid;

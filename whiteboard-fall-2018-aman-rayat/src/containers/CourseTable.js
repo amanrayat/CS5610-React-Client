@@ -5,13 +5,16 @@ export default class CourseTable extends React.Component{
         super();
     }
 
+
     renderCourses = ()=>{
         return(
         this.props.courses.map((course)=>{
             return(
                 <div >
-                    <CourseRow key={course.id}
-                               course={course}/>
+                    <CourseRow
+                        delete={this.props.delete}
+                        key={course.id}
+                        course={course}/>
                 </div>
 
             )

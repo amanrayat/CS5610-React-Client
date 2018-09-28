@@ -3,16 +3,18 @@ import Moment from 'react-moment'
 import { Card, Button,CardHeader, CardFooter, CardTitle, CardText, CardSubtitle, CardBody } from 'reactstrap';
 import '../style.css'
 export default class CourseCard extends React.Component{
+
     constructor(props){
         super(props);
-    }
+    };
+
     delete =()=>{
         this.props.delete(this.props.course.id);
-    }
+    };
+
     render(){
         let date = new Date();
         return(
-
             <Card className={'m-5'}>
                 <CardHeader id={'background_blue'}>Course Info</CardHeader>
                 <CardBody>

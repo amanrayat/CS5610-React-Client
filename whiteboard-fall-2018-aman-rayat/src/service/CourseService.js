@@ -94,31 +94,20 @@ let courses =  [
     }
 ];
 
-let _singleton = Symbol();
 class CourseService {
-    constructor(singletonToken){
-        if(_singleton !==singletonToken)
-            throw new Error('Cannot instantiate directly');
 
-    }
-    static get instance(){
-        if(!this[_singleton])
-            this[_singleton] = new CourseService(_singleton);
-        return this[_singleton]
-    }
-    
-    findCourseById(courseId){
+    findCourseById = (courseId)=>{
         courses.forEach((course)=>{
             if(course.id === courseId){
                 return course;
             }
         });
     }
-    findAllCourses(){
+    findAllCourses = ()=>{
         return courses;
     }
 
-    createCourse(course){
+    createCourse = (course)=>{
         let id = new Date();
         let newCourses = [...courses];
         newCourses.push({
@@ -128,7 +117,7 @@ class CourseService {
         });
         courses = newCourses;
     }
-    deleteCourse(courseId){
+    deleteCourse = (courseId)=>{
         courses.forEach((course,index)=>{
             if(course.id === courseId){
                 courses.splice(index,1);
