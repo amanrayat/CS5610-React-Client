@@ -66,7 +66,7 @@ export default class TopicPill extends React.Component{
         else{
             return(
                 <div>
-                    {this.fallback}
+                    {this.fallback()}
                 </div>
             )
         }

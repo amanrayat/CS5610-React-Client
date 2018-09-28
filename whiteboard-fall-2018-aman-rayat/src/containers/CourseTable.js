@@ -1,29 +1,23 @@
 import React from 'react';
 import CourseRow from '../components/CourseRow'
-export default class CourseTable extends React.Component{
-    constructor(){
-        super();
-    }
+const CourseTable = (props)=>{
 
-    renderCourses = ()=>{
+    this.renderCourses = ()=>{
         return(
-        this.props.courses.map((course)=>{
-            return(
-                <div >
+            props.courses.map((course)=>{
+                return(
                     <CourseRow
-                        delete={this.props.delete}
                         key={course.id}
+                        delete={props.delete}
                         course={course}/>
-                </div>
-
-            )
-        }))
-};
-    render(){
+                )
+            }))
+    };
         return(
             <div>
                 {this.renderCourses()}
             </div>
         )
-    }
-}
+    };
+
+export default CourseTable;

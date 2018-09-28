@@ -57,17 +57,20 @@ let courses =  [
                 "lessons": [
                     {
                         "id": "567",
-                        "title": "Lesson 1 3 1"
+                        "title": "Lesson 1 3 1",
+                        "topics":[]
                     },
                     {
                         "id": "678",
-                        "title": "Lesson 1 3 2"
+                        "title": "Lesson 1 3 2",
+                        "topics":[]
                     }
                 ]
             },
             {
                 "id": "456",
-                "title": "Module 2 2"
+                "title": "Module 2 2",
+                "lessons":[]
             }
         ]
     },
@@ -78,11 +81,13 @@ let courses =  [
         "modules": [
             {
                 "id": "567",
-                "title": "Module 3 1"
+                "title": "Module 3 1",
+                "lessons":[]
             },
             {
                 "id": "678",
-                "title": "Module 3 2"
+                "title": "Module 3 2",
+                "lessons" : []
             }
         ]
     },
@@ -104,10 +109,10 @@ class CourseService {
             }
         });
         return result
-    }
+    };
     findAllCourses = ()=>{
         return courses;
-    }
+    };
 
     createCourse = (course)=>{
         let id = new Date();
@@ -118,7 +123,7 @@ class CourseService {
             "OwnedBy":"Aman"
         });
         courses = newCourses;
-    }
+    };
     deleteCourse = (courseId)=>{
         courses.forEach((course,index)=>{
             if(course.id === courseId){
@@ -126,7 +131,7 @@ class CourseService {
             }
         });
     };
-    
+
     findModuleByModuleIdCourseId = (moduleId , courseId)=>{
         let result =[];
         this.findCourseById(courseId).modules.forEach((module)=>{
@@ -196,9 +201,9 @@ class CourseService {
             if(lesson.id == LessonId){
                 result = lesson;
             }
-        })
+        });
         return result;
-    }
+    };
     deleteTopicForLessonId =(courseId,moduleId,lessonId,topicId)=>{
         let topics = this.findAllTopicForModule(courseId,moduleId ,lessonId).topics;
         topics.forEach((topic,index)=>{

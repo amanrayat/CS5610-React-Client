@@ -16,10 +16,15 @@ export default class ModuleList extends React.Component{
         };
 
         this.courseService = new CourseService();
-
     }
     componentDidMount(){
         this.rerender();
+    }
+    componentWillReceiveProps(newProps){
+        this.setState({
+            courseId:newProps.courseId,
+            modules:this.courseService.findAllModulesForCourseId(newProps.courseId),
+            moduleId:this.courseService.findAllModulesForCourseId(newProps.courseId)[0].id})
     }
     rerender = () =>{
         this.setState({modules:this.courseService.findAllModulesForCourseId(this.state.courseId),
@@ -54,8 +59,8 @@ export default class ModuleList extends React.Component{
 
     };
     render(){
-        console.log("the module state is" , this.state)
-        if(this.state.moduleId){
+        console.log("the state of the lesson is " , this.state)
+        if(this.state.moduleId && this.state.courseId){
             return(
                 <div >
                     <LessonTab moduleId={this.state.moduleId} courseId={this.state.courseId}/>

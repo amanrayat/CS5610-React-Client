@@ -19,20 +19,20 @@ export default class LessonTab extends React.Component{
         this.reRender();
     }
     componentWillReceiveProps(newProps){
+        console.log("the new Props in lesson tab are " , newProps)
         this.setState({
             lessons : this.courseService.findAllLessonsForModule(newProps.courseId , newProps.moduleId),
             lessonId:
-            this.courseService.findAllLessonsForModule(newProps.courseId , newProps.moduleId).length>0?
-            this.courseService.findAllLessonsForModule(newProps.courseId , newProps.moduleId)[0].id:null
+                this.courseService.findAllLessonsForModule(newProps.courseId , newProps.moduleId).length>0?
+                    this.courseService.findAllLessonsForModule(newProps.courseId , newProps.moduleId)[0].id:null
         })
     }
 
     reRender = ()=>{
-        console.log("i am from rerender and the module id is " , this.props.moduleId)
         this.setState({
             lessons : this.courseService.findAllLessonsForModule(this.props.courseId , this.props.moduleId),
             lessonId:
-                    this.courseService.findAllLessonsForModule(this.props.courseId , this.props.moduleId).length>0?
+                this.courseService.findAllLessonsForModule(this.props.courseId , this.props.moduleId).length>0?
                     this.courseService.findAllLessonsForModule(this.props.courseId , this.props.moduleId)[0].id:null
         })
     };
@@ -72,17 +72,17 @@ export default class LessonTab extends React.Component{
             )
         }else{
             return(
-            <div className='col-8 float-right'>
-                <h1>Hey Please add some lessons first</h1>
-            </div>)
+                <div className='col-8 float-right'>
+                    <h1>Hey Please add some lessons first</h1>
+                </div>)
         }
     }
     render(){
-            return(
+        return(
+            <div>
                 <div>
-                    <div>
-                        <ul className="nav nav-tabs background_black">
-                            <li className="nav-item">
+                    <ul className="nav nav-tabs background_black">
+                        <li className="nav-item">
                     <span className='custom-control-inline'>
                         <Link to={'/courses'}>
                             <button className={'btn btn-outline-danger '}>
@@ -91,27 +91,27 @@ export default class LessonTab extends React.Component{
                         </Link>
                         <a className='nav-link'>{this.props.title}</a>
                     </span>
-                            </li>
-                            {this.renderLessonItem()}
-                            <form className="form-inline my-2 my-lg-0" style={{marginLeft: '40px'}}>
-                                <FormControl
-                                    componentClass="input"
-                                    type="text"
-                                    inputRef={(ref) => {this.input = ref}}
-                                    placeholder="New Lesson title" />
-                                <button
-                                    className="btn btn-outline-primary my-2 my-sm-0"
-                                    type="button"
-                                    onClick={this.addLesson}>
-                                    Add Lesson
-                                </button>
-                            </form>
-                        </ul>
-                    </div>
-                    {this.handleEmptyTopic()}
-
+                        </li>
+                        {this.renderLessonItem()}
+                        <form className="form-inline my-2 my-lg-0" style={{marginLeft: '40px'}}>
+                            <FormControl
+                                componentClass="input"
+                                type="text"
+                                inputRef={(ref) => {this.input = ref}}
+                                placeholder="New Lesson title" />
+                            <button
+                                className="btn btn-outline-primary my-2 my-sm-0"
+                                type="button"
+                                onClick={this.addLesson}>
+                                Add Lesson
+                            </button>
+                        </form>
+                    </ul>
                 </div>
-            )
+                {this.handleEmptyTopic()}
+
+            </div>
+        )
 
     }
 }
