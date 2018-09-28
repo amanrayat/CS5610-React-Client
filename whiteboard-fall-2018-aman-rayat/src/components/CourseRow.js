@@ -1,7 +1,7 @@
 import React from 'react'
 import Moment from 'react-moment';
 import { ListGroup ,Grid ,Row , Col} from 'react-bootstrap'
-
+import {Link} from 'react-router-dom'
 
 
 const CourseRow =  (props)=> {
@@ -16,7 +16,7 @@ const CourseRow =  (props)=> {
           <Grid>
               <Row>
                   <Col xs={3} sm={3} lg={3} md={3}>
-                      {props.course.title}
+                      <Link to={`/course/${props.course.id}`}>{props.course.title}</Link>
                   </Col>
                   <Col xs={3} sm={3} lg={3} md={3}>
                       {props.course.OwnedBy}

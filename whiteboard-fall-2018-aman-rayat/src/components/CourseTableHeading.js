@@ -11,7 +11,6 @@ export default class CourseTableHeading extends React.Component{
         this.props.changeView();
     };
     addCourse = ()=>{
-        console.log("the input value is " , this.input.value)
         this.props.addCourse(this.input.value);
     };
 

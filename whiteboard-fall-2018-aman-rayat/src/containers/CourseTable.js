@@ -5,7 +5,6 @@ export default class CourseTable extends React.Component{
         super();
     }
 
-
     renderCourses = ()=>{
         return(
         this.props.courses.map((course)=>{
@@ -19,7 +18,7 @@ export default class CourseTable extends React.Component{
 
             )
         }))
-}
+};
     render(){
         return(
             <div>
@@ -27,6 +26,4 @@ export default class CourseTable extends React.Component{
             </div>
         )
     }
-
-
 }
