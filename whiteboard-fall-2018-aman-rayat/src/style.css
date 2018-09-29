@@ -12,7 +12,7 @@
 
 
 .black-background{
-    background-color: rgba(100,100,200,0.1) !important;
+    background-color: rgba(150,150,150,0.1) !important;
     color: black !important;
 }
 body{
@@ -27,7 +27,7 @@ html{
 }
 
 .selected{
-    background-color: rgba(0,0,200,0.1);
+    background-color: rgba(100,100,100,0.3);
 }
 .btn_selected{
     background-color: rgba(0,0,0,0);
@@ -91,6 +91,7 @@ input:checked + .slider:before {
     -ms-transform: translateX(26px);
     transform: translateX(26px);
 }
+
 
 /* Rounded sliders */
 .slider.round {

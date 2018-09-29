@@ -88,7 +88,7 @@ export default class ModuleList extends React.Component{
                                     <button
                                         onClick={this.createModule}
                                         type='button'
-                                        className='text-center input-group btn  btn-outline-success'>
+                                        className=' btn-block btn  btn-outline-success text-center'>
                                         <i className="fa fa-plus align-center center_it"/>
                                     </button>
                                 </span>

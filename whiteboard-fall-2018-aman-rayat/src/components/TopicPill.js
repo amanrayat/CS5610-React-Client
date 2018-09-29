@@ -87,8 +87,8 @@ export default class TopicPill extends React.Component{
                         componentClass="input"
                         type="text"
                         inputRef={(ref) => {this.input = ref}}
-                        placeholder="New Lesson title" />
-                    <button style={{marginTop : '40px'}} onClick={this.addTopic} className={'btn btn-primary'}>Add New Topic</button>
+                        placeholder="New Topic title" />
+                    <button style={{marginTop : '40px'}} onClick={this.addTopic} className={'btn btn-primary btn-block'}>Add New Topic</button>
                 </ul>
                 <WidgetList/>
             </div>
