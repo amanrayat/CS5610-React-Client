@@ -332,6 +332,9 @@ const WidgetList =  ()=>{
                             <a href="#">Link Text</a>
                         </div>
                     </div>
+                    <button className={'btn float-right my-5 btn-primary'}>
+                        <i className="fa fa-plus-circle fa-2x" aria-hidden="true"/>
+                    </button>
                 </div>
             </div>
         </div>
