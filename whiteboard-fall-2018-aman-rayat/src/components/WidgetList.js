@@ -9,7 +9,7 @@ const WidgetList =  ()=>{
                     <div className="row container my-5">
                         <div className="col-12">
                 <span className="float-right">
-                    <button style={{"display": "inline"}} className="btn btn-success">Save</button>
+                    <button style={{"display": "inline"}} className="btn btn-success mx-3">Save</button>
                     <p style={{"display": "inline"}}>Preview</p>
                     <label style={{"display": "inline-block"}} className="switch">
                       <input type="checkbox"/>
@@ -24,9 +24,9 @@ const WidgetList =  ()=>{
                             <div className="col-7">
                                 <h2 style={{"display": "inline"}}>Heading Widget</h2>
                                 <button style={{"display": "inline"}} className="btn btn-primary float-right mx-1"><i
-                                    className="fas fa-arrow-up"/></button>
+                                    className="fa fa-arrow-up"/></button>
                                 <button style={{"display": "inline"}} className="btn btn-primary float-right"><i
-                                    className="fas fa-arrow-down"/></button>
+                                    className="fa fa-arrow-down"/></button>
                             </div>
                             <div className="col-3">
                                 <div className="form-group">
@@ -89,9 +89,9 @@ const WidgetList =  ()=>{
                             <div className="col-7">
                                 <h2 style={{"display": "inline"}}>List Widget</h2>
                                 <button style={{"display": "inline"}} className="btn btn-primary float-right mx-1"><i
-                                    className="fas fa-arrow-up"/></button>
+                                    className="fa fa-arrow-up"/></button>
                                 <button style={{"display": "inline"}} className="btn btn-primary float-right"><i
-                                    className="fas fa-arrow-down"/></button>
+                                    className="fa fa-arrow-down"/></button>
                             </div>
                             <div className="col-3">
                                 <div className="form-group">
@@ -159,9 +159,9 @@ const WidgetList =  ()=>{
                             <div className="col-7">
                                 <h2 style={{"display": "inline"}}>Paragraph Widget</h2>
                                 <button style={{"display": "inline"}} className="btn btn-primary float-right mx-1"><i
-                                    className="fas fa-arrow-up"/></button>
+                                    className="fa fa-arrow-up"/></button>
                                 <button style={{"display": "inline"}} className="btn btn-primary float-right"><i
-                                    className="fas fa-arrow-down"/></button>
+                                    className="fa fa-arrow-down"/></button>
                             </div>
                             <div className="col-3">
                                 <div className="form-group">
@@ -214,9 +214,9 @@ const WidgetList =  ()=>{
                             <div className="col-7">
                                 <h2 style={{"display": "inline"}}>Image Widget</h2>
                                 <button style={{"display": "inline"}} className="btn btn-primary float-right mx-1">
-                                    <i className="fas fa-arrow-up"/></button>
+                                    <i className="fa fa-arrow-up"/></button>
                                 <button style={{"display": "inline"}} className="btn btn-primary float-right">
-                                    <i className="fas fa-arrow-down"/></button>
+                                    <i className="fa fa-arrow-down"/></button>
                             </div>
                             <div className="col-3">
                                 <div className="form-group">
@@ -266,9 +266,9 @@ const WidgetList =  ()=>{
                             <div className="col-7">
                                 <h2 style={{"display":"inline"}}>Link Widget</h2>
                                 <button style={{"display": "inline"}} className="btn btn-primary float-right mx-1"><i
-                                    className="fas fa-arrow-up"/></button>
+                                    className="fa fa-arrow-up"/></button>
                                 <button style={{"display": "inline"}} className="btn btn-primary float-right"><i
-                                    className="fas fa-arrow-down"/></button>
+                                    className="fa fa-arrow-down"/></button>
                             </div>
                             <div className="col-3">
                                 <div className="form-group">

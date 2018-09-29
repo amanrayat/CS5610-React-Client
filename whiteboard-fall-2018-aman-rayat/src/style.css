@@ -100,3 +100,10 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
+.slider{
+    position: absolute;
+    top: 22px;
+    bottom: -21px;
+    left:5px;
+}
