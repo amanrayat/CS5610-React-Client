@@ -7,7 +7,7 @@ import CourseEditor from "./CourseEditor";
 const CourseManager  = ()=>{
     return(
         <Router>
-            <div>
+            <div className={'height_full'}>
                 <Route path='/courses' component={CourseList}/>
                 <Route path='/course/:courseId' component={CourseEditor}/>
             </div>

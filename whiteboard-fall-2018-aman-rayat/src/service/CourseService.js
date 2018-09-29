@@ -101,10 +101,19 @@ let courses =  [
 
 class CourseService {
 
+    findCourseNameByCourseId = (courseId)=>{
+        let courseName;
+        courses.forEach((course)=>{
+            if(parseInt(course.id,10) === parseInt(courseId,10)){
+                courseName = course.title
+            }
+        })
+        return courseName;
+    }
     findCourseById = (courseId)=>{
         let result = [];
         courses.forEach((course)=>{
-            if(course.id == courseId){
+            if(parseInt(course.id,10) === parseInt(courseId,10)){
                 result =  course;
             }
         });
@@ -135,14 +144,14 @@ class CourseService {
     findModuleByModuleIdCourseId = (moduleId , courseId)=>{
         let result =[];
         this.findCourseById(courseId).modules.forEach((module)=>{
-            if(module.id == moduleId) result =  module
+            if(parseInt(module.id,10) === parseInt(moduleId,10)) result =  module
         });
 
         return result;
     };
     findAllModulesForCourseId = (courseId) => {
         let result =[];
-        courses.forEach((course)=>{if(course.id==courseId)result = course.modules;});
+        courses.forEach((course)=>{if(parseInt(course.id,10)===parseInt(courseId,10))result = course.modules;});
         return result;
     };
 
@@ -154,23 +163,29 @@ class CourseService {
             "lessons":[]
         };
         courses.forEach((course)=>{
-            if(course.id == courseId){
+            if(parseInt(course.id,10) === parseInt(courseId,10)){
                 course.modules  = [...course.modules , obj];
             }
         });
     };
     deleteModuleForCourseId = (moduleId , courseId) => {
         courses.forEach((course) =>{
-            if(course.id == courseId){
+            if(parseInt(course.id,10) === parseInt(courseId,10)){
                 course.modules.forEach((module , index)=>{
-                    if(module.id == moduleId){
+                    if(parseInt(module.id,10) === parseInt(moduleId,10)){
                         course.modules.splice(index , 1)
                     }
                 })
             }
         })
     };
-
+    updateModuleListItem = (courseId, moduleId , moduleName)=>{
+        this.findAllModulesForCourseId(courseId).forEach((module)=>{
+            if(moduleId == module.id){
+                module.title = moduleName
+            }
+        })
+    };
     findAllLessonsForModule = (courseId , moduleId)=>{
         return this.findModuleByModuleIdCourseId (moduleId , courseId).lessons
     };
@@ -188,17 +203,27 @@ class CourseService {
     deleteLessonForModuleId = ( courseId, moduleId,lessonId)=>{
         let lessonsList =  this.findModuleByModuleIdCourseId(moduleId,courseId).lessons;
         lessonsList.forEach((lesson,index)=>{
-            if(lesson.id == lessonId){
+            if(parseInt(lesson.id,10) === parseInt(lessonId,10)){
                 lessonsList.splice(index,1)
             }
         })
 
     };
+    updateLesson =(courseId, moduleId , lessonId , lessonName)=>{
+        console.log("the values are " ,courseId, moduleId , lessonId , lessonName )
+        let lessonsList =  this.findModuleByModuleIdCourseId(moduleId,courseId).lessons;
+        console.log("the lessonlist is " , lessonsList)
+        lessonsList.forEach((lesson)=>{
+            if(lesson.id == lessonId){
+                lesson.title = lessonName
+            }
+        })
 
+    };
     findAllTopicForModule = (courseId,ModuleId,LessonId)=>{
         let result =[];
         this.findAllLessonsForModule(courseId,ModuleId).forEach((lesson)=>{
-            if(lesson.id == LessonId){
+            if(parseInt(lesson.id,10) === parseInt(LessonId,10)){
                 result = lesson;
             }
         });
@@ -207,7 +232,7 @@ class CourseService {
     deleteTopicForLessonId =(courseId,moduleId,lessonId,topicId)=>{
         let topics = this.findAllTopicForModule(courseId,moduleId ,lessonId).topics;
         topics.forEach((topic,index)=>{
-            if(topic.id = topicId){
+            if(parseInt(topic.id,10) === parseInt(topicId,10)){
                 topics.splice(index,1)
             }
         });
@@ -221,6 +246,14 @@ class CourseService {
         };
         this.findAllTopicForModule(courseId,moduleId,lessonId).topics =
             [...this.findAllTopicForModule(courseId,moduleId,lessonId).topics,obj]
+    }
+    updateTopic =(courseId , moduleId ,lessonId , topicId ,topicName)=>{
+        console.log("the values now are " , courseId , moduleId ,lessonId , topicId ,topicName)
+        this.findAllTopicForModule(courseId , moduleId ,lessonId).topics.forEach((topic)=>{
+            if(topic.id == topicId){
+                topic.title=topicName
+            }
+        })
     }
 }
 export default CourseService;

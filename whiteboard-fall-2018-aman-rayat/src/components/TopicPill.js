@@ -50,6 +50,9 @@ export default class TopicPill extends React.Component{
         this.courseService.addNewTopicforLesson(this.props.courseId ,this.props.moduleId , this.props.lessonId , this.input.value)
         this.reRender();
     }
+    updateTopic=(id ,value)=>{
+        this.courseService.updateTopic(this.props.courseId , this.props.moduleId , this.props.lessonId ,id ,value)
+    }
 
     renderTopics = ()=>{
         if(this.state.topics){
@@ -57,6 +60,7 @@ export default class TopicPill extends React.Component{
                 this.state.topics.map((topic) => {
                     return(
                         <TopicPillItem key={topic.id}
+                                       updateTopic={this.updateTopic}
                                        topic={topic}
                                        deleteTopic={this.deleteTopic}/>
                     )
@@ -74,15 +78,19 @@ export default class TopicPill extends React.Component{
 
     render(){
         return(
-            <ul className={'nav'}>
-                {this.renderTopics()}
-                <FormControl
-                    componentClass="input"
-                    type="text"
-                    inputRef={(ref) => {this.input = ref}}
-                    placeholder="New Lesson title" />
-                <button style={{marginTop : '40px'}} onClick={this.addTopic} className={'btn btn-primary'}>Add New Topic</button>
-            </ul>
+            <div>
+                <h1 className={'text-center'}>Topics</h1>
+                <ul className={'nav'}>
+                    {this.renderTopics()}
+                    <FormControl
+                        componentClass="input"
+                        type="text"
+                        inputRef={(ref) => {this.input = ref}}
+                        placeholder="New Lesson title" />
+                    <button style={{marginTop : '40px'}} onClick={this.addTopic} className={'btn btn-primary'}>Add New Topic</button>
+                </ul>
+            </div>
+
         )
     }
 };

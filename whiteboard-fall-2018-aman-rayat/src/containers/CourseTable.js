@@ -13,11 +13,11 @@ const CourseTable = (props)=>{
                 )
             }))
     };
-        return(
-            <div>
-                {this.renderCourses()}
-            </div>
-        )
-    };
+    return(
+        <div>
+            {this.renderCourses()}
+        </div>
+    )
+};
 
 export default CourseTable;

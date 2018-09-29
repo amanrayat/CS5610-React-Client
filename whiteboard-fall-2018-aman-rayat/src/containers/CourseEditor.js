@@ -9,13 +9,12 @@ export default class CourseEditor extends React.Component{
         }
     }
     componentDidMount(){
-        console.log("the course editor "  ,this.props.match.params.courseId )
         this.setState({
             courseId : this.props.match.params.courseId
         })
     }
     render(){
-        return(<div>
+        return(<div className={'height_full'}>
             <ModuleList courseId = {this.state.courseId}/>
         </div>)
     }
