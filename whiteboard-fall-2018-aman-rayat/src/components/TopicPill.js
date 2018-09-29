@@ -2,6 +2,7 @@ import React from 'react';
 import TopicPillItem from './TopicPillItem'
 import {FormControl} from "react-bootstrap";
 import CourseService from "../service/CourseService";
+import WidgetList from './WidgetList'
 
 export default class TopicPill extends React.Component{
     constructor(props) {
@@ -89,6 +90,7 @@ export default class TopicPill extends React.Component{
                         placeholder="New Lesson title" />
                     <button style={{marginTop : '40px'}} onClick={this.addTopic} className={'btn btn-primary'}>Add New Topic</button>
                 </ul>
+                <WidgetList/>
             </div>
 
         )
