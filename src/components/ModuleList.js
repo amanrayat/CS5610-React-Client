@@ -73,7 +73,7 @@ export default class ModuleList extends React.Component{
         if(this.state.moduleId && this.state.courseId){
             return(
                 <div className={'height_full'}>
-                    <LessonTab title={this.state.courseName} moduleId={this.state.moduleId} courseId={this.state.courseId}/>
+                    <LessonTab reRender={this.reRender} title={this.state.courseName} moduleId={this.state.moduleId} courseId={this.state.courseId}/>
                     <div className={'black-background row height_full'}>
                         <div className={'col-12'}>
                             <ul className="list-group background_black height_full">

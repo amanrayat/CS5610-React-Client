@@ -157,7 +157,7 @@ const WidgetList =  ()=>{
                     <div className="widget container my-5">
                         <div className="row container mt-4">
                             <div className="col-7">
-                                <h2 style={{"display": "inline"}}>Paragraph Widget</h2>
+                                <h2 style={{"display": "inline"}}>Paragraph</h2>
                                 <button style={{"display": "inline"}} className="btn btn-primary float-right mx-1"><i
                                     className="fa fa-arrow-up"/></button>
                                 <button style={{"display": "inline"}} className="btn btn-primary float-right"><i

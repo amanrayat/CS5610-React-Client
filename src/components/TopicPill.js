@@ -16,22 +16,25 @@ export default class TopicPill extends React.Component{
     componentDidMount(){
         this.setState({
             topics : this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics,
-            // topicId :
-            // this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId)?[0].id,
+            topicId :
+            this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics.length>0?
+                this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics[0].id:null
         })
     }
     componentWillReceiveProps(newProps){
         this.setState({
             topics : this.courseService.findAllTopicForModule(newProps.courseId , newProps.moduleId , newProps.lessonId).topics,
-            // topicId:this.courseService.findAllTopicForModule(newProps.courseId , newProps.moduleId , newProps.lessonId)[0].id
+            topicId:this.courseService.findAllTopicForModule(newProps.courseId , newProps.moduleId ,newProps.lessonId).topics.length>0?
+                this.courseService.findAllTopicForModule(newProps.courseId , newProps.moduleId ,newProps.lessonId).topics[0].id:null
         })
     }
 
     reRender= ()=>{
         this.setState({
             topics : this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics,
-            // topicId :
-            // this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId)?[0].id,
+            topicId :
+                this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics.length>0?
+                    this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics[0].id:null
         })
     };
     fallback = ()=>{
@@ -54,6 +57,11 @@ export default class TopicPill extends React.Component{
     updateTopic=(id ,value)=>{
         this.courseService.updateTopic(this.props.courseId , this.props.moduleId , this.props.lessonId ,id ,value)
     }
+    selectTopic =(id)=>{
+        this.setState({
+            topicId:id
+        })
+    }
 
     renderTopics = ()=>{
         if(this.state.topics){
@@ -63,6 +71,8 @@ export default class TopicPill extends React.Component{
                         <TopicPillItem key={topic.id}
                                        updateTopic={this.updateTopic}
                                        topic={topic}
+                                       selectTopic={this.selectTopic}
+                                       classname={this.state.topicId==topic.id?'selected btn':'btn'}
                                        deleteTopic={this.deleteTopic}/>
                     )
                 })
@@ -78,6 +88,7 @@ export default class TopicPill extends React.Component{
     };
 
     render(){
+        console.log("the topic id is " , this.state)
         return(
             <div>
                 <h1 className={'text-center'}>Topics</h1>

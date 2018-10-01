@@ -46,6 +46,7 @@ let courses =  [
             }
         ]
     },
+
     {
         "id": "234",
         "title": "Course 2",
@@ -74,29 +75,93 @@ let courses =  [
             }
         ]
     },
+
     {
         "id": "345",
         "title": "Course 3",
-        "OwnedBy" : "Rajmohan Rajaraman",
+        "OwnedBy" : "Rajmohan",
         "modules": [
             {
-                "id": "567",
-                "title": "Module 3 1",
-                "lessons":[]
+                "id": "345",
+                "title": "Module 2 1",
+                "lessons": [
+                    {
+                        "id": "567",
+                        "title": "Lesson 1 3 1",
+                        "topics":[]
+                    },
+                    {
+                        "id": "678",
+                        "title": "Lesson 1 3 2",
+                        "topics":[]
+                    }
+                ]
             },
             {
-                "id": "678",
-                "title": "Module 3 2",
-                "lessons" : []
+                "id": "456",
+                "title": "Module 2 2",
+                "lessons":[]
+            }
+        ]
+    },
+
+    {
+        "id": "456",
+        "title": "Course 4",
+        "OwnedBy" : "Mike",
+        "modules": [
+            {
+                "id": "345",
+                "title": "Module 2 1",
+                "lessons": [
+                    {
+                        "id": "567",
+                        "title": "Lesson 1 3 1",
+                        "topics":[]
+                    },
+                    {
+                        "id": "678",
+                        "title": "Lesson 1 3 2",
+                        "topics":[]
+                    }
+                ]
+            },
+            {
+                "id": "456",
+                "title": "Module 2 2",
+                "lessons":[]
             }
         ]
     },
     {
-        "id": "456",
-        "title": "Course 4",
-        "OwnedBy" : "Mike ",
-
+        "id": "567",
+        "title": "Course 5",
+        "OwnedBy" : "Wand",
+        "modules": [
+            {
+                "id": "345",
+                "title": "Module 2 1",
+                "lessons": [
+                    {
+                        "id": "567",
+                        "title": "Lesson 1 3 1",
+                        "topics":[]
+                    },
+                    {
+                        "id": "678",
+                        "title": "Lesson 1 3 2",
+                        "topics":[]
+                    }
+                ]
+            },
+            {
+                "id": "456",
+                "title": "Module 2 2",
+                "lessons":[]
+            }
+        ]
     }
+
 ];
 
 class CourseService {
@@ -107,7 +172,7 @@ class CourseService {
             if(parseInt(course.id,10) === parseInt(courseId,10)){
                 courseName = course.title
             }
-        })
+        });
         return courseName;
     }
     findCourseById = (courseId)=>{
@@ -129,7 +194,8 @@ class CourseService {
         newCourses.push({
             "id":id,
             "title":course,
-            "OwnedBy":"Aman"
+            "OwnedBy":"Aman",
+            "modules":[]
         });
         courses = newCourses;
     };
@@ -140,7 +206,10 @@ class CourseService {
             }
         });
     };
-
+    editCourse =(courseId, courseName)=>{
+        console.log("i am here in editing")
+        this.findCourseById(courseId).title = courseName;
+    }
     findModuleByModuleIdCourseId = (moduleId , courseId)=>{
         let result =[];
         this.findCourseById(courseId).modules.forEach((module)=>{
@@ -150,8 +219,10 @@ class CourseService {
         return result;
     };
     findAllModulesForCourseId = (courseId) => {
+        console.log("i am here");
         let result =[];
         courses.forEach((course)=>{if(parseInt(course.id,10)===parseInt(courseId,10))result = course.modules;});
+        console.log(result)
         return result;
     };
 

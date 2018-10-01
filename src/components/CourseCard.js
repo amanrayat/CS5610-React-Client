@@ -12,7 +12,7 @@ const CourseCard = (props)=>{
 
         let date = new Date();
         return(
-            <Card className={'m-5'}>
+            <Card className={'m-2 my-4'}>
                 <CardHeader id={'background_blue'}>Course Info</CardHeader>
                 <CardBody>
                     <CardTitle> <Link to={`/course/${props.course.id}`}>{props.course.title}</Link></CardTitle>

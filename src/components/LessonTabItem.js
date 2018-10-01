@@ -50,7 +50,8 @@ export default class LessonTabItem extends React.Component{
             return(
                 <ul className='nav nav-tabs '>
                     <li className={this.props.classname}>
-                <span>
+                        <span className='custom-control-inline'>
+
                     <FormControl
                         defaultValue={this.props.lesson.title}
                         className={'black-background'}

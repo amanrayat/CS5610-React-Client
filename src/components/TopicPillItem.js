@@ -18,14 +18,16 @@ export default class TopicPillItem extends React.Component{
     deleteTopic = ()=>{
       this.props.deleteTopic(this.props.topic.id)
     };
-
+    selectTopic =()=>{
+        this.props.selectTopic(this.props.topic.id)
+    }
     isEditing =()=>{
         if(this.state.editing ===false){
             return(
                 <li className=" nav-item m-5" key={this.props.topic.id}>
                     <div className='row'>
                         <div>
-                            <button className={'btn'}><h5>{this.props.topic.title}</h5></button>
+                            <button onClick={this.selectTopic} className={this.props.classname}><h5>{this.props.topic.title}</h5></button>
                         </div>
                         <div className={'mx-1'}>
                             <button onClick={this.deleteTopic}
@@ -49,26 +51,29 @@ export default class TopicPillItem extends React.Component{
             return(
                 <li className=" nav-item m-5" key={this.props.topic.id}>
                     <div className='row'>
-                        <FormControl
-                            defaultValue={this.props.topic.title}
-                            className={'black-background'}
-                            componentClass="input"
-                            type="text"
-                            inputRef={(ref) => {this.input = ref}}/>
-                        <div className={'mx-1'}>
-                            <button onClick={this.deleteTopic}
-                                    type="button"
-                                    className="btn btn-sm btn-outline-danger btn-inline">
-                                Delete
-                            </button>
-                        </div>
-                        <div className={'mx-1'}>
-                            <button onClick={this.saveTopic}
-                                    type="button"
-                                    className="btn btn-sm btn-outline-primary btn-inline">
-                                Save
-                            </button>
-                        </div>
+                        <span className='custom-control-inline'>
+                            <FormControl
+                                defaultValue={this.props.topic.title}
+                                className={'black-background'}
+                                componentClass="input"
+                                type="text"
+                                inputRef={(ref) => {this.input = ref}}/>
+                            <div className={'mx-1'}>
+                                <button onClick={this.deleteTopic}
+                                        type="button"
+                                        className="btn btn-sm btn-outline-danger btn-inline">
+                                    Delete
+                                </button>
+                            </div>
+                            <div className={'mx-1'}>
+                                <button onClick={this.saveTopic}
+                                        type="button"
+                                        className="btn btn-sm btn-outline-primary btn-inline">
+                                    Save
+                                </button>
+                            </div>
+                        </span>
+
                     </div>
                 </li>
             )

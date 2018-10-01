@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import LessonTabItem from '../components/LessonTabItem'
 import CourseService from "../service/CourseService";
 import TopicPill from './TopicPill'
+import CourseName from './CourseName'
 
 export default class LessonTab extends React.Component {
     constructor(props) {
@@ -88,14 +89,7 @@ export default class LessonTab extends React.Component {
                 <div className={'black-background'}>
                     <ul className="nav nav-tabs background_black">
                         <li className="nav-item">
-                    <span className='custom-control-inline'>
-                        <Link to={'/courses'}>
-                            <button className={'btn btn-outline-danger '}>
-                                <i className="fa fa-arrow-left"/>
-                            </button>
-                        </Link>
-                        <p className='nav-link'>{this.props.title}</p>
-                    </span>
+                            <CourseName reRender={this.props.reRender} id={this.props.courseId} title={this.props.title}/>
                         </li>
                         {this.renderLessonItem()}
                         <form className="form-inline my-2 my-lg-0" style={{marginLeft: '40px'}}>
