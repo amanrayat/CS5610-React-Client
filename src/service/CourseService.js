@@ -207,7 +207,6 @@ class CourseService {
         });
     };
     editCourse =(courseId, courseName)=>{
-        console.log("i am here in editing")
         this.findCourseById(courseId).title = courseName;
     }
     findModuleByModuleIdCourseId = (moduleId , courseId)=>{
@@ -219,10 +218,8 @@ class CourseService {
         return result;
     };
     findAllModulesForCourseId = (courseId) => {
-        console.log("i am here");
         let result =[];
         courses.forEach((course)=>{if(parseInt(course.id,10)===parseInt(courseId,10))result = course.modules;});
-        console.log(result)
         return result;
     };
 
@@ -281,9 +278,7 @@ class CourseService {
 
     };
     updateLesson =(courseId, moduleId , lessonId , lessonName)=>{
-        console.log("the values are " ,courseId, moduleId , lessonId , lessonName )
         let lessonsList =  this.findModuleByModuleIdCourseId(moduleId,courseId).lessons;
-        console.log("the lessonlist is " , lessonsList)
         lessonsList.forEach((lesson)=>{
             if(lesson.id == lessonId){
                 lesson.title = lessonName
@@ -319,7 +314,6 @@ class CourseService {
             [...this.findAllTopicForModule(courseId,moduleId,lessonId).topics,obj]
     }
     updateTopic =(courseId , moduleId ,lessonId , topicId ,topicName)=>{
-        console.log("the values now are " , courseId , moduleId ,lessonId , topicId ,topicName)
         this.findAllTopicForModule(courseId , moduleId ,lessonId).topics.forEach((topic)=>{
             if(topic.id == topicId){
                 topic.title=topicName

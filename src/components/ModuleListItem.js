@@ -33,7 +33,6 @@ export default class ModuleListItem extends React.Component{
     renderModuleList = ()=>{
 
         if(this.state.editing===false){
-            console.log("i am in editing")
             return (
                 <li  className={this.props.moduleItem.id == this.props.selected ? '  list-group-item selected ':'list-group-item black-background '}>
                     <button  onClick={this.onloadLesson}

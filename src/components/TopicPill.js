@@ -88,7 +88,6 @@ export default class TopicPill extends React.Component{
     };
 
     render(){
-        console.log("the topic id is " , this.state)
         return(
             <div>
                 <h1 className={'text-center'}>Topics</h1>
