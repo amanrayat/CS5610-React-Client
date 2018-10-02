@@ -24,7 +24,8 @@ export default class LessonTabItem extends React.Component{
     onSave =()=>{
         this.props.onSave(this.props.lesson.id , this.input.value)
         this.setState({editing :false})
-    }
+        this.input.value="";
+    };
     renderLessonItem = ()=>{
         if(this.state.editing === false){
             return(

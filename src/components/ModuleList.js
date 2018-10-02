@@ -44,7 +44,7 @@ export default class ModuleList extends React.Component{
         this.setState({
             moduleId: newmoduleId
         })
-    }
+    };
     onUpdateModule=(id , value)=>{
         this.courseService.updateModuleListItem(this.state.courseId , id,value);
         this.reRender();
@@ -67,6 +67,7 @@ export default class ModuleList extends React.Component{
     createModule = ()=>{
         this.courseService.createModuleForCourseId(this.input.value , this.state.courseId);
         this.reRender();
+        this.input.value=""
 
     };
     render(){

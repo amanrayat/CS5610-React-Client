@@ -53,6 +53,7 @@ export default class TopicPill extends React.Component{
     addTopic=()=>{
         this.courseService.addNewTopicforLesson(this.props.courseId ,this.props.moduleId , this.props.lessonId , this.input.value)
         this.reRender();
+        this.input.value="";
     }
     updateTopic=(id ,value)=>{
         this.courseService.updateTopic(this.props.courseId , this.props.moduleId , this.props.lessonId ,id ,value)
