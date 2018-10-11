@@ -47,121 +47,6 @@ let courses =  [
         ]
     },
 
-    {
-        "id": "234",
-        "title": "Course 2",
-        "OwnedBy" : "Jose Annunziato",
-        "modules": [
-            {
-                "id": "345",
-                "title": "Module 2 1",
-                "lessons": [
-                    {
-                        "id": "567",
-                        "title": "Lesson 1 3 1",
-                        "topics":[]
-                    },
-                    {
-                        "id": "678",
-                        "title": "Lesson 1 3 2",
-                        "topics":[]
-                    }
-                ]
-            },
-            {
-                "id": "456",
-                "title": "Module 2 2",
-                "lessons":[]
-            }
-        ]
-    },
-
-    {
-        "id": "345",
-        "title": "Course 3",
-        "OwnedBy" : "Rajmohan",
-        "modules": [
-            {
-                "id": "345",
-                "title": "Module 2 1",
-                "lessons": [
-                    {
-                        "id": "567",
-                        "title": "Lesson 1 3 1",
-                        "topics":[]
-                    },
-                    {
-                        "id": "678",
-                        "title": "Lesson 1 3 2",
-                        "topics":[]
-                    }
-                ]
-            },
-            {
-                "id": "456",
-                "title": "Module 2 2",
-                "lessons":[]
-            }
-        ]
-    },
-
-    {
-        "id": "456",
-        "title": "Course 4",
-        "OwnedBy" : "Mike",
-        "modules": [
-            {
-                "id": "345",
-                "title": "Module 2 1",
-                "lessons": [
-                    {
-                        "id": "567",
-                        "title": "Lesson 1 3 1",
-                        "topics":[]
-                    },
-                    {
-                        "id": "678",
-                        "title": "Lesson 1 3 2",
-                        "topics":[]
-                    }
-                ]
-            },
-            {
-                "id": "456",
-                "title": "Module 2 2",
-                "lessons":[]
-            }
-        ]
-    },
-    {
-        "id": "567",
-        "title": "Course 5",
-        "OwnedBy" : "Wand",
-        "modules": [
-            {
-                "id": "345",
-                "title": "Module 2 1",
-                "lessons": [
-                    {
-                        "id": "567",
-                        "title": "Lesson 1 3 1",
-                        "topics":[]
-                    },
-                    {
-                        "id": "678",
-                        "title": "Lesson 1 3 2",
-                        "topics":[]
-                    }
-                ]
-            },
-            {
-                "id": "456",
-                "title": "Module 2 2",
-                "lessons":[]
-            }
-        ]
-    }
-
 ];
 
 class CourseService {
@@ -312,14 +197,83 @@ class CourseService {
         };
         this.findAllTopicForModule(courseId,moduleId,lessonId).topics =
             [...this.findAllTopicForModule(courseId,moduleId,lessonId).topics,obj]
-    }
+    };
     updateTopic =(courseId , moduleId ,lessonId , topicId ,topicName)=>{
         this.findAllTopicForModule(courseId , moduleId ,lessonId).topics.forEach((topic)=>{
             if(topic.id == topicId){
                 topic.title=topicName
             }
         })
-    }
+    };
+
+    findTopicById = (topicId) => {
+        let result = null;
+        courses.forEach((course)=>{
+            course.modules.forEach((module=>{
+                module.lessons.forEach((lesson)=>{
+                    lesson.topics.forEach((topic)=>{
+                        if(topic.id==topicId){
+                            result = topic
+                        }
+                    })
+                })
+            }))
+        });
+        return result
+    };
+
+    createWidget = (topicId , widget)=> {
+        let topic = this.findTopicById(topicId);
+        let oldWidgets = topic.widgets;
+        topic.widgets = [...oldWidgets , widget];
+    };
+    findWidgets = (topicId)=>{
+        return this.findTopicById(topicId).widgets;
+    };
+    findWidget = (widgetId)=>{
+        let result = null;
+        courses.forEach((course)=>{
+            course.modules.forEach((module=>{
+                module.lessons.forEach((lesson)=>{
+                    lesson.topics.forEach((topic)=>{
+                      topic.widgets.forEach((widget)=>{
+                          if(widget.id == widgetId) result=widget
+                      })
+                    })
+                })
+            }))
+        });
+        return result
+    };
+    findTopicByWidgetId = (widgetId)=>{
+        let result = null;
+        courses.forEach((course)=>{
+            course.modules.forEach((module=>{
+                module.lessons.forEach((lesson)=>{
+                    lesson.topics.forEach((topic)=>{
+                        topic.widgets.forEach((widget)=>{
+                            if(widget.id == widgetId) result=topic
+                        })
+                    })
+                })
+            }))
+        });
+        return result
+    };
+
+    updateWidget = (widgetId, widget)=>{
+
+    };
+    deleteWidget = (widgetId)=>{
+        let result =[];
+        let topic = this.findTopicByWidgetId(widgetId)
+            topic.widgets.forEach((widget)=>{
+            if(widget.id != widgetId){
+                result.push(widget);
+            }
+        });
+        topic.widgets = result
+    };
 }
 export default CourseService;
 export {courses};

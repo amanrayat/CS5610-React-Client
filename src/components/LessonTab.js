@@ -1,6 +1,5 @@
 import React from 'react';
 import {FormControl} from "react-bootstrap";
-import {Link} from 'react-router-dom'
 import LessonTabItem from '../components/LessonTabItem'
 import CourseService from "../service/CourseService";
 import TopicPill from './TopicPill'
