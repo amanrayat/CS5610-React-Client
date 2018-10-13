@@ -2,19 +2,28 @@ import React from 'react';
 import TopicPillItem from './TopicPillItem'
 import {FormControl} from "react-bootstrap";
 import CourseService from "../service/CourseService";
-import WidgetList from './WidgetList'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import widgets from '../reducers/widgets'
+import WidgetListContainer from '../containers/WidgetListContainer'
+import WidgetListComponent from "./WidgetListComponent";
+
+
+const store = createStore(widgets);
 
 export default class TopicPill extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
             topics :[]
-        }
+        };
         this.courseService = new CourseService();
 
     }
-    componentDidMount(){
+    componentWillMount(){
         this.setState({
+            topic:this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics.length>0?
+                this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics[0]:null,
             topics : this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics,
             topicId :
             this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics.length>0?
@@ -23,6 +32,8 @@ export default class TopicPill extends React.Component{
     }
     componentWillReceiveProps(newProps){
         this.setState({
+            topic :this.courseService.findAllTopicForModule(newProps.courseId , newProps.moduleId ,newProps.lessonId).topics.length>0?
+                this.courseService.findAllTopicForModule(newProps.courseId , newProps.moduleId ,newProps.lessonId).topics[0]:null ,
             topics : this.courseService.findAllTopicForModule(newProps.courseId , newProps.moduleId , newProps.lessonId).topics,
             topicId:this.courseService.findAllTopicForModule(newProps.courseId , newProps.moduleId ,newProps.lessonId).topics.length>0?
                 this.courseService.findAllTopicForModule(newProps.courseId , newProps.moduleId ,newProps.lessonId).topics[0].id:null
@@ -31,6 +42,8 @@ export default class TopicPill extends React.Component{
 
     reRender= ()=>{
         this.setState({
+            topic :  this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics.length>0?
+                this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics[0]:null,
             topics : this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics,
             topicId :
                 this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics.length>0?
@@ -60,7 +73,8 @@ export default class TopicPill extends React.Component{
     }
     selectTopic =(id)=>{
         this.setState({
-            topicId:id
+            topicId:id,
+            topic : this.courseService.findTopicById(id)
         })
     }
 
@@ -89,6 +103,7 @@ export default class TopicPill extends React.Component{
     };
 
     render(){
+        console.log("the tioc and dskjncsd" , this.state);
         return(
             <div>
                 <h1 className={'text-center'}>Topics</h1>
@@ -101,7 +116,10 @@ export default class TopicPill extends React.Component{
                         placeholder="New Topic title" />
                     <button style={{marginTop : '40px'}} onClick={this.addTopic} className={'btn btn-primary btn-block'}>Add New Topic</button>
                 </ul>
-                <WidgetList/>
+                <Provider store={store}>
+                    <WidgetListContainer topic={this.state.topic} widgetsInit={this.state.topic.widgets}/>
+                </Provider>
+                {/*<WidgetListComponent widgets={}/>*/}
             </div>
 
         )

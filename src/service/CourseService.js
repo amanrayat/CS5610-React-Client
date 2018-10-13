@@ -12,14 +12,43 @@ let courses =  [
                         "id": "123",
                         "title": "Lesson 1 1 1",
                         "topics": [
-                            {"id" : "3456" , "title": "Topic 1 1 1 1"}
+                            {"id" : "3456" , "title": "Topic 1 1 1 1" ,
+                                "widgets": [
+                                    {
+                                        "type": "HEADING",
+                                        "size": 1,
+                                        "text": "The Document Object Model"
+                                    },
+                                    {
+                                        "type": "PARAGRAPH",
+                                        "text": "This topic introduces the DOM"
+                                    },
+                                    {
+                                        "type": "LIST",
+                                        "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes"
+                                    },
+                                    {
+                                        "type": "IMAGE",
+                                        "src": "https://picsum.photos/200"
+                                    },
+                                    {
+                                        "type": "LINK",
+                                        "title": "The DOM",
+                                        "href": "https://en.wikipedia.org/wiki/Document_Object_Model"
+                                    }
+                                ]
+                            },
+                            {"id" : "987" , "title": "Topic 1 1 1 2" ,
+                                "widgets" :[{"title" : "zozo"} , {"title" : "dodo"}]
+                            }
                         ]
                     },
                     {
                         "id": "234",
                         "title": "Lesson 1 1 2",
                         "topics": [
-                            {"id":"123" , "title": "Topic 1 1 2 1"}
+                            {"id":"123" , "title": "Topic 1 1 2 1" ,
+                                "widgets" :[{"title" : "yooy"} , {"title" : "mom"}]}
                         ]
                     }
                 ]
@@ -228,6 +257,7 @@ class CourseService {
         topic.widgets = [...oldWidgets , widget];
     };
     findWidgets = (topicId)=>{
+        console.log("the topic id is " , topicId)
         return this.findTopicById(topicId).widgets;
     };
     findWidget = (widgetId)=>{

@@ -6,12 +6,12 @@ const widgets = (state={widgets:[]} , action)=>{
         switch(action.type) {
             case "INIT":
                 return {
-                    widgets : this.CourseService.findWidgets(action.topicId),
-                    selectedTopic : action.topicId
+                    widgets: this.CourseService.findWidgets(action.topic.id),
+                    selectedTopic: action.topic
                 };
             case "CREATE_WIDGET" :
                 return {
-                    widgets :action.topiczid
+                    widgets :action.topicId
                 };
             case "DELETE_WIDGET" :
                 return {
@@ -37,4 +37,12 @@ const widgets = (state={widgets:[]} , action)=>{
 
         }
 }
+// export default widgets
+
+// const widgets = (state = {widgets:[] , action})=>({
+//     widgets : [
+//         {title:"w111"},{title:"w222"},{title:"w333"},{title:"w444"}
+//     ]
+// })
+
 export default widgets
