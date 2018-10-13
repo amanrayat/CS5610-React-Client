@@ -71,7 +71,7 @@ class WidgetListComponent extends React.Component {
 
                     )
                 }
-              <button className={'btn float-right my-5 btn-primary'}>
+              <button className={'btn float-right my-5 btn-primary'} onClick={()=>this.props.addWidget()}>
                 <i className="fa fa-plus-circle fa-2x" aria-hidden="true"/>
               </button>
             </ul>

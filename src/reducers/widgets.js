@@ -10,8 +10,9 @@ const widgets = (state={widgets:[]} , action)=>{
                     selectedTopic: action.topic
                 };
             case "CREATE_WIDGET" :
+                    this.CourseService.createWidget(state.selectedTopic.id);
                 return {
-                    widgets :action.topicId
+                  widgets: this.CourseService.findWidgets(state.selectedTopic.id)
                 };
             case "DELETE_WIDGET" :
                 this.CourseService.deleteWidget(action.widget.id);
