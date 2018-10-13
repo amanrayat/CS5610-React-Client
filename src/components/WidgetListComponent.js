@@ -29,9 +29,9 @@ class WidgetListComponent extends React.Component {
                 </span>
               </div>
                 {
-                    this.props.widgets.map((widget, index) =>
+                    this.props.widgets.map((widget) =>
                         <div className={'my-3'}>
-                            <li key={index} className="list-group-item">
+                            <li key={widget.id} className="list-group-item">
                                 <div className={'row'}>
                                     <div className={'col-6'}>
                                         <h5>{widget.type} Widget</h5>
@@ -54,7 +54,8 @@ class WidgetListComponent extends React.Component {
                                         </div>
                                     </div>
                                     <div className="col-1">
-                                        <button className="btn btn-danger"><i className="fa fa-times" aria-hidden="true"/>
+                                        <button className="btn btn-danger" onClick={()=>this.props.deleteWidget(widget)}>
+                                          <i className="fa fa-times" aria-hidden="true"/>
                                         </button>
                                     </div>
 

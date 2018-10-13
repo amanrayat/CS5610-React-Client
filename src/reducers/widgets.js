@@ -14,8 +14,11 @@ const widgets = (state={widgets:[]} , action)=>{
                     widgets :action.topicId
                 };
             case "DELETE_WIDGET" :
+                this.CourseService.deleteWidget(action.widget.id);
+                console.log("the action is " , action)
+                console.log("the state is " , state)
                 return {
-
+                  widgets: this.CourseService.findWidgets(state.selectedTopic.id),
                 };
             case "UPDATE_WIDGET" :
                 return {

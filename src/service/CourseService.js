@@ -14,24 +14,24 @@ let courses =  [
                         "topics": [
                             {"id" : "3456" , "title": "Topic 1 1 1 1" ,
                                 "widgets": [
-                                    {
+                                    {   "id" : 11111,
                                         "type": "HEADING",
                                         "size": 1,
                                         "text": "The Document Object Model"
                                     },
-                                    {
+                                    {   "id" : 11112,
                                         "type": "PARAGRAPH",
                                         "text": "This topic introduces the DOM"
                                     },
-                                    {
+                                    {   "id" : 11113,
                                         "type": "LIST",
                                         "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes"
                                     },
-                                    {
+                                    {   "id" : 11114,
                                         "type": "IMAGE",
                                         "src": "https://picsum.photos/200"
                                     },
-                                    {
+                                    {   "id" : 11115,
                                         "type": "LINK",
                                         "title": "The DOM",
                                         "href": "https://en.wikipedia.org/wiki/Document_Object_Model"
@@ -39,7 +39,7 @@ let courses =  [
                                 ]
                             },
                             {"id" : "987" , "title": "Topic 1 1 1 2" ,
-                                "widgets" :[{"title" : "zozo"} , {"title" : "dodo"}]
+                                "widgets" :[{"id" : 11121,"title" : "zozo"} , {"id" : 11122,"title" : "dodo"}]
                             }
                         ]
                     },
@@ -48,31 +48,11 @@ let courses =  [
                         "title": "Lesson 1 1 2",
                         "topics": [
                             {"id":"123" , "title": "Topic 1 1 2 1" ,
-                                "widgets" :[{"title" : "yooy"} , {"title" : "mom"}]}
+                                "widgets" :[{"id" : 11131,"title" : "yooy"} , {"id" : 11132,"title" : "mom"}]}
                         ]
                     }
                 ]
             },
-            {
-                "id": "234",
-                "title": "Module 1 2",
-                "lessons": [
-                    {
-                        "id": "345",
-                        "title": "Lesson 1 2 1",
-                        "topics": [
-                            {"id" : "2345" , "title": "Topic 1 2 1 1"}
-                        ]
-                    },
-                    {
-                        "id": "456",
-                        "title": "Lesson 1 2 2",
-                        "topics": [
-                            {"id" : "234" ,"title": "Topic 1 2 2 1"}
-                        ]
-                    }
-                ]
-            }
         ]
     },
 
@@ -257,7 +237,6 @@ class CourseService {
         topic.widgets = [...oldWidgets , widget];
     };
     findWidgets = (topicId)=>{
-        console.log("the topic id is " , topicId)
         return this.findTopicById(topicId).widgets;
     };
     findWidget = (widgetId)=>{
