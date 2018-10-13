@@ -2,6 +2,7 @@ import React from 'react'
 import HeadingWidget from "./HeadingWidget";
 import ParagraphWidget from "./ParagraphWidget";
 import ListWidget from "./ListWidget";
+import ImageWidget from "./ImageWidget";
 
 class WidgetListComponent extends React.Component {
     constructor(props) {
@@ -22,6 +23,7 @@ class WidgetListComponent extends React.Component {
                             {widget.type==="HEADING" && <HeadingWidget widget={widget}/>}
                             {widget.type==="PARAGRAPH" && <ParagraphWidget widget={widget}/>}
                             {widget.type==="LIST" && <ListWidget widget={widget}/>}
+                            {widget.type==="IMAGE" && <ImageWidget widget={widget}/>}
                         </li>
                     )
                 }
