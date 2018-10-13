@@ -18,9 +18,19 @@ class WidgetListComponent extends React.Component {
         console.log("the props are " , this.props)
         return (
             <ul className='list-group'>
+              <div className="col-12 my-5">
+                <span className="float-right">
+                    <button style={{"display": "inline"}} className="btn btn-success mx-3">Save</button>
+                    <p style={{"display": "inline"}}>Preview</p>
+                    <label style={{"display": "inline-block"}} className="switch">
+                      <input type="checkbox"/>
+                      <span className="slider round"/>
+                    </label>
+                </span>
+              </div>
                 {
                     this.props.widgets.map((widget, index) =>
-                        <div>
+                        <div className={'my-3'}>
                             <li key={index} className="list-group-item">
                                 <div className={'row'}>
                                     <div className={'col-6'}>
@@ -60,7 +70,11 @@ class WidgetListComponent extends React.Component {
 
                     )
                 }
+              <button className={'btn float-right my-5 btn-primary'}>
+                <i className="fa fa-plus-circle fa-2x" aria-hidden="true"/>
+              </button>
             </ul>
+
 
         )
     }
