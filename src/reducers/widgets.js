@@ -3,6 +3,8 @@ import CourseService from '../service/CourseService'
 this.CourseService = new CourseService();
 
 const widgets = (state={widgets:[]} , action)=>{
+  console.log("the state is " , state)
+  console.log("the action is " , action)
         switch(action.type) {
             case "INIT":
                 return {
@@ -16,11 +18,14 @@ const widgets = (state={widgets:[]} , action)=>{
                 };
             case "DELETE_WIDGET" :
                 this.CourseService.deleteWidget(action.widget.id);
-                console.log("the action is " , action)
-                console.log("the state is " , state)
                 return {
-                  widgets: this.CourseService.findWidgets(state.selectedTopic.id),
+                  widgets: this.CourseService.findWidgets(state.selectedTopic.id)
                 };
+          case "CHANGE_TYPE":
+            this.CourseService.changeWidget(state.selectedTopic.id , action.widget.id , action.kind);
+            return{
+              widgets: this.CourseService.findWidgets(state.selectedTopic.id)
+            };
             case "UPDATE_WIDGET" :
                 return {
 

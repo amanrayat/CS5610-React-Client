@@ -24,7 +24,12 @@ const dispatcherToPropertyMapper = dispatch =>({
     }),
     addWidget: ()=> dispatch({
       type: 'CREATE_WIDGET'
-    })
+    }),
+  changeType: (widget , kind)=> dispatch({
+    type :'CHANGE_TYPE',
+    widget:widget,
+    kind : kind
+  })
 })
 
 const WidgetListContainer = connect(stateToPropertyMapper,dispatcherToPropertyMapper)(WidgetListComponent);

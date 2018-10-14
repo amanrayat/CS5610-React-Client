@@ -4,6 +4,7 @@ import ParagraphWidget from "./ParagraphWidget";
 import ListWidget from "./ListWidget";
 import ImageWidget from "./ImageWidget";
 import LinkWidget from "./LinkWidget";
+import {DropdownButton, MenuItem} from "react-bootstrap";
 
 class WidgetListComponent extends React.Component {
     constructor(props) {
@@ -12,7 +13,13 @@ class WidgetListComponent extends React.Component {
     }
 
     componentDidUpdate(){
-        this.props.init(this.props.widgetsInit , this.props.topic)
+      console.log("component will update ")
+
+      this.props.init(this.props.widgetsInit , this.props.topic)
+    }
+    componentWillReceiveProps(newProps){
+      console.log("component will receive props")
+      newProps.init(newProps.widgetsInit,newProps.topic)
     }
     render() {
         console.log("the props are " , this.props)
@@ -44,13 +51,18 @@ class WidgetListComponent extends React.Component {
                                     </div>
                                     <div className="col-3">
                                         <div className="form-group">
-                                            <select className="form-control" id="dropdown">
-                                                <option selected={widget.type==="HEADING"}>Heading</option>
-                                                <option selected={widget.type==="LINK"}>Link</option>
-                                                <option selected={widget.type==="IMAGE"}>Image</option>
-                                                <option selected={widget.type==="PARAGRAPH"}>Paragraph</option>
-                                                <option selected={widget.type==="LIST"}>List</option>
-                                            </select>
+                                          <DropdownButton
+                                              bsStyle="default"
+                                              title={widget.type}
+                                              key={1}
+                                              noCaret
+                                              id={`dropdown-basic-${1}`}>
+                                            <MenuItem eventKey="1" onSelect={()=>this.props.changeType(widget,1)}>Heading</MenuItem>
+                                            <MenuItem eventKey="2" onSelect={()=>this.props.changeType(widget,2)}>Paragraph</MenuItem>
+                                            <MenuItem eventKey="3" onSelect={()=>this.props.changeType(widget,3)}>List</MenuItem>
+                                            <MenuItem eventKey="4" onSelect={()=>this.props.changeType(widget,4)}>Image</MenuItem>
+                                            <MenuItem eventKey="5" onSelect={()=>this.props.changeType(widget,5)}>Link</MenuItem>
+                                          </DropdownButton>
                                         </div>
                                     </div>
                                     <div className="col-1">
@@ -58,9 +70,8 @@ class WidgetListComponent extends React.Component {
                                           <i className="fa fa-times" aria-hidden="true"/>
                                         </button>
                                     </div>
-
                                 </div>
-
+                                {console.log("the type is " , widget.type)}
                                 {widget.type==="HEADING" && <HeadingWidget widget={widget}/>}
                                 {widget.type==="PARAGRAPH" && <ParagraphWidget widget={widget}/>}
                                 {widget.type==="LIST" && <ListWidget widget={widget}/>}
