@@ -25,6 +25,7 @@ let courses =  [
                                     },
                                     {   "id" : 11113,
                                         "type": "LIST",
+                                        "order" :"ordered",
                                         "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes"
                                     },
                                     {   "id" : 11114,
@@ -238,8 +239,6 @@ class CourseService {
         topic.widgets = [...oldWidgets , widget];
     };
     findWidgets = (topicId)=>{
-        console.log("i am called" , topicId)
-      console.log("i am sending back " , this.findTopicById(topicId).widgets)
         return this.findTopicById(topicId).widgets;
     };
     findWidget = (widgetId)=>{
@@ -282,7 +281,7 @@ class CourseService {
           else{
               kind===1 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 1 , "text" : ""})
               kind===2 && newWidgetList.push({"id":widget.id ,"type":"PARAGRAPH" ,"text": ""})
-              kind===3 && newWidgetList.push({"id":widget.id ,"type":"LIST" ,"items": ""})
+              kind===3 && newWidgetList.push({"id":widget.id ,"type":"LIST" ,  "order" :"ordered","items": ""})
               kind===4 && newWidgetList.push({"id":widget.id ,"type":"IMAGE" ,"src": ""})
               kind===5 && newWidgetList.push({"id":widget.id ,"type":"LINK" ,"title": "" , "href" : ""})
           }
@@ -342,6 +341,21 @@ class CourseService {
       });
       topic.widgets = newWidgetList
     };
+
+    listChange = (topicId , widgetId , id)=>{
+        let topic = this.findTopicById(topicId)
+        let newWidgetList =[];
+        this.findWidgets(topicId).forEach((widget)=>{
+            if(widget.id != widgetId){
+                newWidgetList.push(widget)
+            }
+            else{
+                id===1 && newWidgetList.push({"id":widget.id ,"type":"LIST" ,"order": "ordered" , "items" : widget.items})
+                id===2 && newWidgetList.push({"id":widget.id ,"type":"LIST" ,"order":  "unordered" , "items" : widget.items})
+            }
+        });
+        topic.widgets = newWidgetList
+    }
     updateWidget = (widgetId, widget)=>{
 
     };
@@ -357,4 +371,3 @@ class CourseService {
     };
 }
 export default CourseService;
-export {courses};

@@ -16,11 +16,9 @@ class WidgetListComponent extends React.Component {
       this.props.init(this.props.widgetsInit , this.props.topic)
     }
     componentWillReceiveProps(newProps){
-      console.log("component will receive props")
       newProps.init(newProps.widgetsInit,newProps.topic)
     }
     render() {
-        console.log("the props are " , this.props)
         return (
             <ul className='list-group'>
               <div className="col-12 my-5">
@@ -28,7 +26,7 @@ class WidgetListComponent extends React.Component {
                     <button style={{"display": "inline"}} className="btn btn-success mx-3">Save</button>
                     <p style={{"display": "inline"}}>Preview</p>
                     <label style={{"display": "inline-block"}} className="switch">
-                      <input type="checkbox"/>
+                      <input type="checkbox" ref="preview"/>
                       <span className="slider round"/>
                     </label>
                 </span>
@@ -74,10 +72,10 @@ class WidgetListComponent extends React.Component {
                                         </button>
                                     </div>
                                 </div>
-                                {console.log("the type is " , widget.type)}
-                                {widget.type==="HEADING" && <HeadingWidget headingChange = {this.props.headingChange} widget={widget}/>}
+                                {widget.type==="HEADING" && <HeadingWidget handleChange={this.props.handleChange} headingChange = {this.props.headingChange} widget={widget}/>}
                                 {widget.type==="PARAGRAPH" && <ParagraphWidget widget={widget}/>}
-                                {widget.type==="LIST" && <ListWidget widget={widget}/>}
+                                {widget.type==="LIST" && widget.order==="ordered" && <ol><ListWidget listChange = {this.props.listChange} widget={widget}/></ol>}
+                                {widget.type==="LIST" && widget.order==="unordered" && <ul><ListWidget listChange = {this.props.listChange} widget={widget}/></ul>}
                                 {widget.type==="IMAGE" && <ImageWidget widget={widget}/>}
                                 {widget.type==="LINK" && <LinkWidget widget={widget}/>}
                             </li>

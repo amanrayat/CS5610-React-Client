@@ -20,30 +20,40 @@ const dispatcherToPropertyMapper = dispatch =>({
         widget:widget
     }),
     arrowUp :(widget)=>dispatch({
-      type : "ARROW_UP",
-      widget : widget
+        type : "ARROW_UP",
+        widget : widget
     }),
-  arrowDown : (widget)=> dispatch({
-    type : "ARROW_DOWN",
-    widget : widget
-  }),
-      headingChange : (widget , id)=>dispatch({
+    arrowDown : (widget)=> dispatch({
+        type : "ARROW_DOWN",
+        widget : widget
+    }),
+    headingChange : (widget , id)=>dispatch({
         type : 'HEADING_CHANGE',
         widget : widget,
         id: id
-      }),
-    updateWidget:widget=>dispatch({
+    }),
+    listChange : (widget , id) => dispatch({
+        type : "LIST_CHANGE",
+        widget : widget,
+        id:id
+    }),
+    handleChange : (widgetId , input)=> dispatch({
+        type: "HANDLE_CHANGE",
+        widgetId : widgetId,
+        input : input
+    }),
+    updateWidget : widget=>dispatch({
         type:'UPDATE_WIDGET',
         widget:widget
     }),
     addWidget: ()=> dispatch({
-      type: 'CREATE_WIDGET'
+        type: 'CREATE_WIDGET'
     }),
-  changeType: (widget , kind)=> dispatch({
-    type :'CHANGE_TYPE',
-    widget:widget,
-    kind : kind
-  })
+    changeType: (widget , kind)=> dispatch({
+        type :'CHANGE_TYPE',
+        widget:widget,
+        kind : kind
+    })
 })
 
 const WidgetListContainer = connect(stateToPropertyMapper,dispatcherToPropertyMapper)(WidgetListComponent);
