@@ -46,12 +46,19 @@ const widgets = (state={widgets:[]} , action)=>{
             }
 
         case "HANDLE_CHANGE":
-        {console.log("the state is",state) }
-        {console.log("the action is",action) }
             return{
                 widgets :state.widgets.map(widget=>{
                     if(widget.id == action.widgetId){
                         widget.text = action.input
+                    }
+                    return Object.assign({} , widget)
+                })
+            }
+        case "HANDLE_CHANGE_LIST" :
+            return{
+                widgets :state.widgets.map(widget=>{
+                    if(widget.id == action.widgetId){
+                        widget.items = action.input
                     }
                     return Object.assign({} , widget)
                 })

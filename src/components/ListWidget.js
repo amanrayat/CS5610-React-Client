@@ -1,11 +1,17 @@
 import React from 'react'
 import {ControlLabel, DropdownButton, FormControl, FormGroup, MenuItem} from "react-bootstrap";
 
-const ListWidget = ({widget , listChange})=>
+const ListWidget = ({widget , listChange , handleChangeList})=>{
+    let input ;
+    return(
         <div>
             <FormGroup controlId="formControlsTextarea">
                 <ControlLabel>The Input</ControlLabel>
-                <FormControl componentClass="textarea"  value={widget.items}/>
+                <FormControl
+                    componentClass="textarea"
+                    inputRef={(ref) => {input = ref}}
+                    onChange={()=>handleChangeList(widget.id , input.value)}
+                    value={widget.items}/>
             </FormGroup>
             <DropdownButton
                 bsStyle="default"
@@ -25,6 +31,9 @@ const ListWidget = ({widget , listChange})=>
             <p className={'my-3'}>Preview</p>
             {widget.items.split(",").map((item,index)=> <li key={index}>{item}</li>)}
         </div>
+    )
+}
+
 
 export default ListWidget
 

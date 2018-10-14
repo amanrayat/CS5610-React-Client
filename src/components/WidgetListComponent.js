@@ -73,9 +73,9 @@ class WidgetListComponent extends React.Component {
                                     </div>
                                 </div>
                                 {widget.type==="HEADING" && <HeadingWidget handleChange={this.props.handleChange} headingChange = {this.props.headingChange} widget={widget}/>}
-                                {widget.type==="PARAGRAPH" && <ParagraphWidget widget={widget}/>}
-                                {widget.type==="LIST" && widget.order==="ordered" && <ol><ListWidget listChange = {this.props.listChange} widget={widget}/></ol>}
-                                {widget.type==="LIST" && widget.order==="unordered" && <ul><ListWidget listChange = {this.props.listChange} widget={widget}/></ul>}
+                                {widget.type==="PARAGRAPH" && <ParagraphWidget handleChange={this.props.handleChange} widget={widget}/>}
+                                {widget.type==="LIST" && widget.order==="ordered" && <ol><ListWidget handleChangeList={this.props.handleChangeList} listChange = {this.props.listChange} widget={widget}/></ol>}
+                                {widget.type==="LIST" && widget.order==="unordered" && <ul><ListWidget handleChangeList={this.props.handleChangeList} listChange = {this.props.listChange} widget={widget}/></ul>}
                                 {widget.type==="IMAGE" && <ImageWidget widget={widget}/>}
                                 {widget.type==="LINK" && <LinkWidget widget={widget}/>}
                             </li>

@@ -42,6 +42,11 @@ const dispatcherToPropertyMapper = dispatch =>({
         widgetId : widgetId,
         input : input
     }),
+        handleChangeList : (widgetId , input)=> dispatch({
+            type: "HANDLE_CHANGE_LIST",
+            widgetId : widgetId,
+            input : input
+        }),
     updateWidget : widget=>dispatch({
         type:'UPDATE_WIDGET',
         widget:widget
