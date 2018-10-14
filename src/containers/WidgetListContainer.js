@@ -27,6 +27,11 @@ const dispatcherToPropertyMapper = dispatch =>({
     type : "ARROW_DOWN",
     widget : widget
   }),
+      headingChange : (widget , id)=>dispatch({
+        type : 'HEADING_CHANGE',
+        widget : widget,
+        id: id
+      }),
     updateWidget:widget=>dispatch({
         type:'UPDATE_WIDGET',
         widget:widget

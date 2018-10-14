@@ -326,6 +326,22 @@ class CourseService {
       topic.widgets = newWidgetList;
     };
 
+    headingChange = (topicId , widgetId , id) =>{
+      let topic = this.findTopicById(topicId)
+      let newWidgetList =[];
+      this.findWidgets(topicId).forEach((widget)=>{
+        if(widget.id != widgetId){
+          newWidgetList.push(widget)
+        }
+        else{
+          id===1 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 1 , "text" : widget.text})
+          id===2 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 2 , "text" : widget.text})
+          id===3 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 3 , "text" : widget.text})
+          id===4 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 4 , "text" : widget.text})
+        }
+      });
+      topic.widgets = newWidgetList
+    };
     updateWidget = (widgetId, widget)=>{
 
     };

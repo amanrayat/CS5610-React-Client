@@ -2,7 +2,7 @@ import React from 'react'
 import {FormControl} from "react-bootstrap";
 import {MenuItem , DropdownButton} from "react-bootstrap";
 
-const HeadingWidget = ({widget})=>{
+const HeadingWidget = ({widget,headingChange})=>{
   return(
       <div>
         <FormControl
@@ -17,10 +17,10 @@ const HeadingWidget = ({widget})=>{
             key={1}
             noCaret
             id={`dropdown-basic-${1}`}>
-          <MenuItem eventKey="1">Heading 1</MenuItem>
-          <MenuItem eventKey="2">Heading 2</MenuItem>
-          <MenuItem eventKey="3">Heading 3</MenuItem>
-          <MenuItem eventKey="4">Heading 4 </MenuItem>
+          <MenuItem eventKey="1"> onSelect={()=>headingChange(widget , 1)}Heading 1</MenuItem>
+          <MenuItem eventKey="2" onSelect={()=>headingChange(widget , 2)}>Heading 2</MenuItem>
+          <MenuItem eventKey="3" onSelect={()=>headingChange(widget , 3)}>Heading 3</MenuItem>
+          <MenuItem eventKey="4" onSelect={()=>headingChange(widget , 4)}>Heading 4 </MenuItem>
         </DropdownButton>
 
         <FormControl

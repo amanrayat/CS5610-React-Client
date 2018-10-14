@@ -37,6 +37,11 @@ const widgets = (state={widgets:[]} , action)=>{
               return{
                 widgets: this.CourseService.findWidgets(state.selectedTopic.id)
               };
+          case "HEADING_CHANGE":
+            this.CourseService.headingChange(state.selectedTopic.id , action.widget.id , action.id)
+            return {
+              widgets: this.CourseService.findWidgets(state.selectedTopic.id)
+            }
 
             case "UPDATE_WIDGET" :
                 return {

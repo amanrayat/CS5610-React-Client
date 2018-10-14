@@ -75,7 +75,7 @@ class WidgetListComponent extends React.Component {
                                     </div>
                                 </div>
                                 {console.log("the type is " , widget.type)}
-                                {widget.type==="HEADING" && <HeadingWidget widget={widget}/>}
+                                {widget.type==="HEADING" && <HeadingWidget headingChange = {this.props.headingChange} widget={widget}/>}
                                 {widget.type==="PARAGRAPH" && <ParagraphWidget widget={widget}/>}
                                 {widget.type==="LIST" && <ListWidget widget={widget}/>}
                                 {widget.type==="IMAGE" && <ImageWidget widget={widget}/>}
