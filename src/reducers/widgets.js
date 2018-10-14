@@ -21,11 +21,23 @@ const widgets = (state={widgets:[]} , action)=>{
                 return {
                   widgets: this.CourseService.findWidgets(state.selectedTopic.id)
                 };
-          case "CHANGE_TYPE":
-            this.CourseService.changeWidget(state.selectedTopic.id , action.widget.id , action.kind);
-            return{
-              widgets: this.CourseService.findWidgets(state.selectedTopic.id)
-            };
+            case "CHANGE_TYPE":
+                this.CourseService.changeWidget(state.selectedTopic.id , action.widget.id , action.kind);
+                return{
+                 widgets: this.CourseService.findWidgets(state.selectedTopic.id)
+                };
+            case "ARROW_UP" :
+                this.CourseService.arrowUp(state.selectedTopic.id , action.widget.id);
+              return{
+                widgets: this.CourseService.findWidgets(state.selectedTopic.id)
+              };
+
+            case "ARROW_DOWN":
+                this.CourseService.arrowDown(state.selectedTopic.id , action.widget.id);
+              return{
+                widgets: this.CourseService.findWidgets(state.selectedTopic.id)
+              };
+
             case "UPDATE_WIDGET" :
                 return {
 

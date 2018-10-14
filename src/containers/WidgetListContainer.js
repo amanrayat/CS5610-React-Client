@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import WidgetListComponent from '../components/WidgetListComponent'
+import widgets from "../reducers/widgets";
 // import WidgetListNew from "../components/WidgetListNew";
 
 
@@ -18,6 +19,14 @@ const dispatcherToPropertyMapper = dispatch =>({
         type :'DELETE_WIDGET',
         widget:widget
     }),
+    arrowUp :(widget)=>dispatch({
+      type : "ARROW_UP",
+      widget : widget
+    }),
+  arrowDown : (widget)=> dispatch({
+    type : "ARROW_DOWN",
+    widget : widget
+  }),
     updateWidget:widget=>dispatch({
         type:'UPDATE_WIDGET',
         widget:widget

@@ -42,10 +42,16 @@ class WidgetListComponent extends React.Component {
                                         <h5>{widget.type} Widget</h5>
                                     </div>
                                     <div className={'col-2'}>
-                                        <button style={index===0?{"display": "none"}:{"display": "inline"}} className="btn btn-primary float-right mx-1"><i
-                                            className="fa fa-arrow-up"/></button>
-                                        <button style={index===this.props.widgets.length-1?{"display": "none"}:{"display": "inline"}} className="btn btn-primary float-right"><i
-                                            className="fa fa-arrow-down"/></button>
+                                        <button
+                                            style={index===0?{"display": "none"}:{"display": "inline"}}
+                                            onClick={()=>this.props.arrowUp(widget)}
+                                            className="btn btn-primary float-right mx-1">
+                                          <i className="fa fa-arrow-up"/></button>
+                                        <button
+                                            style={index===this.props.widgets.length-1?{"display": "none"}:{"display": "inline"}}
+                                            onClick={()=> this.props.arrowDown(widget)}
+                                            className="btn btn-primary float-right">
+                                          <i className="fa fa-arrow-down"/></button>
                                     </div>
                                     <div className="col-3">
                                         <div className="form-group">

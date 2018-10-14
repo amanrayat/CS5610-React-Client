@@ -290,6 +290,42 @@ class CourseService {
       topic.widgets = newWidgetList
     };
 
+    arrowUp = (topicId , widgetId)=>{
+      let topic = this.findTopicById(topicId)
+      let newWidgetList =[];
+      let widgets = this.findWidgets(topicId);
+      for(let i=0;i<widgets.length;i++){
+        if(widgets[i].id == widgetId){
+          newWidgetList.pop();
+          newWidgetList.push(widgets[i]);
+          newWidgetList.push(widgets[i-1]);
+        }
+        else{
+          newWidgetList.push(widgets[i]);
+        }
+      }
+      topic.widgets = newWidgetList;
+
+    };
+
+    arrowDown = (topicId , widgetId)=>{
+      let topic = this.findTopicById(topicId)
+      let newWidgetList =[];
+
+      let widgets = this.findWidgets(topicId);
+      for(let i=0;i<widgets.length;i++){
+          if(widgets[i].id == widgetId){
+              newWidgetList.push(widgets[i+1]);
+              newWidgetList.push(widgets[i]);
+              i++;
+          }
+          else{
+              newWidgetList.push(widgets[i]);
+          }
+      }
+      topic.widgets = newWidgetList;
+    };
+
     updateWidget = (widgetId, widget)=>{
 
     };
