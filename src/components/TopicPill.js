@@ -115,10 +115,10 @@ export default class TopicPill extends React.Component{
                         placeholder="New Topic title" />
                     <button style={{marginTop : '40px'}} onClick={this.addTopic} className={'btn btn-primary btn-block'}>Add New Topic</button>
                 </ul>
+                { this.state.topic &&
                 <Provider store={store}>
                     <WidgetListContainer  topic={this.state.topic} widgetsInit={this.state.topic.widgets}/>
-                </Provider>
-                {/*<WidgetListComponent widgets={}/>*/}
+                </Provider>}
             </div>
 
         )

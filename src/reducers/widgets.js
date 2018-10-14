@@ -42,12 +42,12 @@ const widgets = (state={widgets:[],preview:false} , action)=>{
                 widgets: this.CourseService.findWidgets(state.selectedTopic.id)
             };
         case "HEADING_CHANGE":
-            this.CourseService.headingChange(state.selectedTopic.id , action.widget.id , action.id)
+            this.CourseService.headingChange(state.selectedTopic.id , action.widget.id , action.id);
             return {
                 widgets: this.CourseService.findWidgets(state.selectedTopic.id)
             };
         case "LIST_CHANGE":
-            this.CourseService.listChange(state.selectedTopic.id , action.widget.id , action.id)
+            this.CourseService.listChange(state.selectedTopic.id , action.widget.id , action.id);
             return {
                 widgets: this.CourseService.findWidgets(state.selectedTopic.id)
             };
@@ -97,6 +97,11 @@ const widgets = (state={widgets:[],preview:false} , action)=>{
                     return Object.assign({} , widget)
                 })
             };
+        case "HANDLE_SAVE" :
+            this.CourseService.saveWidgetsForTopic(state.selectedTopic.id , state.widgets);
+            return{
+                widgets: this.CourseService.findWidgets(state.selectedTopic.id)
+            };
         case "UPDATE_WIDGET" :
             return {
 
@@ -117,12 +122,5 @@ const widgets = (state={widgets:[],preview:false} , action)=>{
 
     }
 }
-// export default widgets
-
-// const widgets = (state = {widgets:[] , action})=>({
-//     widgets : [
-//         {title:"w111"},{title:"w222"},{title:"w333"},{title:"w444"}
-//     ]
-// })
 
 export default widgets

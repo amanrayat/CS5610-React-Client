@@ -67,6 +67,9 @@ const dispatcherToPropertyMapper = dispatch =>({
         widgetId : widgetId,
         input : input
     }),
+        handleSave : ()=>dispatch({
+           type : "HANDLE_SAVE"
+        }),
     updateWidget : widget=>dispatch({
         type:'UPDATE_WIDGET',
         widget:widget
