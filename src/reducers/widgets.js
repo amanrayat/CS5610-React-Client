@@ -108,7 +108,7 @@ const widgets = (state={widgets:[],preview:false} , action)=>{
             };
         case "FIND_WIDGET" :
             return {
-
+                widget : this.CourseService.findWidget(action.widgetId)
             };
         case "FIND_ALL_WIDGETS_FOR_TOPIC" :
             return {

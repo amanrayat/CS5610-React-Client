@@ -520,7 +520,7 @@ class CourseService {
     };
 
     updateWidget = (widgetId, widget)=>{
-
+//todo
     };
     deleteWidget = (widgetId)=>{
         let result =[];

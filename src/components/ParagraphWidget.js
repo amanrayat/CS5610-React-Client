@@ -23,8 +23,7 @@ const ParagraphWidget = ({widget,handleChange,preview}) =>{
                     placeholder="Widget Name" />
                 <p className={'my-3'}>Preview</p>
             </div>
-            <p>{widget.text}</p>
-
+            <div contentEditable='true' dangerouslySetInnerHTML={{ __html: widget.text }}/>
         </div>
     )
 }
