@@ -7,7 +7,8 @@ const widgets = (state={widgets:[]} , action)=>{
         case "INIT":
             return {
                 widgets: this.CourseService.findWidgets(action.topic.id),
-                selectedTopic: action.topic
+                selectedTopic: action.topic,
+                preview : true
             };
         case "CREATE_WIDGET" :
             this.CourseService.createWidget(state.selectedTopic.id);
@@ -17,6 +18,11 @@ const widgets = (state={widgets:[]} , action)=>{
         case "DELETE_WIDGET" :
             this.CourseService.deleteWidget(action.widget.id);
             return {
+                widgets: this.CourseService.findWidgets(state.selectedTopic.id)
+            };
+        case "PREVIEW" :
+            return{
+                preview : action.decision,
                 widgets: this.CourseService.findWidgets(state.selectedTopic.id)
             };
         case "CHANGE_TYPE":

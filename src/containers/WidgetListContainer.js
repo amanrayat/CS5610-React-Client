@@ -27,6 +27,10 @@ const dispatcherToPropertyMapper = dispatch =>({
         type : "ARROW_DOWN",
         widget : widget
     }),
+    previewClick : (decision)=>dispatch({
+            type : "PREVIEW",
+            decision : decision
+        }),
     headingChange : (widget , id)=>dispatch({
         type : 'HEADING_CHANGE',
         widget : widget,

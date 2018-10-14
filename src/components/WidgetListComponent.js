@@ -26,7 +26,7 @@ class WidgetListComponent extends React.Component {
                     <button style={{"display": "inline"}} className="btn btn-success mx-3">Save</button>
                     <p style={{"display": "inline"}}>Preview</p>
                     <label style={{"display": "inline-block"}} className="switch">
-                      <input type="checkbox" ref="preview"/>
+                      <input type="checkbox" onChange={()=>this.props.previewClick(this.refs.preview.checked)} ref="preview"/>
                       <span className="slider round"/>
                     </label>
                 </span>
@@ -35,7 +35,8 @@ class WidgetListComponent extends React.Component {
                     this.props.widgets.map((widget,index) =>
                         <div className={'my-3'}>
                             <li key={widget.id} className="list-group-item">
-                                <div className={'row'}>
+                                {console.log("the prop here is ", this.props)}
+                                <div className={'row'} style={this.props.preview===true?{"display": "none"}:{"display": ""}}>
                                     <div className={'col-6'}>
                                         <h5>{widget.type} Widget</h5>
                                     </div>
@@ -72,12 +73,12 @@ class WidgetListComponent extends React.Component {
                                         </button>
                                     </div>
                                 </div>
-                                {widget.type==="HEADING" && <HeadingWidget handleChange={this.props.handleChange} headingChange = {this.props.headingChange} widget={widget}/>}
-                                {widget.type==="PARAGRAPH" && <ParagraphWidget handleChange={this.props.handleChange} widget={widget}/>}
-                                {widget.type==="LIST" && widget.order==="ordered" && <ol><ListWidget handleChangeList={this.props.handleChangeList} listChange = {this.props.listChange} widget={widget}/></ol>}
-                                {widget.type==="LIST" && widget.order==="unordered" && <ul><ListWidget handleChangeList={this.props.handleChangeList} listChange = {this.props.listChange} widget={widget}/></ul>}
-                                {widget.type==="IMAGE" && <ImageWidget handleChangeImage={this.props.handleChangeImage} widget={widget}/>}
-                                {widget.type==="LINK" && <LinkWidget handleChangeText={this.props.handleChangeText} handleChangeHref={this.props.handleChangeHref} widget={widget}/>}
+                                {widget.type==="HEADING" && <HeadingWidget preview={ this.props.preview} handleChange={this.props.handleChange} headingChange = {this.props.headingChange} widget={widget}/>}
+                                {widget.type==="PARAGRAPH" && <ParagraphWidget preview={ this.props.preview} handleChange={this.props.handleChange} widget={widget}/>}
+                                {widget.type==="LIST" && widget.order==="ordered" && <ol><ListWidget preview={ this.props.preview} handleChangeList={this.props.handleChangeList} listChange = {this.props.listChange} widget={widget}/></ol>}
+                                {widget.type==="LIST" && widget.order==="unordered" && <ul><ListWidget preview={ this.props.preview} handleChangeList={this.props.handleChangeList} listChange = {this.props.listChange} widget={widget}/></ul>}
+                                {widget.type==="IMAGE" && <ImageWidget preview={ this.props.preview} handleChangeImage={this.props.handleChangeImage} widget={widget}/>}
+                                {widget.type==="LINK" && <LinkWidget preview={ this.props.preview} handleChangeText={this.props.handleChangeText} handleChangeHref={this.props.handleChangeHref} widget={widget}/>}
                             </li>
                         </div>
 
