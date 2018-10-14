@@ -15,10 +15,11 @@ class WidgetListComponent extends React.Component {
     componentDidUpdate(){
       this.props.init(this.props.widgetsInit , this.props.topic)
     }
-    componentWillReceiveProps(newProps){
-      newProps.init(newProps.widgetsInit,newProps.topic)
-    }
+    // componentWillReceiveProps(newProps){
+    //   newProps.init(newProps.widgetsInit,newProps.topic)
+    // }
     render() {
+        console.log("the props onside are" , this.props)
         return (
             <ul className='list-group'>
               <div className="col-12 my-5">

@@ -2,13 +2,14 @@ import CourseService from '../service/CourseService'
 
 this.CourseService = new CourseService();
 
-const widgets = (state={widgets:[]} , action)=>{
+const widgets = (state={widgets:[],preview:false} , action)=>{
     switch(action.type) {
         case "INIT":
+
             return {
                 widgets: this.CourseService.findWidgets(action.topic.id),
                 selectedTopic: action.topic,
-                preview : true
+                preview : state.preview
             };
         case "CREATE_WIDGET" :
             this.CourseService.createWidget(state.selectedTopic.id);
@@ -23,7 +24,7 @@ const widgets = (state={widgets:[]} , action)=>{
         case "PREVIEW" :
             return{
                 preview : action.decision,
-                widgets: this.CourseService.findWidgets(state.selectedTopic.id)
+                widgets: state.widgets
             };
         case "CHANGE_TYPE":
             this.CourseService.changeWidget(state.selectedTopic.id , action.widget.id , action.kind);

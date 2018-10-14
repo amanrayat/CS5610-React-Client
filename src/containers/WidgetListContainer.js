@@ -6,7 +6,8 @@ import widgets from "../reducers/widgets";
 
 
 const stateToPropertyMapper = state =>({
-    widgets : state.widgets
+    widgets : state.widgets,
+    preview : state.preview
 });
 
 const dispatcherToPropertyMapper = dispatch =>({
