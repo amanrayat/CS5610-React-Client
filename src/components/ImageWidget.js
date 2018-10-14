@@ -21,11 +21,9 @@ const ImageWidget = ({widget , handleChangeImage , preview})=>{
                     inputRef={(ref) => {this.input = ref}}
                     placeholder="Widget Name" />
             </div>
-
-            <img src={widget.src} alt="abc"/>
+            <img src={widget.src} alt="Picture not found"/>
         </div>
     )
-}
-
+};
 
 export default ImageWidget

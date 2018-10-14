@@ -5,7 +5,6 @@ this.CourseService = new CourseService();
 const widgets = (state={widgets:[],preview:false} , action)=>{
     switch(action.type) {
         case "INIT":
-
             return {
                 widgets: this.CourseService.findWidgets(action.topic.id),
                 selectedTopic: action.topic,
@@ -103,8 +102,9 @@ const widgets = (state={widgets:[],preview:false} , action)=>{
                 widgets: this.CourseService.findWidgets(state.selectedTopic.id)
             };
         case "UPDATE_WIDGET" :
+            this.CourseService.saveWidgetsForTopic(state.selectedTopic.id , state.widgets);
             return {
-
+                widgets: this.CourseService.findWidgets(state.selectedTopic.id)
             };
         case "FIND_WIDGET" :
             return {
@@ -121,6 +121,6 @@ const widgets = (state={widgets:[],preview:false} , action)=>{
         default : return state
 
     }
-}
+};
 
 export default widgets
