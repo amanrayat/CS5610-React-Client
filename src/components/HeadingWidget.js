@@ -3,7 +3,6 @@ import {FormControl} from "react-bootstrap";
 import {MenuItem , DropdownButton} from "react-bootstrap";
 
 const HeadingWidget = ({widget})=>{
-    console.log("the widget is " , widget);
   return(
       <div>
         <FormControl
@@ -20,7 +19,7 @@ const HeadingWidget = ({widget})=>{
             id={`dropdown-basic-${1}`}>
           <MenuItem eventKey="1">Heading 1</MenuItem>
           <MenuItem eventKey="2">Heading 2</MenuItem>
-          <MenuItem eventKey="3" active>Heading 3</MenuItem>
+          <MenuItem eventKey="3">Heading 3</MenuItem>
           <MenuItem eventKey="4">Heading 4 </MenuItem>
         </DropdownButton>
 

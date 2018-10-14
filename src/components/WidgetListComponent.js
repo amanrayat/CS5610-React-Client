@@ -13,8 +13,6 @@ class WidgetListComponent extends React.Component {
     }
 
     componentDidUpdate(){
-      console.log("component will update ")
-
       this.props.init(this.props.widgetsInit , this.props.topic)
     }
     componentWillReceiveProps(newProps){
@@ -36,7 +34,7 @@ class WidgetListComponent extends React.Component {
                 </span>
               </div>
                 {
-                    this.props.widgets.map((widget) =>
+                    this.props.widgets.map((widget,index) =>
                         <div className={'my-3'}>
                             <li key={widget.id} className="list-group-item">
                                 <div className={'row'}>
@@ -44,9 +42,9 @@ class WidgetListComponent extends React.Component {
                                         <h5>{widget.type} Widget</h5>
                                     </div>
                                     <div className={'col-2'}>
-                                        <button style={{"display": "inline"}} className="btn btn-primary float-right mx-1"><i
+                                        <button style={index===0?{"display": "none"}:{"display": "inline"}} className="btn btn-primary float-right mx-1"><i
                                             className="fa fa-arrow-up"/></button>
-                                        <button style={{"display": "inline"}} className="btn btn-primary float-right"><i
+                                        <button style={index===this.props.widgets.length-1?{"display": "none"}:{"display": "inline"}} className="btn btn-primary float-right"><i
                                             className="fa fa-arrow-down"/></button>
                                     </div>
                                     <div className="col-3">
@@ -54,7 +52,6 @@ class WidgetListComponent extends React.Component {
                                           <DropdownButton
                                               bsStyle="default"
                                               title={widget.type}
-                                              key={1}
                                               noCaret
                                               id={`dropdown-basic-${1}`}>
                                             <MenuItem eventKey="1" onSelect={()=>this.props.changeType(widget,1)}>Heading</MenuItem>
