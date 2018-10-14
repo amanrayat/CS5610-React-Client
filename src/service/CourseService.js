@@ -1,18 +1,18 @@
 let courses =  [
     {
-        "id": "123",
+        "id": 1,
         "title": "Course 1",
         "OwnedBy" : "Aman",
         "modules": [
             {
-                "id": "123",
+                "id": 11,
                 "title": "Module 1 1",
                 "lessons": [
                     {
-                        "id": "123",
+                        "id": 111,
                         "title": "Lesson 1 1 1",
                         "topics": [
-                            {"id" : "3456" , "title": "Topic 1 1 1 1" ,
+                            {"id" : 1111 , "title": "Topic 1 1 1 1" ,
                                 "widgets": [
                                     {   "id" : 11111,
                                         "type": "HEADING",
@@ -39,24 +39,179 @@ let courses =  [
                                     }
                                 ]
                             },
-                            {"id" : "987" , "title": "Topic 1 1 1 2" ,
+                            {"id" : 1112 , "title": "Topic 1 1 1 2" ,
                                 "widgets" :[{"id" : 11121,"title" : "zozo"} , {"id" : 11122,"title" : "dodo"}]
                             }
                         ]
                     },
                     {
-                        "id": "234",
+                        "id": 112,
                         "title": "Lesson 1 1 2",
                         "topics": [
-                            {"id":"123" , "title": "Topic 1 1 2 1" ,
-                                "widgets" :[{"id" : 11131,"title" : "yooy"} , {"id" : 11132,"title" : "mom"}]}
+                            {"id":1121 , "title": "Topic 1 1 2 1" ,
+                                "widgets" :[{"id" : 11211,"title" : "yooy"} , {"id" : 11212,"title" : "mom"}]}
                         ]
                     }
                 ]
             },
         ]
     },
-
+    {
+        "id": 2,
+        "title": "Course 2",
+        "OwnedBy" : "Jose",
+        "modules": [
+            {
+                "id": 21,
+                "title": "Module 2 1",
+                "lessons": [
+                    {
+                        "id": 211,
+                        "title": "Lesson 2 1 1",
+                        "topics": [
+                            {"id" : 2111 , "title": "Topic 2 1 1 1" ,
+                                "widgets": [
+                                    {   "id" : 21111,
+                                        "type": "HEADING",
+                                        "size": 1,
+                                        "text": "The Document Object Model"
+                                    },
+                                    {   "id" : 21112,
+                                        "type": "PARAGRAPH",
+                                        "text": "This topic introduces the DOM"
+                                    },
+                                    {   "id" : 21113,
+                                        "type": "LIST",
+                                        "order" :"ordered",
+                                        "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes"
+                                    },
+                                    {   "id" : 21114,
+                                        "type": "IMAGE",
+                                        "src": "https://picsum.photos/200"
+                                    },
+                                    {   "id" : 21115,
+                                        "type": "LINK",
+                                        "title": "The DOM",
+                                        "href": "https://en.wikipedia.org/wiki/Document_Object_Model"
+                                    }
+                                ]
+                            },
+                            {"id" : 2112 , "title": "Topic 2 1 1 2" ,
+                                "widgets" :[{   "id" : 21121,
+                                    "type": "HEADING",
+                                    "size": 1,
+                                    "text": "The Document Object Model"
+                                },
+                                    {   "id" : 21122,
+                                        "type": "PARAGRAPH",
+                                        "text": "This topic introduces the DOM"
+                                    },
+                                    {   "id" : 21123,
+                                        "type": "LIST",
+                                        "order" :"ordered",
+                                        "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes"
+                                    },]
+                            }
+                        ]
+                    },
+                    {
+                        "id": 212,
+                        "title": "Lesson 2 1 2",
+                        "topics": [
+                            {"id":2121 , "title": "Topic 2 1 2 1" ,
+                                "widgets" :[{   "id" : 21211,
+                                    "type": "HEADING",
+                                    "size": 1,
+                                    "text": "The Document Object Model"
+                                },
+                                    {   "id" : 21212,
+                                        "type": "PARAGRAPH",
+                                        "text": "This topic introduces the DOM"
+                                    },
+                                    {   "id" : 21213,
+                                        "type": "LIST",
+                                        "order" :"ordered",
+                                        "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes"
+                                    },]}
+                        ]
+                    }
+                ]
+            },
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Course 3",
+        "OwnedBy" : "Mike",
+        "modules": [
+            {
+                "id": 31,
+                "title": "Module 3 1",
+                "lessons": [
+                    {
+                        "id": 311,
+                        "title": "Lesson 3 1 1",
+                        "topics": [
+                            {"id" : 3111 , "title": "Topic 3 1 1 1" ,
+                                "widgets": [
+                                    {   "id" : 31111,
+                                        "type": "HEADING",
+                                        "size": 1,
+                                        "text": "The Document Object Model"
+                                    },
+                                    {   "id" : 31112,
+                                        "type": "PARAGRAPH",
+                                        "text": "This topic introduces the DOM"
+                                    },
+                                    {   "id" : 31113,
+                                        "type": "LIST",
+                                        "order" :"ordered",
+                                        "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes"
+                                    },
+                                    {   "id" : 31114,
+                                        "type": "IMAGE",
+                                        "src": "https://picsum.photos/200"
+                                    },
+                                    {   "id" : 31115,
+                                        "type": "LINK",
+                                        "title": "The DOM",
+                                        "href": "https://en.wikipedia.org/wiki/Document_Object_Model"
+                                    }
+                                ]
+                            },
+                            {"id" : 3112 , "title": "Topic 3 1 1 2" ,
+                                "widgets" :[{   "id" : 31121,
+                                    "type": "HEADING",
+                                    "size": 1,
+                                    "text": "The Document Object Model"
+                                },
+                                    {   "id" : 31122,
+                                        "type": "PARAGRAPH",
+                                        "text": "This topic introduces the DOM"
+                                    }]
+                            }
+                        ]
+                    },
+                    {
+                        "id": 312,
+                        "title": "Lesson 3 1 2",
+                        "topics": [
+                            {"id":3121 , "title": "Topic 3 1 2 1" ,
+                                "widgets" :[ {   "id" : 31211,
+                                    "type": "IMAGE",
+                                    "src": "https://picsum.photos/200"
+                                },
+                                    {   "id" : 31212,
+                                        "type": "LINK",
+                                        "title": "The DOM",
+                                        "href": "https://en.wikipedia.org/wiki/Document_Object_Model"
+                                    }]}
+                        ]
+                    }
+                ]
+            },
+        ]
+    },
 ];
 
 class CourseService {
@@ -250,9 +405,9 @@ class CourseService {
             course.modules.forEach((module=>{
                 module.lessons.forEach((lesson)=>{
                     lesson.topics.forEach((topic)=>{
-                      topic.widgets.forEach((widget)=>{
-                          if(widget.id == widgetId) result=widget
-                      })
+                        topic.widgets.forEach((widget)=>{
+                            if(widget.id == widgetId) result=widget
+                        })
                     })
                 })
             }))
@@ -275,74 +430,74 @@ class CourseService {
         return result
     };
     changeWidget = (topicId, widgetId,kind) =>{
-      let topic = this.findTopicById(topicId)
-      let newWidgetList =[];
-      this.findWidgets(topicId).forEach((widget)=>{
-          if(widget.id != widgetId){
-              newWidgetList.push(widget)
-          }
-          else{
-              kind===1 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 1 , "text" : ""})
-              kind===2 && newWidgetList.push({"id":widget.id ,"type":"PARAGRAPH" ,"text": ""})
-              kind===3 && newWidgetList.push({"id":widget.id ,"type":"LIST" ,  "order" :"ordered","items": ""})
-              kind===4 && newWidgetList.push({"id":widget.id ,"type":"IMAGE" ,"src": ""})
-              kind===5 && newWidgetList.push({"id":widget.id ,"type":"LINK" ,"title": "" , "href" : ""})
-          }
-      });
-      topic.widgets = newWidgetList
+        let topic = this.findTopicById(topicId)
+        let newWidgetList =[];
+        this.findWidgets(topicId).forEach((widget)=>{
+            if(widget.id != widgetId){
+                newWidgetList.push(widget)
+            }
+            else{
+                kind===1 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 1 , "text" : ""})
+                kind===2 && newWidgetList.push({"id":widget.id ,"type":"PARAGRAPH" ,"text": ""})
+                kind===3 && newWidgetList.push({"id":widget.id ,"type":"LIST" ,  "order" :"ordered","items": ""})
+                kind===4 && newWidgetList.push({"id":widget.id ,"type":"IMAGE" ,"src": ""})
+                kind===5 && newWidgetList.push({"id":widget.id ,"type":"LINK" ,"title": "" , "href" : ""})
+            }
+        });
+        topic.widgets = newWidgetList
     };
 
     arrowUp = (topicId , widgetId)=>{
-      let topic = this.findTopicById(topicId)
-      let newWidgetList =[];
-      let widgets = this.findWidgets(topicId);
-      for(let i=0;i<widgets.length;i++){
-        if(widgets[i].id == widgetId){
-          newWidgetList.pop();
-          newWidgetList.push(widgets[i]);
-          newWidgetList.push(widgets[i-1]);
+        let topic = this.findTopicById(topicId)
+        let newWidgetList =[];
+        let widgets = this.findWidgets(topicId);
+        for(let i=0;i<widgets.length;i++){
+            if(widgets[i].id == widgetId){
+                newWidgetList.pop();
+                newWidgetList.push(widgets[i]);
+                newWidgetList.push(widgets[i-1]);
+            }
+            else{
+                newWidgetList.push(widgets[i]);
+            }
         }
-        else{
-          newWidgetList.push(widgets[i]);
-        }
-      }
-      topic.widgets = newWidgetList;
+        topic.widgets = newWidgetList;
 
     };
 
     arrowDown = (topicId , widgetId)=>{
-      let topic = this.findTopicById(topicId)
-      let newWidgetList =[];
+        let topic = this.findTopicById(topicId)
+        let newWidgetList =[];
 
-      let widgets = this.findWidgets(topicId);
-      for(let i=0;i<widgets.length;i++){
-          if(widgets[i].id == widgetId){
-              newWidgetList.push(widgets[i+1]);
-              newWidgetList.push(widgets[i]);
-              i++;
-          }
-          else{
-              newWidgetList.push(widgets[i]);
-          }
-      }
-      topic.widgets = newWidgetList;
+        let widgets = this.findWidgets(topicId);
+        for(let i=0;i<widgets.length;i++){
+            if(widgets[i].id == widgetId){
+                newWidgetList.push(widgets[i+1]);
+                newWidgetList.push(widgets[i]);
+                i++;
+            }
+            else{
+                newWidgetList.push(widgets[i]);
+            }
+        }
+        topic.widgets = newWidgetList;
     };
 
     headingChange = (topicId , widgetId , id) =>{
-      let topic = this.findTopicById(topicId)
-      let newWidgetList =[];
-      this.findWidgets(topicId).forEach((widget)=>{
-        if(widget.id != widgetId){
-          newWidgetList.push(widget)
-        }
-        else{
-          id===1 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 1 , "text" : widget.text})
-          id===2 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 2 , "text" : widget.text})
-          id===3 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 3 , "text" : widget.text})
-          id===4 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 4 , "text" : widget.text})
-        }
-      });
-      topic.widgets = newWidgetList
+        let topic = this.findTopicById(topicId)
+        let newWidgetList =[];
+        this.findWidgets(topicId).forEach((widget)=>{
+            if(widget.id != widgetId){
+                newWidgetList.push(widget)
+            }
+            else{
+                id===1 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 1 , "text" : widget.text})
+                id===2 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 2 , "text" : widget.text})
+                id===3 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 3 , "text" : widget.text})
+                id===4 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 4 , "text" : widget.text})
+            }
+        });
+        topic.widgets = newWidgetList
     };
 
     listChange = (topicId , widgetId , id)=>{
@@ -370,7 +525,7 @@ class CourseService {
     deleteWidget = (widgetId)=>{
         let result =[];
         let topic = this.findTopicByWidgetId(widgetId)
-            topic.widgets.forEach((widget)=>{
+        topic.widgets.forEach((widget)=>{
             if(widget.id != widgetId){
                 result.push(widget);
             }
