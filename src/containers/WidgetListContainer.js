@@ -42,11 +42,26 @@ const dispatcherToPropertyMapper = dispatch =>({
         widgetId : widgetId,
         input : input
     }),
-        handleChangeList : (widgetId , input)=> dispatch({
-            type: "HANDLE_CHANGE_LIST",
-            widgetId : widgetId,
-            input : input
-        }),
+    handleChangeList : (widgetId , input)=> dispatch({
+        type: "HANDLE_CHANGE_LIST",
+        widgetId : widgetId,
+        input : input
+    }),
+    handleChangeImage : (widgetId , input)=> dispatch({
+        type: "HANDLE_CHANGE_IMAGE",
+        widgetId : widgetId,
+        input : input
+    }),
+    handleChangeText : (widgetId , input)=> dispatch({
+        type: "HANDLE_CHANGE_TEXT",
+        widgetId : widgetId,
+        input : input
+    }),
+    handleChangeHref : (widgetId , input)=> dispatch({
+        type: "HANDLE_CHANGE_HREF",
+        widgetId : widgetId,
+        input : input
+    }),
     updateWidget : widget=>dispatch({
         type:'UPDATE_WIDGET',
         widget:widget

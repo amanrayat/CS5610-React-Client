@@ -1,21 +1,28 @@
 import  React from 'react'
 import {FormControl} from "react-bootstrap";
 
-const ImageWidget = ({widget})=>
-    <div>
-      <FormControl
-          className={'my-3'}
-          componentClass="input"
-          type="text"
-          inputRef={(ref) => {this.input = ref}}
-          placeholder="Image src" />
-      <FormControl
-          className={'my-3'}
-          componentClass="input"
-          type="text"
-          inputRef={(ref) => {this.input = ref}}
-          placeholder="Widget Name" />
-      <img src={widget.src} alt="abc"/>
-    </div>
+const ImageWidget = ({widget , handleChangeImage})=>{
+    let input;
+    return(
+        <div>
+            <FormControl
+                className={'my-3'}
+                componentClass="input"
+                type="text"
+                value={widget.src}
+                onChange={()=>handleChangeImage(widget.id , input.value)}
+                inputRef={(ref) => {input = ref}}
+                placeholder="Image src" />
+            <FormControl
+                className={'my-3'}
+                componentClass="input"
+                type="text"
+                inputRef={(ref) => {this.input = ref}}
+                placeholder="Widget Name" />
+            <img src={widget.src} alt="abc"/>
+        </div>
+    )
+}
+
 
 export default ImageWidget

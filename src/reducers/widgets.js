@@ -38,31 +38,58 @@ const widgets = (state={widgets:[]} , action)=>{
             this.CourseService.headingChange(state.selectedTopic.id , action.widget.id , action.id)
             return {
                 widgets: this.CourseService.findWidgets(state.selectedTopic.id)
-            }
+            };
         case "LIST_CHANGE":
             this.CourseService.listChange(state.selectedTopic.id , action.widget.id , action.id)
             return {
                 widgets: this.CourseService.findWidgets(state.selectedTopic.id)
-            }
+            };
 
         case "HANDLE_CHANGE":
             return{
                 widgets :state.widgets.map(widget=>{
-                    if(widget.id == action.widgetId){
+                    if(widget.id === action.widgetId){
                         widget.text = action.input
                     }
                     return Object.assign({} , widget)
                 })
-            }
+            };
         case "HANDLE_CHANGE_LIST" :
             return{
                 widgets :state.widgets.map(widget=>{
-                    if(widget.id == action.widgetId){
+                    if(widget.id === action.widgetId){
                         widget.items = action.input
                     }
                     return Object.assign({} , widget)
                 })
-            }
+            };
+        case "HANDLE_CHANGE_IMAGE" :
+            return{
+                widgets :state.widgets.map(widget=>{
+                    if(widget.id === action.widgetId){
+                        widget.src = action.input
+                    }
+                    return Object.assign({} , widget)
+                })
+            };
+        case "HANDLE_CHANGE_TEXT" :
+            return{
+                widgets :state.widgets.map(widget=>{
+                    if(widget.id === action.widgetId){
+                        widget.title = action.input
+                    }
+                    return Object.assign({} , widget)
+                })
+            };
+        case "HANDLE_CHANGE_HREF" :
+            return{
+                widgets :state.widgets.map(widget=>{
+                    if(widget.id === action.widgetId){
+                        widget.href = action.input
+                    }
+                    return Object.assign({} , widget)
+                })
+            };
         case "UPDATE_WIDGET" :
             return {
 
@@ -73,11 +100,11 @@ const widgets = (state={widgets:[]} , action)=>{
             };
         case "FIND_ALL_WIDGETS_FOR_TOPIC" :
             return {
-
+                widgets: this.CourseService.findWidgets(action.topic.id),
             };
         case "FIND_ALL_WIDGETS" :
             return {
-
+                widgets: this.CourseService.findWidgets(action.topic.id),
             };
         default : return state
 
