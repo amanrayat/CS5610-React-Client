@@ -5,14 +5,14 @@ const ParagraphWidget = ({widget,handleChange,preview}) =>{
     let input;
     return(
         <div>
-            <div style={preview===true?{"display": "none"}:{"display": "inline"}}>
+            <div style={preview?{"display": "none"}:{"display": "inline"}}>
                 <FormGroup controlId="formControlsTextarea">
                     <ControlLabel>The Input</ControlLabel>
                     <FormControl
                         componentClass="textarea"
                         onChange={()=>handleChange(widget.id , input.value)}
                         inputRef={(ref) => {input = ref}}
-                        placeholder="textarea"
+                        placeholder="Paragraph text. You can Inject HTML as well"
                         value={widget.text}/>
                 </FormGroup>
                 <FormControl
@@ -26,7 +26,6 @@ const ParagraphWidget = ({widget,handleChange,preview}) =>{
             <div contentEditable='true' dangerouslySetInnerHTML={{ __html: widget.text }}/>
         </div>
     )
-}
-
+};
 
 export default ParagraphWidget

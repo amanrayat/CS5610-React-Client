@@ -3,7 +3,6 @@ import Moment from 'react-moment'
 import { Card, Button,CardHeader, CardFooter, CardTitle, CardText, CardSubtitle, CardBody } from 'reactstrap';
 import '../style.css'
 import {Link} from "react-router-dom";
-import {Col} from "react-bootstrap";
 const CourseCard = (props)=>{
 
     this.delete =()=>{

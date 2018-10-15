@@ -5,10 +5,11 @@ const ListWidget = ({widget , listChange , handleChangeList , preview})=>{
     let input ;
     return(
         <div>
-            <div style={preview===true?{"display": "none"}:{"display": "inline"}}>
+            <div style={preview?{"display": "none"}:{"display": "inline"}}>
                 <FormGroup controlId="formControlsTextarea">
                     <ControlLabel>The Input</ControlLabel>
                     <FormControl
+                        placeholder={'Enter one list item separated by comma'}
                         componentClass="textarea"
                         inputRef={(ref) => {input = ref}}
                         onChange={()=>handleChangeList(widget.id , input.value)}
@@ -17,7 +18,7 @@ const ListWidget = ({widget , listChange , handleChangeList , preview})=>{
                 <DropdownButton
                     bsStyle="default"
                     title={'Select the Type of list'}
-                    key={1}
+                    key={widget.id}
                     noCaret
                     id={`dropdown-basic-${1}`}>
                     <MenuItem eventKey="1" onSelect={()=>listChange(widget , 1)}>Ordered List</MenuItem>
@@ -34,8 +35,7 @@ const ListWidget = ({widget , listChange , handleChangeList , preview})=>{
             {widget.items.split(",").map((item,index)=> <li key={index}>{item}</li>)}
         </div>
     )
-}
-
+};
 
 export default ListWidget
 

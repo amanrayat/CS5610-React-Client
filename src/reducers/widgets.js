@@ -6,7 +6,7 @@ const widgets = (state={widgets:[],preview:false} , action)=>{
     switch(action.type) {
         case "INIT":
             return {
-                widgets: this.CourseService.findWidgets(action.topic.id),
+                widgets: state.widgets.length>0 && state.selectedTopic.id === action.topic.id ? state.widgets : this.CourseService.findWidgets(action.topic.id),
                 selectedTopic: action.topic,
                 preview : state.preview
             };
@@ -16,9 +16,15 @@ const widgets = (state={widgets:[],preview:false} , action)=>{
                 widgets: this.CourseService.findWidgets(state.selectedTopic.id)
             };
         case "DELETE_WIDGET" :
-            this.CourseService.deleteWidget(action.widget.id);
+            let newWidgets =[];
+            state.widgets.map((widget)=>{
+                if(widget.id !== action.widget.id){
+                    newWidgets.push(widget)
+                }
+            });
             return {
-                widgets: this.CourseService.findWidgets(state.selectedTopic.id)
+                widgets: newWidgets,
+                selectedTopic: state.selectedTopic
             };
         case "PREVIEW" :
             return{
@@ -102,7 +108,7 @@ const widgets = (state={widgets:[],preview:false} , action)=>{
                 widgets: this.CourseService.findWidgets(state.selectedTopic.id)
             };
         case "UPDATE_WIDGET" :
-            this.CourseService.saveWidgetsForTopic(state.selectedTopic.id , state.widgets);
+            this.CourseService.updateWidget(state.selectedTopic.id , action.widget);
             return {
                 widgets: this.CourseService.findWidgets(state.selectedTopic.id)
             };

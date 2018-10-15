@@ -34,9 +34,9 @@ export default class ModuleListItem extends React.Component{
 
         if(this.state.editing===false){
             return (
-                <li  className={this.props.moduleItem.id == this.props.selected ? '  list-group-item selected ':'list-group-item black-background '}>
+                <li  className={this.props.moduleItem.id === this.props.selected ? '  list-group-item selected ':'list-group-item black-background '}>
                     <button  onClick={this.onloadLesson}
-                             className={this.props.moduleItem.id == this.props.selected ?'btn btn_selected':'btn btn_selected'}>
+                             className={this.props.moduleItem.id === this.props.selected ?'btn btn_selected':'btn btn_selected'}>
                         {this.props.moduleItem.title}
                     </button>
                     <button onClick={this.onDelete}
@@ -52,7 +52,7 @@ export default class ModuleListItem extends React.Component{
         }
         else{
             return(
-                <li  className={this.props.moduleItem.id == this.props.selected ? 'list-group-item selected ':'list-group-item black-background '}>
+                <li  className={this.props.moduleItem.id === this.props.selected ? 'list-group-item selected ':'list-group-item black-background '}>
                     <div className={'row'}>
                         <div className={'col-7'}>
                             <FormControl

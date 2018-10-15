@@ -33,7 +33,7 @@ export default class LessonTabItem extends React.Component{
                     <li className={this.props.classname}>
                 <span>
                     <button onClick={this.loadTopic}
-                            className={this.props.classname =='nav-link selected'?'btn btn_selected':'btn btn_selected'}>{this.props.lesson.title}
+                            className={this.props.classname ==='nav-link selected'?'btn btn_selected':'btn btn_selected'}>{this.props.lesson.title}
                             </button>
                      <button onClick={this.onUpdate}
                              className='mx-3 btn float-right btn-outline-success'>

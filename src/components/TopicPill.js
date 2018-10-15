@@ -6,9 +6,6 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import widgets from '../reducers/widgets'
 import WidgetListContainer from '../containers/WidgetListContainer'
-import WidgetListComponent from "./WidgetListComponent";
-
-
 const store = createStore(widgets);
 
 export default class TopicPill extends React.Component{
@@ -87,7 +84,7 @@ export default class TopicPill extends React.Component{
                                        updateTopic={this.updateTopic}
                                        topic={topic}
                                        selectTopic={this.selectTopic}
-                                       classname={this.state.topicId==topic.id?'selected btn':'btn'}
+                                       classname={this.state.topicId===topic.id?'selected btn':'btn'}
                                        deleteTopic={this.deleteTopic}/>
                     )
                 })

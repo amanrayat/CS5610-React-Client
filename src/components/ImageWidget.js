@@ -5,7 +5,7 @@ const ImageWidget = ({widget , handleChangeImage , preview})=>{
     let input;
     return(
         <div>
-            <div style={preview===true?{"display": "none"}:{"display": "inline"}}>
+            <div style={preview?{"display": "none"}:{"display": "inline"}}>
                 <FormControl
                     className={'my-3'}
                     componentClass="input"

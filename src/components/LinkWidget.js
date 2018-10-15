@@ -5,7 +5,7 @@ const LinkWidget = ({widget , handleChangeText , handleChangeHref , preview})=>{
     let input1,input2;
     return(
         <div>
-            <div style={preview===true?{"display": "none"}:{"display": "inline"}}>
+            <div style={preview?{"display": "none"}:{"display": "inline"}}>
             <FormControl
                     className={'my-3'}
                     componentClass="input"
@@ -21,7 +21,7 @@ const LinkWidget = ({widget , handleChangeText , handleChangeHref , preview})=>{
                     type="text"
                     value={widget.href}
                     inputRef={(ref) => {input2 = ref}}
-                    placeholder="Link" />
+                    placeholder="Link URL" />
                 <FormControl
                     className={'my-3'}
                     componentClass="input"
@@ -29,7 +29,6 @@ const LinkWidget = ({widget , handleChangeText , handleChangeHref , preview})=>{
                     inputRef={(ref) => {this.input = ref}}
                     placeholder="Widget Name" />
             </div>
-
             <a href={widget.href}>{widget.title}</a>
         </div>
     )

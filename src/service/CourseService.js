@@ -40,7 +40,7 @@ let courses =  [
                                 ]
                             },
                             {"id" : 1112 , "title": "Topic 1 1 1 2" ,
-                                "widgets" :[{"id" : 11121,"title" : "zozo"} , {"id" : 11122,"title" : "dodo"}]
+                                "widgets" :[]
                             }
                         ]
                     },
@@ -49,7 +49,7 @@ let courses =  [
                         "title": "Lesson 1 1 2",
                         "topics": [
                             {"id":1121 , "title": "Topic 1 1 2 1" ,
-                                "widgets" :[{"id" : 11211,"title" : "yooy"} , {"id" : 11212,"title" : "mom"}]}
+                                "widgets" :[]}
                         ]
                     }
                 ]
@@ -224,7 +224,8 @@ class CourseService {
             }
         });
         return courseName;
-    }
+    };
+
     findCourseById = (courseId)=>{
         let result = [];
         courses.forEach((course)=>{
@@ -234,6 +235,7 @@ class CourseService {
         });
         return result
     };
+
     findAllCourses = ()=>{
         return courses;
     };
@@ -249,6 +251,7 @@ class CourseService {
         });
         courses = newCourses;
     };
+
     deleteCourse = (courseId)=>{
         courses.forEach((course,index)=>{
             if(course.id === courseId){
@@ -256,9 +259,11 @@ class CourseService {
             }
         });
     };
+
     editCourse =(courseId, courseName)=>{
         this.findCourseById(courseId).title = courseName;
-    }
+    };
+
     findModuleByModuleIdCourseId = (moduleId , courseId)=>{
         let result =[];
         this.findCourseById(courseId).modules.forEach((module)=>{
@@ -267,6 +272,7 @@ class CourseService {
 
         return result;
     };
+
     findAllModulesForCourseId = (courseId) => {
         let result =[];
         courses.forEach((course)=>{if(parseInt(course.id,10)===parseInt(courseId,10))result = course.modules;});
@@ -286,6 +292,7 @@ class CourseService {
             }
         });
     };
+
     deleteModuleForCourseId = (moduleId , courseId) => {
         courses.forEach((course) =>{
             if(parseInt(course.id,10) === parseInt(courseId,10)){
@@ -297,16 +304,19 @@ class CourseService {
             }
         })
     };
+
     updateModuleListItem = (courseId, moduleId , moduleName)=>{
         this.findAllModulesForCourseId(courseId).forEach((module)=>{
-            if(moduleId == module.id){
+            if(moduleId === module.id){
                 module.title = moduleName
             }
         })
     };
+
     findAllLessonsForModule = (courseId , moduleId)=>{
         return this.findModuleByModuleIdCourseId (moduleId , courseId).lessons
     };
+
     createLessonForModuleId = ( courseId, moduleId,lessonName)=>{
         let id = Math.round((new Date()).getTime() / 100000);
         let obj = {
@@ -327,15 +337,17 @@ class CourseService {
         })
 
     };
+
     updateLesson =(courseId, moduleId , lessonId , lessonName)=>{
         let lessonsList =  this.findModuleByModuleIdCourseId(moduleId,courseId).lessons;
         lessonsList.forEach((lesson)=>{
-            if(lesson.id == lessonId){
+            if(lesson.id === lessonId){
                 lesson.title = lessonName
             }
         })
 
     };
+
     findAllTopicForModule = (courseId,ModuleId,LessonId)=>{
         let result =[];
         this.findAllLessonsForModule(courseId,ModuleId).forEach((lesson)=>{
@@ -345,6 +357,7 @@ class CourseService {
         });
         return result;
     };
+
     deleteTopicForLessonId =(courseId,moduleId,lessonId,topicId)=>{
         let topics = this.findAllTopicForModule(courseId,moduleId ,lessonId).topics;
         topics.forEach((topic,index)=>{
@@ -354,6 +367,7 @@ class CourseService {
         });
 
     };
+
     addNewTopicforLesson =(courseId,moduleId,lessonId,topicName)=>{
         let id = Math.round((new Date()).getTime() / 100000);
         let obj = {
@@ -364,9 +378,10 @@ class CourseService {
         this.findAllTopicForModule(courseId,moduleId,lessonId).topics =
             [...this.findAllTopicForModule(courseId,moduleId,lessonId).topics,obj]
     };
+
     updateTopic =(courseId , moduleId ,lessonId , topicId ,topicName)=>{
         this.findAllTopicForModule(courseId , moduleId ,lessonId).topics.forEach((topic)=>{
-            if(topic.id == topicId){
+            if(topic.id === topicId){
                 topic.title=topicName
             }
         })
@@ -378,7 +393,7 @@ class CourseService {
             course.modules.forEach((module=>{
                 module.lessons.forEach((lesson)=>{
                     lesson.topics.forEach((topic)=>{
-                        if(topic.id==topicId){
+                        if(topic.id===topicId){
                             result = topic
                         }
                     })
@@ -390,15 +405,16 @@ class CourseService {
 
     createWidget = (topicId)=> {
         let id = Math.round(Math.random()*1000000);
-        let widget = {"id":id ,"type" : "HEADING", "size": 1,"text": "AutoGenerated Text" }
+        let widget = {"id":id ,"type" : "HEADING", "size": 1,"text": "AutoGenerated Text" };
         let topic = this.findTopicById(topicId);
         let oldWidgets = topic.widgets;
-        console.log("the old widgets are" , oldWidgets)
         topic.widgets = [...oldWidgets , widget];
     };
+
     findWidgets = (topicId)=>{
         return this.findTopicById(topicId).widgets;
     };
+
     findWidget = (widgetId)=>{
         let result = null;
         courses.forEach((course)=>{
@@ -406,7 +422,7 @@ class CourseService {
                 module.lessons.forEach((lesson)=>{
                     lesson.topics.forEach((topic)=>{
                         topic.widgets.forEach((widget)=>{
-                            if(widget.id == widgetId) result=widget
+                            if(widget.id === widgetId) result=widget
                         })
                     })
                 })
@@ -414,6 +430,7 @@ class CourseService {
         });
         return result
     };
+
     findTopicByWidgetId = (widgetId)=>{
         let result = null;
         courses.forEach((course)=>{
@@ -421,7 +438,7 @@ class CourseService {
                 module.lessons.forEach((lesson)=>{
                     lesson.topics.forEach((topic)=>{
                         topic.widgets.forEach((widget)=>{
-                            if(widget.id == widgetId) result=topic
+                            if(widget.id === widgetId) result=topic
                         })
                     })
                 })
@@ -429,30 +446,31 @@ class CourseService {
         });
         return result
     };
+
     changeWidget = (topicId, widgetId,kind) =>{
-        let topic = this.findTopicById(topicId)
+        let topic = this.findTopicById(topicId);
         let newWidgetList =[];
         this.findWidgets(topicId).forEach((widget)=>{
-            if(widget.id != widgetId){
+            if(widget.id !== widgetId){
                 newWidgetList.push(widget)
             }
             else{
-                kind===1 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 1 , "text" : ""})
-                kind===2 && newWidgetList.push({"id":widget.id ,"type":"PARAGRAPH" ,"text": ""})
-                kind===3 && newWidgetList.push({"id":widget.id ,"type":"LIST" ,  "order" :"ordered","items": ""})
-                kind===4 && newWidgetList.push({"id":widget.id ,"type":"IMAGE" ,"src": ""})
-                kind===5 && newWidgetList.push({"id":widget.id ,"type":"LINK" ,"title": "" , "href" : ""})
+                kind===1 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 1 , "text" : ""});
+                kind===2 && newWidgetList.push({"id":widget.id ,"type":"PARAGRAPH" ,"text": ""});
+                kind===3 && newWidgetList.push({"id":widget.id ,"type":"LIST" ,  "order" :"unordered","items": ""});
+                kind===4 && newWidgetList.push({"id":widget.id ,"type":"IMAGE" ,"src": ""});
+                kind===5 && newWidgetList.push({"id":widget.id ,"type":"LINK" ,"title": "" , "href" : ""});
             }
         });
         topic.widgets = newWidgetList
     };
 
     arrowUp = (topicId , widgetId)=>{
-        let topic = this.findTopicById(topicId)
+        let topic = this.findTopicById(topicId);
         let newWidgetList =[];
         let widgets = this.findWidgets(topicId);
         for(let i=0;i<widgets.length;i++){
-            if(widgets[i].id == widgetId){
+            if(widgets[i].id === widgetId){
                 newWidgetList.pop();
                 newWidgetList.push(widgets[i]);
                 newWidgetList.push(widgets[i-1]);
@@ -466,12 +484,11 @@ class CourseService {
     };
 
     arrowDown = (topicId , widgetId)=>{
-        let topic = this.findTopicById(topicId)
+        let topic = this.findTopicById(topicId);
         let newWidgetList =[];
-
         let widgets = this.findWidgets(topicId);
         for(let i=0;i<widgets.length;i++){
-            if(widgets[i].id == widgetId){
+            if(widgets[i].id === widgetId){
                 newWidgetList.push(widgets[i+1]);
                 newWidgetList.push(widgets[i]);
                 i++;
@@ -484,53 +501,66 @@ class CourseService {
     };
 
     headingChange = (topicId , widgetId , id) =>{
-        let topic = this.findTopicById(topicId)
+        let topic = this.findTopicById(topicId);
         let newWidgetList =[];
         this.findWidgets(topicId).forEach((widget)=>{
-            if(widget.id != widgetId){
+            if(widget.id !== widgetId){
                 newWidgetList.push(widget)
             }
             else{
-                id===1 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 1 , "text" : widget.text})
-                id===2 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 2 , "text" : widget.text})
-                id===3 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 3 , "text" : widget.text})
-                id===4 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 4 , "text" : widget.text})
+                id===1 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 1 , "text" : widget.text});
+                id===2 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 2 , "text" : widget.text});
+                id===3 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 3 , "text" : widget.text});
+                id===4 && newWidgetList.push({"id":widget.id ,"type":"HEADING" ,"size": 4 , "text" : widget.text});
             }
         });
         topic.widgets = newWidgetList
     };
 
     listChange = (topicId , widgetId , id)=>{
-        let topic = this.findTopicById(topicId)
+        let topic = this.findTopicById(topicId);
         let newWidgetList =[];
         this.findWidgets(topicId).forEach((widget)=>{
-            if(widget.id != widgetId){
+            if(widget.id !== widgetId){
                 newWidgetList.push(widget)
             }
             else{
-                id===1 && newWidgetList.push({"id":widget.id ,"type":"LIST" ,"order": "ordered" , "items" : widget.items})
+                id===1 && newWidgetList.push({"id":widget.id ,"type":"LIST" ,"order": "ordered" , "items" : widget.items});
                 id===2 && newWidgetList.push({"id":widget.id ,"type":"LIST" ,"order":  "unordered" , "items" : widget.items})
             }
         });
         topic.widgets = newWidgetList
     };
+
     saveWidgetsForTopic = (topicId, widgets)=>{
-        let topic = this.findTopicById(topicId)
+        let topic = this.findTopicById(topicId);
         topic.widgets = widgets
     };
 
-    updateWidget = (widgetId, widget)=>{
-//todo
+    updateWidget = (widgetId, newWidget)=>{
+        courses.forEach((course)=>{
+            course.modules.forEach((module=>{
+                module.lessons.forEach((lesson)=>{
+                    lesson.topics.forEach((topic)=>{
+                        topic.widgets.forEach((widget)=>{
+                            if(widget.id === widgetId) widget=newWidget
+                        })
+                    })
+                })
+            }))
+        });
     };
+
     deleteWidget = (widgetId)=>{
         let result =[];
-        let topic = this.findTopicByWidgetId(widgetId)
+        let topic = this.findTopicByWidgetId(widgetId);
         topic.widgets.forEach((widget)=>{
-            if(widget.id != widgetId){
+            if(widget.id !== widgetId){
                 result.push(widget);
             }
         });
         topic.widgets = result
     };
+
 }
 export default CourseService;

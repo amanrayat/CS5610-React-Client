@@ -62,7 +62,7 @@ export default class LessonTab extends React.Component {
                     return (
                         <LessonTabItem key={lesson.id} lesson={lesson} loadTopic={this.loadTopic}
                                        deleteLesson={this.deleteLesson} onSave ={this.onSave}
-                                       classname={this.state.lessonId == lesson.id ? 'nav-link selected' : 'nav-link'}/>)
+                                       classname={this.state.lessonId === lesson.id ? 'nav-link selected' : 'nav-link'}/>)
                 })
             )
         }
