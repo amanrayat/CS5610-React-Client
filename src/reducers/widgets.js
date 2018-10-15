@@ -13,7 +13,9 @@ const widgets = (state={widgets:[],preview:false} , action)=>{
         case "CREATE_WIDGET" :
             this.CourseService.createWidget(state.selectedTopic.id);
             return {
-                widgets: this.CourseService.findWidgets(state.selectedTopic.id)
+                widgets: this.CourseService.findWidgets(state.selectedTopic.id),
+                selectedTopic: state.selectedTopic
+
             };
         case "DELETE_WIDGET" :
             let newWidgets =[];
@@ -29,32 +31,38 @@ const widgets = (state={widgets:[],preview:false} , action)=>{
         case "PREVIEW" :
             return{
                 preview : action.decision,
-                widgets: state.widgets
+                widgets: state.widgets,
+                selectedTopic: state.selectedTopic
             };
         case "CHANGE_TYPE":
             this.CourseService.changeWidget(state.selectedTopic.id , action.widget.id , action.kind);
             return{
-                widgets: this.CourseService.findWidgets(state.selectedTopic.id)
+                widgets: this.CourseService.findWidgets(state.selectedTopic.id),
+                selectedTopic: state.selectedTopic
             };
         case "ARROW_UP" :
             this.CourseService.arrowUp(state.selectedTopic.id , action.widget.id);
             return{
-                widgets: this.CourseService.findWidgets(state.selectedTopic.id)
+                widgets: this.CourseService.findWidgets(state.selectedTopic.id),
+                selectedTopic: state.selectedTopic
             };
         case "ARROW_DOWN":
             this.CourseService.arrowDown(state.selectedTopic.id , action.widget.id);
             return{
-                widgets: this.CourseService.findWidgets(state.selectedTopic.id)
+                widgets: this.CourseService.findWidgets(state.selectedTopic.id),
+                selectedTopic: state.selectedTopic
             };
         case "HEADING_CHANGE":
             this.CourseService.headingChange(state.selectedTopic.id , action.widget.id , action.id);
             return {
-                widgets: this.CourseService.findWidgets(state.selectedTopic.id)
+                widgets: this.CourseService.findWidgets(state.selectedTopic.id),
+                selectedTopic: state.selectedTopic
             };
         case "LIST_CHANGE":
             this.CourseService.listChange(state.selectedTopic.id , action.widget.id , action.id);
             return {
-                widgets: this.CourseService.findWidgets(state.selectedTopic.id)
+                widgets: this.CourseService.findWidgets(state.selectedTopic.id),
+                selectedTopic: state.selectedTopic
             };
 
         case "HANDLE_CHANGE":
@@ -64,7 +72,8 @@ const widgets = (state={widgets:[],preview:false} , action)=>{
                         widget.text = action.input
                     }
                     return Object.assign({} , widget)
-                })
+                }),
+                selectedTopic: state.selectedTopic
             };
         case "HANDLE_CHANGE_LIST" :
             return{
@@ -73,7 +82,8 @@ const widgets = (state={widgets:[],preview:false} , action)=>{
                         widget.items = action.input
                     }
                     return Object.assign({} , widget)
-                })
+                }),
+                selectedTopic: state.selectedTopic
             };
         case "HANDLE_CHANGE_IMAGE" :
             return{
@@ -82,7 +92,8 @@ const widgets = (state={widgets:[],preview:false} , action)=>{
                         widget.src = action.input
                     }
                     return Object.assign({} , widget)
-                })
+                }),
+                selectedTopic: state.selectedTopic
             };
         case "HANDLE_CHANGE_TEXT" :
             return{
@@ -91,7 +102,8 @@ const widgets = (state={widgets:[],preview:false} , action)=>{
                         widget.title = action.input
                     }
                     return Object.assign({} , widget)
-                })
+                }),
+                selectedTopic: state.selectedTopic
             };
         case "HANDLE_CHANGE_HREF" :
             return{
@@ -100,29 +112,35 @@ const widgets = (state={widgets:[],preview:false} , action)=>{
                         widget.href = action.input
                     }
                     return Object.assign({} , widget)
-                })
+                }),
+                selectedTopic: state.selectedTopic
             };
         case "HANDLE_SAVE" :
             this.CourseService.saveWidgetsForTopic(state.selectedTopic.id , state.widgets);
             return{
-                widgets: this.CourseService.findWidgets(state.selectedTopic.id)
+                widgets: this.CourseService.findWidgets(state.selectedTopic.id),
+                selectedTopic: state.selectedTopic
             };
         case "UPDATE_WIDGET" :
             this.CourseService.updateWidget(state.selectedTopic.id , action.widget);
             return {
-                widgets: this.CourseService.findWidgets(state.selectedTopic.id)
+                widgets: this.CourseService.findWidgets(state.selectedTopic.id),
+                selectedTopic: state.selectedTopic
             };
         case "FIND_WIDGET" :
             return {
-                widget : this.CourseService.findWidget(action.widgetId)
+                widget : this.CourseService.findWidget(action.widgetId),
+                selectedTopic: state.selectedTopic
             };
         case "FIND_ALL_WIDGETS_FOR_TOPIC" :
             return {
                 widgets: this.CourseService.findWidgets(action.topic.id),
+                selectedTopic: state.selectedTopic
             };
         case "FIND_ALL_WIDGETS" :
             return {
                 widgets: this.CourseService.findWidgets(action.topic.id),
+                selectedTopic: state.selectedTopic
             };
         default : return state
 
