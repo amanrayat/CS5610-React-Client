@@ -1,9 +1,14 @@
 import React , {Component} from 'react';
+import CourseService from "../service/CourseService";
 
 export default class Register extends Component{
     constructor(props) {
         super(props);
-
+        this.state = {
+            username : '',
+            password : ''
+        }
+        this.courseService = new CourseService();
     }
 
     render(){
@@ -15,14 +20,15 @@ export default class Register extends Component{
                         <div className="form-group row">
                             <label htmlFor="usernameFld" className="col-sm-2 col-form-label">Username</label>
                             <div className="col-sm-10">
-                                <input type="text" className="form-control " id="usernameFld"
+                                <input type="text" className="form-control " id="usernameFld" onChange={(e)=>this.setState({username : e.target.value})}
                                        placeholder="Choose the username"/>
                             </div>
                         </div>
                         <div className="form-group row">
                             <label htmlFor="passwordFld" className="col-sm-2 col-form-label">Password</label>
                             <div className="col-sm-10">
-                                <input type="password" className="form-control" id="passwordFld" placeholder="Password"/>
+                                <input type="password" className="form-control" id="passwordFld" onChange={(e)=>this.setState({password : e.target.value})}
+                                       placeholder="Password"/>
                             </div>
                         </div>
                         <div className="form-group row">
@@ -30,13 +36,13 @@ export default class Register extends Component{
                                 Password</label>
                             <div className="col-sm-10">
                                 <input type="password" className="form-control" id="verifyPasswordFld"
-                                       placeholder="Password"/>
+                                       placeholder="Re Enter Password" onChange={(e)=>this.setState({rePassword : e.target.value})}/>
+                                <p style={this.state.rePassword === this.state.password ? {display : "none"} :  {color : 'red'}}>The passwords does not match</p>
                             </div>
                         </div>
-                        <button type="button" className="btn btn-primary btn-block">Sign Up</button>
+                        <button type="button" className="btn btn-primary btn-block" onClick={()=>this.courseService.register()}>Sign Up</button>
                         <div className="text-center">
-                            <button type="button" className="btn btn-inverted text-center"><a
-                                href="../login/login.template.client.html"/>Login
+                            <button type="button" className="btn btn-inverted text-center">Login
                             </button>
                         </div>
                     </form>
