@@ -146,5 +146,5 @@ const widgets = (state={widgets:[],preview:false} , action)=>{
 
     }
 };
-
+    
 export default widgets

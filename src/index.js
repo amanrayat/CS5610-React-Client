@@ -5,5 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import './style.css'
 
 import CourseManager from "./containers/CourseManager";
+import Login from "./components/Login";
+import Register from "./components/Register";
 
-ReactDom.render(<CourseManager/>,document.getElementById('root'));
+ReactDom.render(<Register/>,document.getElementById('root'));
