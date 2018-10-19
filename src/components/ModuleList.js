@@ -22,18 +22,22 @@ export default class ModuleList extends React.Component{
         this.reRender();
     }
     componentWillReceiveProps(newProps){
-        this.setState({
-            courseId:newProps.courseId,
-            modules:this.courseService.findAllModulesForCourseId(newProps.courseId),
-            moduleId:this.courseService.findAllModulesForCourseId(newProps.courseId)[0].id,
-            courseName : this.courseService.findCourseNameByCourseId(this.state.courseId)
+        this.courseService.findAllModulesForCourseId(newProps.courseId).then((res)=>{
+            this.setState({modules:res.data,
+                moduleId:res.data?res.data[0].id:null,
+                courseName : this.courseService.findCourseNameByCourseId(this.state.courseId)
+            })
         })
+
     }
     reRender = () =>{
-        this.setState({modules:this.courseService.findAllModulesForCourseId(this.state.courseId),
-            moduleId:this.courseService.findAllModulesForCourseId(this.state.courseId)[0].id,
-            courseName : this.courseService.findCourseNameByCourseId(this.state.courseId)
+        this.courseService.findAllModulesForCourseId(this.state.courseId).then((res)=>{
+            this.setState({modules:res.data,
+                moduleId:res.data?res.data[0].id:null,
+                courseName : this.courseService.findCourseNameByCourseId(this.state.courseId)
+            })
         })
+
     };
     deleteModule = (moduleId)=>{
         this.courseService.deleteModuleForCourseId(moduleId , this.state.courseId);

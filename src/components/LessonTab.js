@@ -20,21 +20,22 @@ export default class LessonTab extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        this.setState({
-            lessons: this.courseService.findAllLessonsForModule(newProps.courseId, newProps.moduleId),
-            lessonId:
-                this.courseService.findAllLessonsForModule(newProps.courseId, newProps.moduleId).length > 0 ?
-                    this.courseService.findAllLessonsForModule(newProps.courseId, newProps.moduleId)[0].id : null
+        this.courseService.findAllLessonsForModule(newProps.courseId, newProps.moduleId).then((res)=>{
+            this.setState({
+                lessons: res.data,
+                lessonId: res.data ? res.data[0].id : null
+            })
         })
     }
 
     reRender = () => {
-        this.setState({
-            lessons: this.courseService.findAllLessonsForModule(this.props.courseId, this.props.moduleId),
-            lessonId:
-                this.courseService.findAllLessonsForModule(this.props.courseId, this.props.moduleId).length > 0 ?
-                    this.courseService.findAllLessonsForModule(this.props.courseId, this.props.moduleId)[0].id : null
+        this.courseService.findAllLessonsForModule(this.props.courseId, this.props.moduleId).then((res)=>{
+            this.setState({
+                lessons: res.data,
+                lessonId: res.data ? res.data[0].id : null
+            })
         })
+
     };
     addLesson = () => {
         this.courseService.createLessonForModuleId(this.props.courseId, this.props.moduleId, this.input.value);
@@ -85,6 +86,7 @@ export default class LessonTab extends React.Component {
     };
 
     render() {
+        console.log("the state is lessontab" , this.state)
         return (
             <div>
                 <div className={'black-background'}>

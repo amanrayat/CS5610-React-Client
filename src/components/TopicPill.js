@@ -18,33 +18,32 @@ export default class TopicPill extends React.Component{
 
     }
     componentWillMount(){
-        this.setState({
-            topic:this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics.length>0?
-                this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics[0]:null,
-            topics : this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics,
-            topicId :
-            this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics.length>0?
-                this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics[0].id:null
+        this.courseService.findAllTopicForModule().then((res)=>{
+            this.setState({
+                topic:res.data? res.data[0]:null,
+                topics : res.data? res.data : [],
+                topicId : res.data? res.data[0].id:null
+            })
         })
+
     }
     componentWillReceiveProps(newProps){
-        this.setState({
-            topic :this.courseService.findAllTopicForModule(newProps.courseId , newProps.moduleId ,newProps.lessonId).topics.length>0?
-                this.courseService.findAllTopicForModule(newProps.courseId , newProps.moduleId ,newProps.lessonId).topics[0]:null ,
-            topics : this.courseService.findAllTopicForModule(newProps.courseId , newProps.moduleId , newProps.lessonId).topics,
-            topicId:this.courseService.findAllTopicForModule(newProps.courseId , newProps.moduleId ,newProps.lessonId).topics.length>0?
-                this.courseService.findAllTopicForModule(newProps.courseId , newProps.moduleId ,newProps.lessonId).topics[0].id:null
+        this.courseService.findAllTopicForModule().then((res)=>{
+            this.setState({
+                topic:res.data? res.data[0]:null,
+                topics : res.data? res.data:[],
+                topicId : res.data? res.data[0].id:null
+            })
         })
     }
 
     reRender= ()=>{
-        this.setState({
-            topic :  this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics.length>0?
-                this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics[0]:null,
-            topics : this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics,
-            topicId :
-                this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics.length>0?
-                    this.courseService.findAllTopicForModule(this.props.courseId , this.props.moduleId ,this.props.lessonId).topics[0].id:null
+        this.courseService.findAllTopicForModule().then((res)=>{
+            this.setState({
+                topic:res.data? res.data[0]:null,
+                topics : res.data? res.data:[],
+                topicId : res.data? res.data[0].id:null
+            })
         })
     };
     fallback = ()=>{
@@ -100,6 +99,7 @@ export default class TopicPill extends React.Component{
     };
 
     render(){
+        console.log("the stat in topic " , this.state)
         return(
             <div>
                 <h1 className={'text-center'}>Topics</h1>
@@ -112,10 +112,10 @@ export default class TopicPill extends React.Component{
                         placeholder="New Topic title" />
                     <button style={{marginTop : '40px'}} onClick={this.addTopic} className={'btn btn-primary btn-block'}>Add New Topic</button>
                 </ul>
-                { this.state.topic &&
-                <Provider store={store}>
-                    <WidgetListContainer  topic={this.state.topic} widgetsInit={this.state.topic.widgets}/>
-                </Provider>}
+                {/*{ this.state.topic &&*/}
+                {/*<Provider store={store}>*/}
+                    {/*<WidgetListContainer  topic={this.state.topic} widgetsInit={this.state.topic.widgets}/>*/}
+                {/*</Provider>}*/}
             </div>
 
         )
