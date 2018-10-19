@@ -18,17 +18,11 @@ export default class TopicPill extends React.Component{
 
     }
     componentWillMount(){
-        this.courseService.findAllTopicForModule().then((res)=>{
-            this.setState({
-                topic:res.data? res.data[0]:null,
-                topics : res.data? res.data : [],
-                topicId : res.data? res.data[0].id:null
-            })
-        })
+        this.reRender();
 
     }
     componentWillReceiveProps(newProps){
-        this.courseService.findAllTopicForModule().then((res)=>{
+        this.courseService.findAllTopicForModule(newProps.lessonId).then((res)=>{
             this.setState({
                 topic:res.data? res.data[0]:null,
                 topics : res.data? res.data:[],
@@ -38,7 +32,7 @@ export default class TopicPill extends React.Component{
     }
 
     reRender= ()=>{
-        this.courseService.findAllTopicForModule().then((res)=>{
+        this.courseService.findAllTopicForModule(this.props.lessonId).then((res)=>{
             this.setState({
                 topic:res.data? res.data[0]:null,
                 topics : res.data? res.data:[],
@@ -99,7 +93,6 @@ export default class TopicPill extends React.Component{
     };
 
     render(){
-        console.log("the stat in topic " , this.state)
         return(
             <div>
                 <h1 className={'text-center'}>Topics</h1>
@@ -112,10 +105,10 @@ export default class TopicPill extends React.Component{
                         placeholder="New Topic title" />
                     <button style={{marginTop : '40px'}} onClick={this.addTopic} className={'btn btn-primary btn-block'}>Add New Topic</button>
                 </ul>
-                {/*{ this.state.topic &&*/}
-                {/*<Provider store={store}>*/}
-                    {/*<WidgetListContainer  topic={this.state.topic} widgetsInit={this.state.topic.widgets}/>*/}
-                {/*</Provider>}*/}
+                { this.state.topic &&
+                <Provider store={store}>
+                    <WidgetListContainer  topic={this.state.topic} widgetsInit={this.state.topic.widgets}/>
+                </Provider>}
             </div>
 
         )

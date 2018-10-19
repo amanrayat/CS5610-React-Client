@@ -277,7 +277,7 @@ class CourseService {
     };
 
     findAllModulesForCourseId = (courseId) => {
-        return axios("http://localhost:8080/api/course/1/module");
+        return axios("http://localhost:8080/api/course/"+courseId+"/module");
         // let result =[];
         // courses.forEach((course)=>{if(parseInt(course.id,10)===parseInt(courseId,10))result = course.modules;});
         // return result;
@@ -318,7 +318,7 @@ class CourseService {
     };
 
     findAllLessonsForModule = (courseId , moduleId)=>{
-        return axios("http://localhost:8080/api/module/12/lesson")
+        return axios("http://localhost:8080/api/module/"+moduleId+"/lesson")
         // return this.findModuleByModuleIdCourseId (moduleId , courseId).lessons
     };
 
@@ -353,8 +353,8 @@ class CourseService {
 
     };
 
-    findAllTopicForModule = (courseId,ModuleId,LessonId)=>{
-        return axios("http://localhost:8080/api/lesson/111/topic")
+    findAllTopicForModule = (LessonId)=>{
+        return axios("http://localhost:8080/api/lesson/"+LessonId+"/topic")
         // let result =[];
         // this.findAllLessonsForModule(courseId,ModuleId).forEach((lesson)=>{
         //     if(parseInt(lesson.id,10) === parseInt(LessonId,10)){
