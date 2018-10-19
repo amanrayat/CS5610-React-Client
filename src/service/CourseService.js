@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 let courses =  [
     {
         "id": 1,
@@ -237,7 +239,8 @@ class CourseService {
     };
 
     findAllCourses = ()=>{
-        return courses;
+        return axios("http://localhost:8080/api/course");
+        // return courses;
     };
 
     createCourse = (course)=>{

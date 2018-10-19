@@ -1,5 +1,5 @@
 import React , {Component} from 'react';
-import CourseService from "../service/CourseService";
+import UserService from "../service/UserService";
 
 export default class Register extends Component{
     constructor(props) {
@@ -8,7 +8,7 @@ export default class Register extends Component{
             username : '',
             password : ''
         }
-        this.courseService = new CourseService();
+        this.UserService = new UserService();
     }
 
     render(){
@@ -40,9 +40,13 @@ export default class Register extends Component{
                                 <p style={this.state.rePassword === this.state.password ? {display : "none"} :  {color : 'red'}}>The passwords does not match</p>
                             </div>
                         </div>
-                        <button type="button" className="btn btn-primary btn-block" onClick={()=>this.courseService.register()}>Sign Up</button>
+                        <button type="button"
+                                className={this.state.rePassword === this.state.password ? "btn btn-primary btn-block" : "btn btn-primary btn-block disabled"}
+                                onClick={()=>this.UserService.register(this.state.username , this.state.password)}>
+                            Sign Up
+                        </button>
                         <div className="text-center">
-                            <button type="button" className="btn btn-inverted text-center">Login
+                            <button type="button" onClick={()=>this.UserService.profile()} className="btn btn-inverted text-center">Login
                             </button>
                         </div>
                     </form>

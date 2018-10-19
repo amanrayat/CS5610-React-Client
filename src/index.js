@@ -8,4 +8,4 @@ import CourseManager from "./containers/CourseManager";
 import Login from "./components/Login";
 import Register from "./components/Register";
 
-ReactDom.render(<Register/>,document.getElementById('root'));
+ReactDom.render(<CourseManager/>,document.getElementById('root'));

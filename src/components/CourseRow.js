@@ -19,7 +19,7 @@ const CourseRow =  (props)=> {
                       <Link to={`/course/${props.course.id}`}>{props.course.title}</Link>
                   </Col>
                   <Col xs={3} sm={3} lg={3} md={3}>
-                      {props.course.OwnedBy}
+                      {props.course.owner}
                   </Col>
                   <Col xs={3} sm={3} lg={3} md={3}>
                       <Moment format={"MM/DD/YYYY"}>{date}</Moment>

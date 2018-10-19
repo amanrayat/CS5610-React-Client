@@ -11,7 +11,7 @@ export default class CourseList extends React.Component{
         this.courseService = new CourseService();
         this.state = {
             view : 0,
-            courses :[]
+            courses :[{"id" : 1 , "title" : "aman" , "owner" : "aman"}]
         }
     };
 
@@ -20,7 +20,10 @@ export default class CourseList extends React.Component{
     }
 
     renderCourses = ()=>{
-        this.setState({courses : this.courseService.findAllCourses()});
+        this.courseService.findAllCourses().then((res)=>{
+            this.setState({courses : res.data});
+        })
+
     };
 
     changeView = ()=>{
@@ -40,6 +43,7 @@ export default class CourseList extends React.Component{
     };
 
     render(){
+        console.log("the state is " , this.state)
         return (
             <div>
             <CourseTableHeading addCourse={this.addCourse} changeView={this.changeView}/>
