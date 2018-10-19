@@ -20,32 +20,41 @@ export default class LessonTab extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        this.courseService.findAllLessonsForModule(newProps.courseId, newProps.moduleId).then((res)=>{
-            this.setState({
-                lessons: res.data,
-                lessonId: res.data ? res.data[0].id : null
+        if(this.props.moduleId){
+            this.courseService.findAllLessonsForModule( newProps.moduleId).then((res)=>{
+                this.setState({
+                    lessons: res.data,
+                    lessonId: res.data[0] ? res.data[0].id : null
+                })
             })
-        })
+        }
+
     }
 
     reRender = () => {
-        this.courseService.findAllLessonsForModule(this.props.courseId, this.props.moduleId).then((res)=>{
-            this.setState({
-                lessons: res.data,
-                lessonId: res.data ? res.data[0].id : null
+        if(this.props.moduleId){
+            this.courseService.findAllLessonsForModule( this.props.moduleId).then((res)=>{
+                this.setState({
+                    lessons: res.data,
+                    lessonId: res.data[0] ? res.data[0].id : null
+                })
             })
-        })
+        }
+
 
     };
     addLesson = () => {
-        this.courseService.createLessonForModuleId(this.props.courseId, this.props.moduleId, this.input.value);
-        this.reRender();
-        this.input.value="";
+        this.courseService.createLessonForModuleId( this.props.moduleId, this.input.value).then(()=>{
+            this.reRender();
+            this.input.value="";
+        });
+
     };
 
     deleteLesson = (lessonId) => {
-        this.courseService.deleteLessonForModuleId(this.props.courseId, this.props.moduleId, lessonId)
-        this.reRender();
+        this.courseService.deleteLessonForModuleId(lessonId).then(()=>{
+            this.reRender();
+        })
     };
     loadTopic = (lessonId) => {
         this.setState({

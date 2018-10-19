@@ -26,7 +26,7 @@ export default class TopicPill extends React.Component{
             this.setState({
                 topic:res.data? res.data[0]:null,
                 topics : res.data? res.data:[],
-                topicId : res.data? res.data[0].id:null
+                topicId : res.data[0]? res.data[0].id:null
             })
         })
     }
@@ -36,7 +36,7 @@ export default class TopicPill extends React.Component{
             this.setState({
                 topic:res.data? res.data[0]:null,
                 topics : res.data? res.data:[],
-                topicId : res.data? res.data[0].id:null
+                topicId : res.data[0]? res.data[0].id:null
             })
         })
     };
@@ -49,14 +49,17 @@ export default class TopicPill extends React.Component{
         )
     };
     deleteTopic = (id)=>{
-        this.courseService.deleteTopicForLessonId(this.props.courseId , this.props.moduleId , this.props.lessonId , id)
-        this.reRender();
+        this.courseService.deleteTopicForLessonId(id).then(()=>{
+            this.reRender();
+        })
     };
 
     addTopic=()=>{
-        this.courseService.addNewTopicforLesson(this.props.courseId ,this.props.moduleId , this.props.lessonId , this.input.value)
-        this.reRender();
-        this.input.value="";
+        this.courseService.addNewTopicforLesson(this.props.lessonId , this.input.value).then(()=>{
+            this.reRender();
+            this.input.value="";
+        })
+
     }
     updateTopic=(id ,value)=>{
         this.courseService.updateTopic(this.props.courseId , this.props.moduleId , this.props.lessonId ,id ,value)

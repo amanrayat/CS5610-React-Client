@@ -8,7 +8,7 @@ export default class ModuleList extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            courseId:1,
+            courseId:'',
             moduleId:'',
             lessonId:'',
             topicId:'',
@@ -24,24 +24,29 @@ export default class ModuleList extends React.Component{
     componentWillReceiveProps(newProps){
         this.courseService.findAllModulesForCourseId(newProps.courseId).then((res)=>{
             this.setState({modules:res.data,
-                moduleId:res.data?res.data[0].id:null,
-                courseName : this.courseService.findCourseNameByCourseId(this.state.courseId)
+                moduleId:res.data[0]?res.data[0].id:this.state.moduleId,
+                courseName : this.courseService.findCourseNameByCourseId(this.state.courseId),
+                courseId : newProps.courseId
             })
         })
 
     }
     reRender = () =>{
-        this.courseService.findAllModulesForCourseId(this.state.courseId).then((res)=>{
-            this.setState({modules:res.data,
-                moduleId:res.data?res.data[0].id:null,
-                courseName : this.courseService.findCourseNameByCourseId(this.state.courseId)
+        if(this.props.courseId){
+            this.courseService.findAllModulesForCourseId(this.state.courseId).then((res)=>{
+                this.setState({modules:res.data,
+                    moduleId:res.data?res.data[0].id:null,
+                    courseName : this.courseService.findCourseNameByCourseId(this.state.courseId)
+                })
             })
-        })
+        }
+
 
     };
     deleteModule = (moduleId)=>{
-        this.courseService.deleteModuleForCourseId(moduleId , this.state.courseId);
-        this.reRender();
+        this.courseService.deleteModuleForCourseId(moduleId).then(()=>{
+            this.reRender();
+        });
 
     };
     onloadLesson = (newmoduleId)=>{
@@ -69,13 +74,16 @@ export default class ModuleList extends React.Component{
         )
     };
     createModule = ()=>{
-        this.courseService.createModuleForCourseId(this.input.value , this.state.courseId);
-        this.reRender();
-        this.input.value=""
+        this.courseService.createModuleForCourseId(this.input.value , this.state.courseId).then(()=>{
+            this.reRender();
+            this.input.value="";
+
+        })
 
     };
     render(){
-        if(this.state.moduleId && this.state.courseId){
+        console.log("the state in module list is" , this.state)
+        if(this.state.courseId){
             return(
                 <div className={'height_full'}>
                     <LessonTab reRender={this.reRender} title={this.state.courseName} moduleId={this.state.moduleId} courseId={this.state.courseId}/>

@@ -33,13 +33,15 @@ export default class CourseList extends React.Component{
     };
 
     addCourse = (val)=>{
-        this.courseService.createCourse(val);
-        this.renderCourses();
+        this.courseService.createCourse(val).then(()=>{
+            this.renderCourses();
+        });
     };
 
     deleteCourse =(id)=>{
-        this.courseService.deleteCourse(id);
-        this.renderCourses();
+        this.courseService.deleteCourse(id).then(()=>{
+            this.renderCourses();
+        });
     };
 
     render(){

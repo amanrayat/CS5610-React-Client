@@ -244,23 +244,19 @@ class CourseService {
     };
 
     createCourse = (course)=>{
-        let id = new Date();
-        let newCourses = [...courses];
-        newCourses.push({
-            "id":id,
-            "title":course,
-            "OwnedBy":"Aman",
-            "modules":[]
-        });
-        courses = newCourses;
+        let newCourse = {
+            "id" :Math.round(Math.random()*1000000),
+            "title" : course,
+            "owner" : "Aman",
+            "modules" : []
+
+        };
+        return axios.post("http://localhost:8080/api/course" , newCourse)
     };
 
     deleteCourse = (courseId)=>{
-        courses.forEach((course,index)=>{
-            if(course.id === courseId){
-                courses.splice(index,1);
-            }
-        });
+        return axios.delete("http://localhost:8080/api/course/"+courseId)
+
     };
 
     editCourse =(courseId, courseName)=>{
@@ -278,9 +274,7 @@ class CourseService {
 
     findAllModulesForCourseId = (courseId) => {
         return axios("http://localhost:8080/api/course/"+courseId+"/module");
-        // let result =[];
-        // courses.forEach((course)=>{if(parseInt(course.id,10)===parseInt(courseId,10))result = course.modules;});
-        // return result;
+
     };
 
     createModuleForCourseId = (moduleName , courseId) => {
@@ -290,23 +284,26 @@ class CourseService {
             "title":moduleName,
             "lessons":[]
         };
-        courses.forEach((course)=>{
-            if(parseInt(course.id,10) === parseInt(courseId,10)){
-                course.modules  = [...course.modules , obj];
-            }
-        });
+        return axios.post("http://localhost:8080/api/course/"+courseId+"/module" , obj);
+
+        // courses.forEach((course)=>{
+        //     if(parseInt(course.id,10) === parseInt(courseId,10)){
+        //         course.modules  = [...course.modules , obj];
+        //     }
+        // });
     };
 
-    deleteModuleForCourseId = (moduleId , courseId) => {
-        courses.forEach((course) =>{
-            if(parseInt(course.id,10) === parseInt(courseId,10)){
-                course.modules.forEach((module , index)=>{
-                    if(parseInt(module.id,10) === parseInt(moduleId,10)){
-                        course.modules.splice(index , 1)
-                    }
-                })
-            }
-        })
+    deleteModuleForCourseId = (moduleId) => {
+        return axios.delete("http://localhost:8080/api/module/"+moduleId)
+        // courses.forEach((course) =>{
+        //     if(parseInt(course.id,10) === parseInt(courseId,10)){
+        //         course.modules.forEach((module , index)=>{
+        //             if(parseInt(module.id,10) === parseInt(moduleId,10)){
+        //                 course.modules.splice(index , 1)
+        //             }
+        //         })
+        //     }
+        // })
     };
 
     updateModuleListItem = (courseId, moduleId , moduleName)=>{
@@ -317,30 +314,30 @@ class CourseService {
         })
     };
 
-    findAllLessonsForModule = (courseId , moduleId)=>{
+    findAllLessonsForModule = (moduleId)=>{
         return axios("http://localhost:8080/api/module/"+moduleId+"/lesson")
         // return this.findModuleByModuleIdCourseId (moduleId , courseId).lessons
     };
 
-    createLessonForModuleId = ( courseId, moduleId,lessonName)=>{
-        let id = Math.round((new Date()).getTime() / 100000);
+    createLessonForModuleId = ( moduleId,lessonName)=>{
         let obj = {
-            "id":id,
+            "id":Math.round(Math.random()*1000000),
             "title":lessonName,
             "topics":[]
         };
-        this.findModuleByModuleIdCourseId(moduleId,courseId).lessons
-            = [...this.findModuleByModuleIdCourseId(moduleId,courseId).lessons ,obj]
+        return axios.post("http://localhost:8080/api/module/"+moduleId+"/lesson" , obj)
+        // this.findModuleByModuleIdCourseId(moduleId,courseId).lessons
+        //     = [...this.findModuleByModuleIdCourseId(moduleId,courseId).lessons ,obj]
     };
 
-    deleteLessonForModuleId = ( courseId, moduleId,lessonId)=>{
-        let lessonsList =  this.findModuleByModuleIdCourseId(moduleId,courseId).lessons;
-        lessonsList.forEach((lesson,index)=>{
-            if(parseInt(lesson.id,10) === parseInt(lessonId,10)){
-                lessonsList.splice(index,1)
-            }
-        })
-
+    deleteLessonForModuleId = (lessonId)=>{
+        // let lessonsList =  this.findModuleByModuleIdCourseId(moduleId,courseId).lessons;
+        // lessonsList.forEach((lesson,index)=>{
+        //     if(parseInt(lesson.id,10) === parseInt(lessonId,10)){
+        //         lessonsList.splice(index,1)
+        //     }
+        // })
+        return axios.delete("http://localhost:8080/api/lesson/" + lessonId)
     };
 
     updateLesson =(courseId, moduleId , lessonId , lessonName)=>{
@@ -355,34 +352,30 @@ class CourseService {
 
     findAllTopicForModule = (LessonId)=>{
         return axios("http://localhost:8080/api/lesson/"+LessonId+"/topic")
-        // let result =[];
-        // this.findAllLessonsForModule(courseId,ModuleId).forEach((lesson)=>{
-        //     if(parseInt(lesson.id,10) === parseInt(LessonId,10)){
-        //         result = lesson;
+
+    };
+
+    deleteTopicForLessonId =(topicId)=>{
+        // let topics = this.findAllTopicForModule(courseId,moduleId ,lessonId).topics;
+        // topics.forEach((topic,index)=>{
+        //     if(parseInt(topic.id,10) === parseInt(topicId,10)){
+        //         topics.splice(index,1)
         //     }
         // });
-        // return result;
+
+        return axios.delete("http://localhost:8080/api/topic/"+topicId)
     };
 
-    deleteTopicForLessonId =(courseId,moduleId,lessonId,topicId)=>{
-        let topics = this.findAllTopicForModule(courseId,moduleId ,lessonId).topics;
-        topics.forEach((topic,index)=>{
-            if(parseInt(topic.id,10) === parseInt(topicId,10)){
-                topics.splice(index,1)
-            }
-        });
-
-    };
-
-    addNewTopicforLesson =(courseId,moduleId,lessonId,topicName)=>{
-        let id = Math.round((new Date()).getTime() / 100000);
+    addNewTopicforLesson =(lessonId,topicName)=>{
+        // let id = Math.round((new Date()).getTime() / 100000);
         let obj = {
-            "id":id,
+            "id":Math.round(Math.random()*1000000),
             "title":topicName,
             "widgets" : []
         };
-        this.findAllTopicForModule(courseId,moduleId,lessonId).topics =
-            [...this.findAllTopicForModule(courseId,moduleId,lessonId).topics,obj]
+        // this.findAllTopicForModule(courseId,moduleId,lessonId).topics =
+        //     [...this.findAllTopicForModule(courseId,moduleId,lessonId).topics,obj]
+        return axios.post("http://localhost:8080/api/lesson/"+lessonId+"/topic" , obj)
     };
 
     updateTopic =(courseId , moduleId ,lessonId , topicId ,topicName)=>{
