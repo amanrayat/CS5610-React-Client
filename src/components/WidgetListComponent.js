@@ -9,11 +9,15 @@ import {DropdownButton, MenuItem} from "react-bootstrap";
 class WidgetListComponent extends React.Component {
     constructor(props) {
         super(props);
+
         props.init(props.widgetsInit , props.topic)
     }
 
     componentDidUpdate(){
         this.props.init(this.props.widgetsInit , this.props.topic)
+    }
+    componentWillReceiveProps(newProps){
+        this.props.init(newProps.widgetsInit , newProps.topic)
     }
 
     render() {
@@ -31,7 +35,7 @@ class WidgetListComponent extends React.Component {
                     </label>
                 </span>
                 </div>
-                {
+                {   this.props.widgets &&
                     this.props.widgets.map((widget,index) =>
                         <div key={widget.id} className={'my-3'}>
                             <li className={this.props.preview?

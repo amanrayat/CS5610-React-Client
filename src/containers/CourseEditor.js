@@ -19,7 +19,6 @@ export default class CourseEditor extends React.Component{
         })
     }
     render(){
-        console.log("course editor",this.state)
         return(<div className={'height_full'}>
             <ModuleList courseId = {this.state.courseId}/>
         </div>)

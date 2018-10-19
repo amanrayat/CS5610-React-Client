@@ -6,7 +6,8 @@ const widgets = (state={widgets:[],preview:false} , action)=>{
     switch(action.type) {
         case "INIT":
             return {
-                widgets: state.widgets.length>0 && state.selectedTopic.id === action.topic.id ? state.widgets : this.CourseService.findWidgets(action.topic.id),
+                // widgets: state.widgets && state.selectedTopic.id === action.topic.id ? state.widgets : this.CourseService.findTopicById(action.topic.id),
+                widgets:  this.CourseService.findTopicById(action.topic.id) || null ,
                 selectedTopic: action.topic,
                 preview : state.preview
             };

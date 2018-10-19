@@ -229,13 +229,14 @@ class CourseService {
     };
 
     findCourseById = (courseId)=>{
-        let result = [];
-        courses.forEach((course)=>{
-            if(parseInt(course.id,10) === parseInt(courseId,10)){
-                result =  course;
-            }
-        });
-        return result
+        return axios("http://localhost:8080/api/course/"+courseId)
+        // let result = [];
+        // courses.forEach((course)=>{
+        //     if(parseInt(course.id,10) === parseInt(courseId,10)){
+        //         result =  course;
+        //     }
+        // });
+        // return result
     };
 
     findAllCourses = ()=>{
@@ -354,19 +355,22 @@ class CourseService {
     };
 
     findTopicById = (topicId) => {
-        let result = null;
-        courses.forEach((course)=>{
-            course.modules.forEach((module=>{
-                module.lessons.forEach((lesson)=>{
-                    lesson.topics.forEach((topic)=>{
-                        if(topic.id===topicId){
-                            result = topic
-                        }
-                    })
-                })
-            }))
-        });
-        return result
+         axios("http://localhost:8080/api/topic/"+topicId).then((res)=>{
+             return res.data
+         })
+        // let result = null;
+        // courses.forEach((course)=>{
+        //     course.modules.forEach((module=>{
+        //         module.lessons.forEach((lesson)=>{
+        //             lesson.topics.forEach((topic)=>{
+        //                 if(topic.id===topicId){
+        //                     result = topic
+        //                 }
+        //             })
+        //         })
+        //     }))
+        // });
+        // return result
     };
 
     createWidget = (topicId)=> {
@@ -377,10 +381,11 @@ class CourseService {
         topic.widgets = [...oldWidgets , widget];
     };
 
-    findWidgets = (topicId)=>{
-        return this.findTopicById(topicId).widgets;
-    };
-
+    findWidgets = (topicId)=> {
+        this.findTopicById(topicId).then((res)=>{
+            return res.data.widgets
+        })
+    }
     findWidget = (widgetId)=>{
         let result = null;
         courses.forEach((course)=>{

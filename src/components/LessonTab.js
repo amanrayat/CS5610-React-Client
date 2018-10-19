@@ -95,7 +95,6 @@ export default class LessonTab extends React.Component {
     };
 
     render() {
-        console.log("the state is lessontab" , this.state)
         return (
             <div>
                 <div className={'black-background'}>

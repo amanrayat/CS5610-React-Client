@@ -22,6 +22,7 @@ export default class ModuleList extends React.Component{
         this.reRender();
     }
     componentWillReceiveProps(newProps){
+
         this.courseService.findAllModulesForCourseId(newProps.courseId).then((res)=>{
             this.setState({modules:res.data,
                 moduleId:res.data[0]?res.data[0].id:this.state.moduleId,
@@ -32,6 +33,7 @@ export default class ModuleList extends React.Component{
 
     }
     reRender = () =>{
+        console.log("in re render")
         if(this.props.courseId){
             this.courseService.findAllModulesForCourseId(this.state.courseId).then((res)=>{
                 this.setState({modules:res.data,
@@ -82,7 +84,6 @@ export default class ModuleList extends React.Component{
 
     };
     render(){
-        console.log("the state in module list is" , this.state)
         if(this.state.courseId){
             return(
                 <div className={'height_full'}>

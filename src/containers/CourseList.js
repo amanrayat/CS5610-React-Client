@@ -45,7 +45,6 @@ export default class CourseList extends React.Component{
     };
 
     render(){
-        console.log("the state is " , this.state)
         return (
             <div>
             <CourseTableHeading addCourse={this.addCourse} changeView={this.changeView}/>
