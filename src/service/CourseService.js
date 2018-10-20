@@ -230,13 +230,7 @@ class CourseService {
 
     findCourseById = (courseId)=>{
         return axios("http://localhost:8080/api/course/"+courseId)
-        // let result = [];
-        // courses.forEach((course)=>{
-        //     if(parseInt(course.id,10) === parseInt(courseId,10)){
-        //         result =  course;
-        //     }
-        // });
-        // return result
+
     };
 
     findAllCourses = ()=>{
@@ -293,12 +287,8 @@ class CourseService {
 
     };
 
-    updateModuleListItem = (courseId, moduleId , moduleName)=>{
-        this.findAllModulesForCourseId(courseId).forEach((module)=>{
-            if(moduleId === module.id){
-                module.title = moduleName
-            }
-        })
+    updateModuleListItem = (moduleId , moduleName)=>{
+        return axios.put("http://localhost:8080/api/module/"+moduleId,{title:moduleName})
     };
 
     findAllLessonsForModule = (moduleId)=>{
@@ -318,13 +308,8 @@ class CourseService {
         return axios.delete("http://localhost:8080/api/lesson/" + lessonId)
     };
 
-    updateLesson =(courseId, moduleId , lessonId , lessonName)=>{
-        let lessonsList =  this.findModuleByModuleIdCourseId(moduleId,courseId).lessons;
-        lessonsList.forEach((lesson)=>{
-            if(lesson.id === lessonId){
-                lesson.title = lessonName
-            }
-        })
+    updateLesson =(lessonId , lessonName)=>{
+        return axios.put("http://localhost:8080/api/lesson/"+lessonId , {title : lessonName})
 
     };
 
@@ -346,31 +331,14 @@ class CourseService {
         return axios.post("http://localhost:8080/api/lesson/"+lessonId+"/topic" , obj)
     };
 
-    updateTopic =(courseId , moduleId ,lessonId , topicId ,topicName)=>{
-        this.findAllTopicForModule(courseId , moduleId ,lessonId).topics.forEach((topic)=>{
-            if(topic.id === topicId){
-                topic.title=topicName
-            }
-        })
+    updateTopic =(topicId ,topicName)=>{
+        return axios.put("http://localhost:8080/api/topic/"+topicId , {title : topicName})
     };
 
     findTopicById = (topicId) => {
          axios("http://localhost:8080/api/topic/"+topicId).then((res)=>{
              return res.data
          })
-        // let result = null;
-        // courses.forEach((course)=>{
-        //     course.modules.forEach((module=>{
-        //         module.lessons.forEach((lesson)=>{
-        //             lesson.topics.forEach((topic)=>{
-        //                 if(topic.id===topicId){
-        //                     result = topic
-        //                 }
-        //             })
-        //         })
-        //     }))
-        // });
-        // return result
     };
 
     createWidget = (topicId)=> {

@@ -62,8 +62,10 @@ export default class LessonTab extends React.Component {
         })
     };
     onSave = (id , value)=>{
-        this.courseService.updateLesson(this.props.courseId , this.props.moduleId , id ,value);
-        this.input.value="";
+        this.courseService.updateLesson(id ,value).then(()=>{
+            this.reRender();
+            this.input.value="";
+        });
     };
     renderLessonItem = () => {
         if (this.state.lessons) {

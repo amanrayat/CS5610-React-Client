@@ -57,8 +57,9 @@ export default class ModuleList extends React.Component{
         })
     };
     onUpdateModule=(id , value)=>{
-        this.courseService.updateModuleListItem(this.state.courseId , id,value);
-        this.reRender();
+        this.courseService.updateModuleListItem( id,value).then(()=>{
+            this.reRender();
+        })
 }
     renderModuleListItem = ()=>{
         return(

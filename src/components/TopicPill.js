@@ -60,16 +60,18 @@ export default class TopicPill extends React.Component{
             this.input.value="";
         })
 
-    }
+    };
     updateTopic=(id ,value)=>{
-        this.courseService.updateTopic(this.props.courseId , this.props.moduleId , this.props.lessonId ,id ,value)
-    }
+        this.courseService.updateTopic(id ,value).then(()=>{
+            this.reRender();
+        })
+    };
     selectTopic =(id)=>{
         this.setState({
             topicId:id,
             topic : this.courseService.findTopicById(id)
         })
-    }
+    };
 
     renderTopics = ()=>{
         if(this.state.topics){
