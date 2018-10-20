@@ -24,22 +24,27 @@ export default class ModuleList extends React.Component{
     componentWillReceiveProps(newProps){
 
         this.courseService.findAllModulesForCourseId(newProps.courseId).then((res)=>{
-            this.setState({modules:res.data,
-                moduleId:res.data[0]?res.data[0].id:this.state.moduleId,
-                courseName : this.courseService.findCourseNameByCourseId(this.state.courseId),
-                courseId : newProps.courseId
+            this.courseService.findCourseById(newProps.courseId).then((res2)=>{
+                this.setState({modules:res.data,
+                    moduleId:res.data[0]?res.data[0].id:this.state.moduleId,
+                    courseName : res2.data.title,
+                    courseId : newProps.courseId
+                })
             })
+
         })
 
     }
     reRender = () =>{
-        console.log("in re render")
         if(this.props.courseId){
             this.courseService.findAllModulesForCourseId(this.state.courseId).then((res)=>{
-                this.setState({modules:res.data,
-                    moduleId:res.data?res.data[0].id:null,
-                    courseName : this.courseService.findCourseNameByCourseId(this.state.courseId)
+                this.courseService.findCourseById(this.state.courseId).then((res2)=>{
+                    this.setState({modules:res.data,
+                        moduleId:res.data[0]?res.data[0].id:null,
+                        courseName : res2.data.title
+                    })
                 })
+
             })
         }
 

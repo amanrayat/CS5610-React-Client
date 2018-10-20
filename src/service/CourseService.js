@@ -219,13 +219,7 @@ let courses =  [
 class CourseService {
 
     findCourseNameByCourseId = (courseId)=>{
-        let courseName;
-        courses.forEach((course)=>{
-            if(parseInt(course.id,10) === parseInt(courseId,10)){
-                courseName = course.title
-            }
-        });
-        return courseName;
+        this.findCourseById(courseId)
     };
 
     findCourseById = (courseId)=>{
