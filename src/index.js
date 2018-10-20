@@ -5,5 +5,6 @@ import 'bootstrap/dist/css/bootstrap.css'
 import './style.css'
 
 import CourseManager from "./containers/CourseManager";
+import Profile from "./components/Profile";
 
-ReactDom.render(<CourseManager/>,document.getElementById('root'));
+ReactDom.render(<Profile/>,document.getElementById('root'));
