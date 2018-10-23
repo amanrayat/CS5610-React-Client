@@ -40,7 +40,6 @@ class WidgetListComponent extends React.Component {
                         <div key={widget.id} className={'my-3'}>
                             <li className={this.props.preview?
                                 "list-group":"list-group-item"}>
-                                {console.log("the prop here is ", this.props)}
                                 <div className={'row'} style={this.props.preview?
                                     {"display": "none"}:{"display": ""}}>
                                     <div className={'col-6'}>

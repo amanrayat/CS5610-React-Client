@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import UserService from './UserService'
 let courses =  [
     {
         "id": 1,
@@ -217,7 +217,7 @@ let courses =  [
 ];
 
 class CourseService {
-
+    UserService = new UserService();
     findCourseNameByCourseId = (courseId)=>{
         this.findCourseById(courseId)
     };
@@ -228,22 +228,33 @@ class CourseService {
     };
 
     findAllCourses = ()=>{
-        return axios("http://localhost:8080/api/course");
+        return axios({
+            url:"http://localhost:8080/api/course",
+            method: 'get',
+            withCredentials: true
+        });
     };
 
     createCourse = (course)=>{
         let newCourse = {
             "id" :Math.round(Math.random()*1000000),
             "title" : course,
-            "owner" : "Aman",
             "modules" : []
 
         };
-        return axios.post("http://localhost:8080/api/course" , newCourse)
+        return axios({
+            url:"http://localhost:8080/api/course" ,
+            method: 'post',
+            withCredentials: true,
+            data:newCourse})
     };
 
     deleteCourse = (courseId)=>{
-        return axios.delete("http://localhost:8080/api/course/"+courseId)
+        return axios({
+            url :"http://localhost:8080/api/course/"+courseId,
+            method :'delete',
+            withCredentials: true,
+        })
 
     };
 
@@ -261,7 +272,11 @@ class CourseService {
     };
 
     findAllModulesForCourseId = (courseId) => {
-        return axios("http://localhost:8080/api/course/"+courseId+"/module");
+        return axios({
+            url : "http://localhost:8080/api/course/"+courseId+"/module",
+            method : 'get',
+            withCredentials: true,
+        });
 
     };
 
@@ -272,21 +287,39 @@ class CourseService {
             "title":moduleName,
             "lessons":[]
         };
-        return axios.post("http://localhost:8080/api/course/"+courseId+"/module" , obj);
+        return axios({
+            url:"http://localhost:8080/api/course/"+courseId+"/module",
+            method : 'post',
+            withCredentials: true,
+            data : obj
+        });
 
     };
 
     deleteModuleForCourseId = (moduleId) => {
-        return axios.delete("http://localhost:8080/api/module/"+moduleId)
-
+        return axios({
+            url :"http://localhost:8080/api/module/"+moduleId,
+            method : 'delete',
+            withCredentials: true
+        })
     };
 
     updateModuleListItem = (moduleId , moduleName)=>{
-        return axios.put("http://localhost:8080/api/module/"+moduleId,{title:moduleName})
+        return axios({
+            url : "http://localhost:8080/api/module/"+moduleId,
+            data : {title:moduleName},
+            method : 'put',
+            withCredentials: true,
+
+        })
     };
 
     findAllLessonsForModule = (moduleId)=>{
-        return axios("http://localhost:8080/api/module/"+moduleId+"/lesson")
+        return axios({
+            url : "http://localhost:8080/api/module/"+moduleId+"/lesson",
+            method:'get',
+            withCredentials: true,
+        })
     };
 
     createLessonForModuleId = ( moduleId,lessonName)=>{
@@ -295,25 +328,47 @@ class CourseService {
             "title":lessonName,
             "topics":[]
         };
-        return axios.post("http://localhost:8080/api/module/"+moduleId+"/lesson" , obj)
+        return axios( {
+            method : 'post' ,
+            url : "http://localhost:8080/api/module/"+moduleId+"/lesson" ,
+            data : obj,
+            withCredentials: true,
+        })
     };
 
     deleteLessonForModuleId = (lessonId)=>{
-        return axios.delete("http://localhost:8080/api/lesson/" + lessonId)
+        return axios({
+            url : "http://localhost:8080/api/lesson/" + lessonId,
+            method : 'delete',
+            withCredentials: true
+        })
     };
 
     updateLesson =(lessonId , lessonName)=>{
-        return axios.put("http://localhost:8080/api/lesson/"+lessonId , {title : lessonName})
+        return axios({
+            url: "http://localhost:8080/api/lesson/" + lessonId,
+            data: {title: lessonName},
+            method : 'put',
+            withCredentials: true
+        })
 
     };
 
     findAllTopicForModule = (LessonId)=>{
-        return axios("http://localhost:8080/api/lesson/"+LessonId+"/topic")
+        return axios({
+            url : "http://localhost:8080/api/lesson/"+LessonId+"/topic",
+            method : 'get',
+            withCredentials: true,
+        })
 
     };
 
     deleteTopicForLessonId =(topicId)=>{
-        return axios.delete("http://localhost:8080/api/topic/"+topicId)
+        return axios({
+            method : 'delete',
+            url: "http://localhost:8080/api/topic/"+topicId,
+            withCredentials: true
+        })
     };
 
     addNewTopicforLesson =(lessonId,topicName)=>{
@@ -322,18 +377,35 @@ class CourseService {
             "title":topicName,
             "widgets" : []
         };
-        return axios.post("http://localhost:8080/api/lesson/"+lessonId+"/topic" , obj)
+        return axios({
+            method : 'post',
+            url : "http://localhost:8080/api/lesson/"+lessonId+"/topic" ,
+            data : obj,
+            withCredentials: true,
+        })
     };
 
     updateTopic =(topicId ,topicName)=>{
-        return axios.put("http://localhost:8080/api/topic/"+topicId , {title : topicName})
+        return axios({
+            url : "http://localhost:8080/api/topic/"+topicId,
+            data : {title : topicName},
+            method : 'put' ,
+            withCredentials: true
+        })
     };
 
     findTopicById = (topicId) => {
-         axios("http://localhost:8080/api/topic/"+topicId).then((res)=>{
-             return res.data
-         })
+        axios({
+            url : "http://localhost:8080/api/topic/"+topicId,
+            withCredentials: true,
+            method : 'get'
+        }).then((res)=>{
+            return res.data
+        })
     };
+
+
+
 
     createWidget = (topicId)=> {
         let id = Math.round(Math.random()*1000000);

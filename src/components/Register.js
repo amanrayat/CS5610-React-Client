@@ -1,5 +1,7 @@
 import React , {Component} from 'react';
 import UserService from "../service/UserService";
+import {Link} from "react-router-dom";
+
 
 export default class Register extends Component{
     constructor(props) {
@@ -10,6 +12,13 @@ export default class Register extends Component{
         }
         this.UserService = new UserService();
     }
+
+    registerUser = ()=>{
+        this.UserService.register(this.state.username , this.state.password).then((res)=>{
+            this.props.history.push('/profile')
+        })
+    };
+
 
     render(){
         return(
@@ -42,12 +51,15 @@ export default class Register extends Component{
                         </div>
                         <button type="button"
                                 className={this.state.rePassword === this.state.password ? "btn btn-primary btn-block" : "btn btn-primary btn-block disabled"}
-                                onClick={()=>this.UserService.register(this.state.username , this.state.password)}>
+                                onClick={()=>this.registerUser()}>
                             Sign Up
                         </button>
                         <div className="text-center">
-                            <button type="button" onClick={()=>this.UserService.profile()} className="btn btn-inverted text-center">Login
+                            <Link to={'/login'}>
+                            <button type="button"  className="btn btn-inverted text-center">
+                                Login
                             </button>
+                            </Link>
                         </div>
                     </form>
                 </div>

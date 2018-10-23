@@ -7,4 +7,4 @@ import './style.css'
 import CourseManager from "./containers/CourseManager";
 import Profile from "./components/Profile";
 
-ReactDom.render(<Profile/>,document.getElementById('root'));
+ReactDom.render(<CourseManager/>,document.getElementById('root'));
