@@ -18,6 +18,7 @@ export default class Profile extends React.Component{
     }
     componentDidMount(){
         this.UserService.profile().then((res)=>{
+            console.log("the res profile is " , res)
             this.setState({
                 currUser : res.data,
                 userName : res.data.userName,
