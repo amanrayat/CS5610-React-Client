@@ -223,13 +223,13 @@ class CourseService {
     };
 
     findCourseById = (courseId)=>{
-        return axios("https://guarded-lake-67462.herokuapp.com/api/course/"+courseId)
+        return axios("http://localhost:8080/api/course/"+courseId)
 
     };
 
     findAllCourses = ()=>{
         return axios({
-            url:"https://guarded-lake-67462.herokuapp.com/api/course",
+            url:"http://localhost:8080/api/course",
             method: 'get',
             withCredentials: true
         });
@@ -243,7 +243,7 @@ class CourseService {
 
         };
         return axios({
-            url:"https://guarded-lake-67462.herokuapp.com/api/course" ,
+            url:"http://localhost:8080/api/course" ,
             method: 'post',
             withCredentials: true,
             data:newCourse})
@@ -251,7 +251,7 @@ class CourseService {
 
     deleteCourse = (courseId)=>{
         return axios({
-            url :"https://guarded-lake-67462.herokuapp.com/api/course/"+courseId,
+            url :"http://localhost:8080/api/course/"+courseId,
             method :'delete',
             withCredentials: true,
         })
@@ -273,7 +273,7 @@ class CourseService {
 
     findAllModulesForCourseId = (courseId) => {
         return axios({
-            url : "https://guarded-lake-67462.herokuapp.com/api/course/"+courseId+"/module",
+            url : "http://localhost:8080/api/course/"+courseId+"/module",
             method : 'get',
             withCredentials: true,
         });
@@ -288,7 +288,7 @@ class CourseService {
             "lessons":[]
         };
         return axios({
-            url:"https://guarded-lake-67462.herokuapp.com/api/course/"+courseId+"/module",
+            url:"http://localhost:8080/api/course/"+courseId+"/module",
             method : 'post',
             withCredentials: true,
             data : obj
@@ -298,7 +298,7 @@ class CourseService {
 
     deleteModuleForCourseId = (moduleId) => {
         return axios({
-            url :"https://guarded-lake-67462.herokuapp.com/api/module/"+moduleId,
+            url :"http://localhost:8080/api/module/"+moduleId,
             method : 'delete',
             withCredentials: true
         })
@@ -306,7 +306,7 @@ class CourseService {
 
     updateModuleListItem = (moduleId , moduleName)=>{
         return axios({
-            url : "https://guarded-lake-67462.herokuapp.com/api/module/"+moduleId,
+            url : "http://localhost:8080/api/module/"+moduleId,
             data : {title:moduleName},
             method : 'put',
             withCredentials: true,
@@ -316,7 +316,7 @@ class CourseService {
 
     findAllLessonsForModule = (moduleId)=>{
         return axios({
-            url : "https://guarded-lake-67462.herokuapp.com/api/module/"+moduleId+"/lesson",
+            url : "http://localhost:8080/api/module/"+moduleId+"/lesson",
             method:'get',
             withCredentials: true,
         })
@@ -330,7 +330,7 @@ class CourseService {
         };
         return axios( {
             method : 'post' ,
-            url : "https://guarded-lake-67462.herokuapp.com/api/module/"+moduleId+"/lesson" ,
+            url : "http://localhost:8080/api/module/"+moduleId+"/lesson" ,
             data : obj,
             withCredentials: true,
         })
@@ -338,7 +338,7 @@ class CourseService {
 
     deleteLessonForModuleId = (lessonId)=>{
         return axios({
-            url : "https://guarded-lake-67462.herokuapp.com/api/lesson/" + lessonId,
+            url : "http://localhost:8080/api/lesson/" + lessonId,
             method : 'delete',
             withCredentials: true
         })
@@ -346,7 +346,7 @@ class CourseService {
 
     updateLesson =(lessonId , lessonName)=>{
         return axios({
-            url: "https://guarded-lake-67462.herokuapp.com/api/lesson/" + lessonId,
+            url: "http://localhost:8080/api/lesson/" + lessonId,
             data: {title: lessonName},
             method : 'put',
             withCredentials: true
@@ -356,7 +356,7 @@ class CourseService {
 
     findAllTopicForModule = (LessonId)=>{
         return axios({
-            url : "https://guarded-lake-67462.herokuapp.com/api/lesson/"+LessonId+"/topic",
+            url : "http://localhost:8080/api/lesson/"+LessonId+"/topic",
             method : 'get',
             withCredentials: true,
         })
@@ -366,7 +366,7 @@ class CourseService {
     deleteTopicForLessonId =(topicId)=>{
         return axios({
             method : 'delete',
-            url: "https://guarded-lake-67462.herokuapp.com/api/topic/"+topicId,
+            url: "http://localhost:8080/api/topic/"+topicId,
             withCredentials: true
         })
     };
@@ -379,7 +379,7 @@ class CourseService {
         };
         return axios({
             method : 'post',
-            url : "https://guarded-lake-67462.herokuapp.com/api/lesson/"+lessonId+"/topic" ,
+            url : "http://localhost:8080/api/lesson/"+lessonId+"/topic" ,
             data : obj,
             withCredentials: true,
         })
@@ -387,7 +387,7 @@ class CourseService {
 
     updateTopic =(topicId ,topicName)=>{
         return axios({
-            url : "https://guarded-lake-67462.herokuapp.com/api/topic/"+topicId,
+            url : "http://localhost:8080/api/topic/"+topicId,
             data : {title : topicName},
             method : 'put' ,
             withCredentials: true
@@ -396,7 +396,7 @@ class CourseService {
 
     findTopicById = (topicId) => {
         axios({
-            url : "https://guarded-lake-67462.herokuapp.com/api/topic/"+topicId,
+            url : "http://localhost:8080/api/topic/"+topicId,
             withCredentials: true,
             method : 'get'
         }).then((res)=>{

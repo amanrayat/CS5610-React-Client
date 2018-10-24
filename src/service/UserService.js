@@ -9,7 +9,7 @@ class UserService {
             "password": password
         };
         return axios({
-            url : 'https://guarded-lake-67462.herokuapp.com/api/register',
+            url : 'http://localhost:8080/api/register',
             method: 'post',
             data:user,
             withCredentials: true
@@ -20,7 +20,7 @@ class UserService {
     login(username , password){
         return axios({
                 method: 'post',
-                url: "https://guarded-lake-67462.herokuapp.com/api/login",
+                url: "http://localhost:8080/api/login",
                 data : {"userName": username,
                     "password": password},
                 withCredentials: true
@@ -31,7 +31,7 @@ class UserService {
     profile(){
         return axios({
             method: 'get',
-            url: "https://guarded-lake-67462.herokuapp.com/api/profile",
+            url: "http://localhost:8080/api/profile",
             withCredentials: true
         })
 
@@ -39,7 +39,7 @@ class UserService {
     logout(){
         return axios({
             method: 'get',
-            url: "https://guarded-lake-67462.herokuapp.com/api/logout",
+            url: "http://localhost:8080/api/logout",
             withCredentials: true
         })
     }
@@ -49,7 +49,7 @@ class UserService {
              return axios({
                 method : 'put',
                 data : user,
-                url: "https://guarded-lake-67462.herokuapp.com/api/user/"+res.data.id,
+                url: "http://localhost:8080/api/user/"+res.data.id,
                 withCredentials: true
             })
         })
