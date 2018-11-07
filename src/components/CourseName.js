@@ -16,11 +16,11 @@ export default class CourseName extends React.Component{
         this.setState({editing:true})
     };
 
-
     save =()=>{
-        this.courseService.editCourse(this.props.id , this.input.value);
-        this.setState({editing:false})
-        this.props.reRender();
+        this.courseService.editCourse(this.props.id , this.input.value).then(()=>{
+            this.setState({editing:false});
+            this.props.reRender();
+        });
         this.input.value="";
     };
 

@@ -13,15 +13,10 @@ class WidgetListComponent extends React.Component {
     }
 
     componentDidMount(){
-        console.log("calling from the component did mount ")
         this.props.init(this.props.widgetsInit , this.props.topic)
     }
 
     componentWillReceiveProps(newProps){
-        console.log("component will receive props")
-        console.log("new props are " , newProps)
-        console.log("old props are " , this.props)
-        //
         if(this.props.topic.id!==newProps.topic.id ){
             this.props.init(newProps.widgetsInit , newProps.topic)
         }
@@ -113,7 +108,6 @@ class WidgetListComponent extends React.Component {
                                     handleChangeList={this.props.handleChangeList}
                                     listChange = {this.props.listChange}
                                     widget={widget}/></ol>}
-                                {console.log("the widget down here is " , widget)}
                                 {widget.widgetType==="LIST" && widget.order!=="ordered" &&  <ul><ListWidget
                                     preview={ this.props.preview}
                                     handleChangeList={this.props.handleChangeList}

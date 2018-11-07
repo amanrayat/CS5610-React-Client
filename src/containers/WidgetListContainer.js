@@ -16,7 +16,6 @@ const dispatcherToPropertyMapper = dispatch =>({
             method : 'get',
             withCredentials: true,
         }).then((res)=>{
-            console.log("the res is" , res)
             dispatch({
                 type:"INIT",
                 widgets: res.data,
@@ -34,7 +33,6 @@ const dispatcherToPropertyMapper = dispatch =>({
             method : 'get',
             withCredentials: true,
         }).then((res)=>{
-            console.log("dfsdfdsafsd" , res)
             dispatch({
                 type :'DELETE_WIDGET',
                 widget:widget,

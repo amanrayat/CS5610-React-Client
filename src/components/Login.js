@@ -15,7 +15,6 @@ export default class Login extends Component{
     }
     login = ()=>{
         this.UserService.login(this.state.username , this.state.password).then((res)=>{
-            console.log("the res is " , res)
             if (res.status === 200 && res.data){
                 this.props.history.push('/profile')
             }
