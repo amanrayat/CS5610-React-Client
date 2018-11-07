@@ -67,9 +67,11 @@ export default class TopicPill extends React.Component{
         })
     };
     selectTopic =(id)=>{
-        this.setState({
-            topicId:id,
-            topic : this.courseService.findTopicById(id)
+        this.courseService.findTopicById(id).then((res)=>{
+            this.setState({
+                topicId:id,
+                topic : res
+            })
         })
     };
 
@@ -98,6 +100,7 @@ export default class TopicPill extends React.Component{
     };
 
     render(){
+        console.log("the topic pill rerendered and the state is " , this.state)
         return(
             <div>
                 <h1 className={'text-center'}>Topics</h1>
@@ -110,6 +113,7 @@ export default class TopicPill extends React.Component{
                         placeholder="New Topic title" />
                     <button style={{marginTop : '40px'}} onClick={this.addTopic} className={'btn btn-primary btn-block'}>Add New Topic</button>
                 </ul>
+
                 { this.state.topic &&
                 <Provider store={store}>
                     <WidgetListContainer  topic={this.state.topic} widgetsInit={this.state.topic.widgets}/>

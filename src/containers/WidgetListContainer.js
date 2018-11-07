@@ -1,5 +1,8 @@
 import {connect} from 'react-redux'
 import WidgetListComponent from '../components/WidgetListComponent'
+import axios from "axios";
+
+import widgets from "../reducers/widgets";
 
 const stateToPropertyMapper = state =>({
     widgets : state.widgets,
@@ -7,15 +10,38 @@ const stateToPropertyMapper = state =>({
 });
 
 const dispatcherToPropertyMapper = dispatch =>({
-    init:(widgets , topic) =>dispatch({
-        type:"INIT",
-        widgets: widgets,
-        topic:topic
+    init:(widgets , topic) =>{
+        axios({
+            url : "http://localhost:8080/api/topic/"+topic.id+"/widget",
+            method : 'get',
+            withCredentials: true,
+        }).then((res)=>{
+            console.log("the res is" , res)
+            dispatch({
+                type:"INIT",
+                widgets: res.data,
+                topic:topic
+            })
+        })
+        },
+    reRender : (topic) =>dispatch({
+        type:"RERENDER",
+        topic : topic
     }),
-    deleteWidget: (widget)=> dispatch({
-        type :'DELETE_WIDGET',
-        widget:widget
-    }),
+    deleteWidget: (widget , topic)=> {
+        axios({
+            url : "http://localhost:8080/api/topic/"+topic.id+"/widget",
+            method : 'get',
+            withCredentials: true,
+        }).then((res)=>{
+            console.log("dfsdfdsafsd" , res)
+            dispatch({
+                type :'DELETE_WIDGET',
+                widget:widget,
+                widgets : res.data
+            })
+        })
+        },
     arrowUp :(widget)=>dispatch({
         type : "ARROW_UP",
         widget : widget
@@ -28,11 +54,12 @@ const dispatcherToPropertyMapper = dispatch =>({
             type : "PREVIEW",
             decision : decision
         }),
-    headingChange : (widget , id)=>dispatch({
+    headingChange : (widget , id)=>{
+        dispatch({
         type : 'HEADING_CHANGE',
         widget : widget,
         id: id
-    }),
+    })},
     listChange : (widget , id) => dispatch({
         type : "LIST_CHANGE",
         widget : widget,
@@ -63,15 +90,20 @@ const dispatcherToPropertyMapper = dispatch =>({
         widgetId : widgetId,
         input : input
     }),
-        handleSave : ()=>dispatch({
-           type : "HANDLE_SAVE"
+        handleSave : (topic , widgets)=>dispatch({
+           type : "HANDLE_SAVE",
+            topic:topic,
+            widgets : widgets
         }),
     updateWidget : widget=>dispatch({
         type:'UPDATE_WIDGET',
         widget:widget
     }),
-    addWidget: ()=> dispatch({
-        type: 'CREATE_WIDGET'
+    addWidget: (topic)=> dispatch({
+
+        type: 'CREATE_WIDGET',
+        topic: topic,
+        widgets : widgets
     }),
     changeType: (widget , kind)=> dispatch({
         type :'CHANGE_TYPE',

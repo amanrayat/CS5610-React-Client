@@ -13,7 +13,7 @@ const ListWidget = ({widget , listChange , handleChangeList , preview})=>{
                         componentClass="textarea"
                         inputRef={(ref) => {input = ref}}
                         onChange={()=>handleChangeList(widget.id , input.value)}
-                        value={widget.items}/>
+                        value={widget.text}/>
                 </FormGroup>
                 <DropdownButton
                     bsStyle="default"
@@ -32,7 +32,7 @@ const ListWidget = ({widget , listChange , handleChangeList , preview})=>{
                     placeholder="Widget Name" />
                 <p className={'my-3'}>Preview</p>
             </div>
-            {widget.items.split(",").map((item,index)=> <li key={index}>{item}</li>)}
+            {widget.text.split(",").map((item,index)=> <li key={index}>{item}</li>)}
         </div>
     )
 };
