@@ -66,7 +66,7 @@ class WidgetListComponent extends React.Component {
                                         <div className="form-group">
                                             <DropdownButton
                                                 bsStyle="default"
-                                                title={widget.type}
+                                                title={widget.widgetType}
                                                 noCaret
                                                 id={`dropdown-basic-${1}`}>
                                                 <MenuItem eventKey="1"

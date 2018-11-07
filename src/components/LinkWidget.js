@@ -11,7 +11,7 @@ const LinkWidget = ({widget , handleChangeText , handleChangeHref , preview})=>{
                     componentClass="input"
                     onChange={()=>handleChangeText(widget.id , input1.value)}
                     type="text"
-                    value={widget.title}
+                    value={widget.text}
                     inputRef={(ref) => {input1 = ref}}
                     placeholder="Link Text" />
                 <FormControl
@@ -29,7 +29,7 @@ const LinkWidget = ({widget , handleChangeText , handleChangeHref , preview})=>{
                     inputRef={(ref) => {this.input = ref}}
                     placeholder="Widget Name" />
             </div>
-            <a href={widget.href}>{widget.title}</a>
+            <a href={widget.href}>{widget.text}</a>
         </div>
     )
 };
