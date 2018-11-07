@@ -51,7 +51,7 @@ export default class Profile extends React.Component{
         };
         this.UserService.updateProfile(profile).then(()=>{
             this.setState({'updated' :true });
-            this.render();
+            this.reRender();
         })
     };
     logout =()=>{

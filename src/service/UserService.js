@@ -4,7 +4,6 @@ class UserService {
 
     register(username,password) {
         let user = {
-            "id": Math.round(Math.random() * 1000000),
             "userName": username,
             "password": password
         };
@@ -46,6 +45,7 @@ class UserService {
 
     updateProfile(user){
         return this.profile().then((res)=>{
+
              return axios({
                 method : 'put',
                 data : user,

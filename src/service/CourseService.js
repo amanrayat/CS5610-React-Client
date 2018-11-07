@@ -237,7 +237,6 @@ class CourseService {
 
     createCourse = (course)=>{
         let newCourse = {
-            "id" :Math.round(Math.random()*1000000),
             "title" : course,
             "modules" : []
 
@@ -281,9 +280,7 @@ class CourseService {
     };
 
     createModuleForCourseId = (moduleName , courseId) => {
-        let id = Math.round((new Date()).getTime() / 1000);
         let obj = {
-            "id":id,
             "title":moduleName,
             "lessons":[]
         };
@@ -324,7 +321,6 @@ class CourseService {
 
     createLessonForModuleId = ( moduleId,lessonName)=>{
         let obj = {
-            "id":Math.round(Math.random()*1000000),
             "title":lessonName,
             "topics":[]
         };
@@ -373,7 +369,6 @@ class CourseService {
 
     addNewTopicforLesson =(lessonId,topicName)=>{
         let obj = {
-            "id":Math.round(Math.random()*1000000),
             "title":topicName,
             "widgets" : []
         };
