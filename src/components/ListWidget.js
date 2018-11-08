@@ -32,7 +32,6 @@ const ListWidget = ({widget , listChange , handleChangeList , preview})=>{
                     placeholder="Widget Name" />
                 <p className={'my-3'}>Preview</p>
             </div>
-            {console.log("the widgets are " , widget)}
             {widget.items ? widget.items.split(",").map((item,index)=> <li key={index}>{item}</li>) : <p></p>}
         </div>
     )

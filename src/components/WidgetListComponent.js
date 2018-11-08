@@ -37,7 +37,6 @@ class WidgetListComponent extends React.Component {
                     </label>
                 </span>
                 </div>
-                {console.log("this props widget is " , this.props.widgets)}
                 {
                     this.props.widgets &&
                     this.props.widgets.map((widget,index) =>
