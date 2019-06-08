@@ -27,7 +27,7 @@ export default class CourseName extends React.Component{
     renderCourseName=()=>{
         if(this.state.editing ===false){
             return (
-                <span>
+                <span className='custom-control-inline'>
                 <Link to={'/courses'}>
                     <button className={'btn btn-outline-danger '}>
                         <i className="fa fa-arrow-left"/>
