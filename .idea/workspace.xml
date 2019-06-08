@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="36cc3e3f-0be6-4727-ba22-2412af05412f" name="Default Changelist" comment="" />
+    <list default="true" id="36cc3e3f-0be6-4727-ba22-2412af05412f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/components/CourseName.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CourseName.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -68,7 +70,7 @@
         <entry file="file://$PROJECT_DIR$/src/components/CourseName.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="183">
-              <caret line="29" column="54" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="54" />
+              <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -261,12 +263,12 @@
       <workItem from="1541628712158" duration="125000" />
       <workItem from="1541628902495" duration="3080000" />
       <workItem from="1541633649095" duration="1670000" />
-      <workItem from="1559962837831" duration="819000" />
+      <workItem from="1559962837831" duration="825000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5694000" />
+    <option name="totallyTimeSpent" value="5700000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
@@ -410,7 +412,7 @@
     <entry file="file://$PROJECT_DIR$/src/components/CourseName.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
-          <caret line="29" column="54" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="54" />
+          <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
         </state>
       </provider>
     </entry>
