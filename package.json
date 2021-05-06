@@ -22,7 +22,7 @@
     "react-scripts": "1.1.5",
     "reactstrap": "^6.4.0",
     "redux": "^4.0.0",
-    "sanitize-html": "^1.19.1"
+    "sanitize-html": "^2.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
